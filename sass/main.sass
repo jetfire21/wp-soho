@@ -1,0 +1,995 @@
+header,a,a:hover
+	color: #fff
+.empty
+	height: 150px
+body
+	min-width: 320px
+a 
+	font: 20px "Montserrat"
+	color: #000
+	text-transform: uppercase
+	letter-spacing: 6px
+
+	&:hover, &:focus
+		color: #000
+		text-decoration: none
+		outline: 0
+		border: 0
+
+$color-dark-gray: #a3a3a3
+
+h2, h2 a
+	font: 88px "PlayfairDisplay-Black" !important
+	margin-bottom: 20px
+	letter-spacing: normal
+	text-transform: capitalize
+
+.alex-overlay:before
+	content: ''
+	display: block
+	position: fixed
+	top: 0
+	left: 0
+	height: 100%
+	width: 100%
+	background-color: rgba(32, 32, 32, 0.8) !important
+	z-index: 9999
+
+	
+/* size for lg screens */
+header
+	background-size: cover
+	background-position: center center
+	// background-image: url(../img/slide1.jpg)
+	// min-height: 677px
+	position: relative
+
+.bg-color
+	background-color: rgba(32,32,32,0.4)
+
+.bg-color, #owl-demo .item > img
+	height: 1080px
+
+.btn-bar-top
+	position: absolute
+	top: 46px
+	width: 50px
+	left: 6%
+	cursor: pointer
+	z-index: 3
+
+h3.main-name, h1.main-name
+	color: #fff
+	text-align: center
+	text-transform: uppercase
+	margin: 0
+	font: 40px "Ailerons"
+	padding-top: 40px
+
+.slogan
+	//margin-left: 151px
+	margin-left: 21%
+	width: 430px
+	position: relative
+	top: 357px
+
+	h3,.btn-media
+		position: absolute
+	h3
+		font: 40px "PlayfairDisplayBold"	
+		//margin-top: 376px
+
+		span
+			font-family: "PlayfairDisplayRegular"
+
+	.btn-media
+		//margin-top: 41%
+		top: 358px
+
+		img 
+			margin-right: 7px
+			margin-top: -4px
+
+.big-btn-bar
+	position: absolute
+	left: 100px
+	top: 46.5%
+	cursor: pointer
+	z-index: 3
+
+.btn-media
+	font: 17px "Montserrat"
+	text-transform: uppercase
+	letter-spacing: 6px
+	// position: absolute
+	// bottom: 10%
+
+	a
+		color: #fff
+		font-size: 17px
+	
+.top-menu 
+	display: none
+	position: absolute
+	top: 36%
+	background-color: #fff
+	width: 100%
+	z-index: 9999
+
+	.close-top-menu
+		top: 123px
+		position: absolute
+		left: 6%
+		cursor: pointer
+
+	ul
+		text-align: center
+		margin-bottom: 0
+
+		li 
+			//margin: 30px auto
+			padding-right: 70px
+
+			&:hover .vert-line
+				visibility: visible
+
+			&:hover a
+				color: #000
+				text-decoration: none
+
+			&:last-child
+				padding-right: 0
+	
+	a
+		font: 20px "Montserrat"
+		text-transform: uppercase
+		color: #999
+		// outline: 1px solid red
+
+	.vert-line
+		visibility: hidden
+		height: 65px
+		width: 3px
+		background-color: #000
+		display: block
+		margin: 30px auto 40px auto
+
+.mob-menu
+	position: absolute
+	background-color: #fff
+	width: 100%
+	height: 100%
+	top: 0
+	display: none
+	z-index: 9999
+
+.show_mob_menu
+	display: block !important
+
+	ul
+		text-align: center
+		margin-top: 50px
+		padding-left: 0
+	li 
+		margin-top: 20px
+	
+	a
+		font: 20px "Montserrat"
+		text-transform: uppercase
+		color: #999
+
+		&:hover
+			text-decoration: none
+			color: #000
+
+	a
+		overflow: hidden
+		position: relative
+		margin: 0
+		text-align: center
+		white-space: nowrap
+	
+	li:hover a:before,li:hover a:after
+		content: ''
+		display: inline-block
+		position: relative
+		top: -1px
+		width: 65px
+		height: 2px
+		vertical-align: middle
+		background: black
+		margin: 0 15px 0 5px
+
+	.close-mob-menu
+		position: absolute
+		left: 50%
+		cursor: pointer
+		bottom: 10%
+		margin-left: -21px
+
+
+
+
+
+
+
+
+.wrap-a
+	position: absolute
+	top: 0
+	left: 0
+	width: 100%
+	color: #fff
+
+#owl-demo .item > img
+	background-size: cover
+	background-position: center center
+	// min-height: 677px
+	// position: relative
+	display: block
+	width: 100%
+
+header, #owl-gallery
+	
+	.owl-controls
+		position: absolute
+		right: 0
+		top: 34%
+
+	.owl-page
+		width: 15px
+		height: 1px
+		color: blue
+		background: #fff
+		margin: 40px 50px 40px 0
+		position: relative
+
+		.num
+			color: #fff
+			// font: 18px "Montserrat-Regular"
+			font: 18px "Montserrat-Light"
+			position: absolute
+			right: 41px
+			top: -9px
+			letter-spacing: 4px
+
+	.owl-page.active
+		height: 4px
+		margin: 45px 0 45px 36px
+		width: 28px
+
+.home-movies
+	position: relative
+	overflow: hidden
+
+	.block-movies-title
+		margin-top: 76px	
+
+	h3,p 
+		padding-left: 10px
+		
+	h3
+		margin-top: 40px
+
+%six-close
+	font: 18px "Montserrat"
+	letter-spacing: 12px
+
+.home-movies p, .blog-main-text p
+	@extend %six-close
+
+%monserat-gray
+	font: 20px "Montserrat"
+	text-transform: uppercase
+	color: $color-dark-gray
+	letter-spacing: 5px
+
+.home-movies h3, .home-movies h3 a, .monser-gray, .foot-menu a, .mfp-content .mfp-title, .video-catalog h3, .video-catalog h3 a
+	@extend %monserat-gray
+
+.home-movies h3 a
+	&:hover
+		color: #000
+
+
+.mfp-content .mfp-title
+	color: #fff
+	text-align: center
+	padding: 30px 0 30px 0
+
+.wrap-carousel
+	width: 1200px
+	position: relative
+	float: right
+	margin-right: -92px
+	margin-top: -190px
+
+#owl-movies
+
+	.item
+		margin-right: 40px
+
+		img
+			display: block
+			width: 100%
+			height: auto
+
+	.owl-prev, .owl-next
+		background: #000
+		padding: 40px 0
+		margin-bottom: 20px
+		width: 80px
+	
+	.owl-prev
+		background: url("../img/black-l-arrow.png") center center no-repeat		
+
+		&:hover
+			background: #000 url("../img/white-l-arrow.png") center center no-repeat
+			padding: 40px 0
+
+	.owl-next
+		background: url("../img/black-r-arrow.png") center center no-repeat		
+
+		&:hover
+			background: #000 url("../img/white-r-arrow.png") center center no-repeat
+			padding: 40px 0
+	
+	.owl-controls
+		position: absolute
+		left: -34%
+		bottom: 15%
+
+#owl-movies p, .movies-catalog p
+	font: 20px "PlayfairDisplay-Black"
+	letter-spacing: 0
+
+.gallery
+	position: relative
+	padding-top: 301px
+	margin-top: 70px
+	overflow: hidden
+
+	.gal-text
+		padding-top: 325px
+
+.wrap-gallery
+	height: 810px
+	// Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ecdbcb+0,f0e0d0+50,eddac9+100 
+	// background: #ecdbcb /* Old browsers */
+	// background: -moz-linear-gradient(top,  #ecdbcb 0%, #f0e0d0 50%, #eddac9 100%) /* FF3.6-15 */
+	// background: -webkit-linear-gradient(top,  #ecdbcb 0%,#f0e0d0 50%,#eddac9 100%)/* Chrome10-25,Safari5.1-6 */
+	// background: linear-gradient(to bottom,  #ecdbcb 0%,#f0e0d0 50%,#eddac9 100%)/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ecdbcb', endColorstr='#eddac9',GradientType=0 ) /* IE6-9 */
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeddcd+0,f0e0d1+30,efdece+60,ecd9c8+100 */
+	background: #eeddcd
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2VlZGRjZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjMwJSIgc3RvcC1jb2xvcj0iI2YwZTBkMSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYwJSIgc3RvcC1jb2xvcj0iI2VmZGVjZSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNlY2Q5YzgiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+)
+	background: -moz-linear-gradient(top,  #eeddcd 0%, #f0e0d1 30%, #efdece 60%, #ecd9c8 100%)
+	background: -webkit-linear-gradient(top,  #eeddcd 0%,#f0e0d1 30%,#efdece 60%,#ecd9c8 100%)
+	background: linear-gradient(to bottom,  #eeddcd 0%,#f0e0d1 30%,#efdece 60%,#ecd9c8 100%)
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeddcd', endColorstr='#ecd9c8',GradientType=0 )
+	padding-left: 49%
+
+	h2
+		display: inline
+		padding-right: 40px
+		font-size: 120px
+
+	h2,a 
+		float: left
+
+	a
+		// padding-top: 87px
+		padding-top: 68px
+		cursor: pointer
+
+.gallery-girl
+	background: url("../img/gallery-girl.jpg") no-repeat
+	background-size: cover
+	width: 879px
+	height: 100%
+	position: absolute
+	top: 0
+
+
+.grayscale
+	-webkit-filter: grayscale(100%)
+	-moz-filter: grayscale(100%)
+	-ms-filter: grayscale(100%)
+	-o-filter: grayscale(100%)
+	filter: grayscale(100%)
+	// filter: url(grayscale.svg)
+	filter: gray /* IE 6-9 */
+	opacity: 0.5
+
+.blog 
+	margin: 70px 0 110px 0
+
+	.blog-main-text
+		text-align: right
+		margin-bottom: 20px
+	
+	h3
+		font: 20px "Montserrat"
+		text-transform: uppercase
+		letter-spacing: 5px
+		line-height: 1.5
+		margin-bottom: 30px
+
+	.blog-img
+		position: relative
+		margin-bottom: 150px
+
+		img
+			margin-left: 20%
+
+	.blog-img
+		&:last-child
+			margin-bottom: 0
+
+	.blog-img-text
+		position: absolute
+		top: 30%
+		left: 0
+	
+	.blog-right
+		margin-top: 150px
+
+		.exclusive-more
+			padding: 170px 0 0 23%
+			display: block
+
+		.blog-img-text
+			top: 25%
+
+
+
+footer
+	background: #000
+	color: #fff
+	text-align: center
+	padding: 170px 0 155px 0
+	
+	.fa
+		font-size: 30px
+
+
+	.soc-network a
+		padding-right: 30px
+
+		&:last-child
+			padding-right: 0
+
+	.soc-network a
+		color: #fff
+
+.foot-menu
+	margin-top: 95px
+
+	li 
+		margin-right: 50px
+
+		&:last-child
+			margin-right: 0 !important
+	a
+		&:hover
+			color: #fff
+
+
+/* **************BLOCK  MEDIA********** */
+
+.block-media
+
+	.big-btn-bar
+		left: 40px
+		// top: 60.5%
+		top: 550px
+
+	.top-menu
+		top: 47%		
+
+	.main-name
+		color: #000
+		margin-bottom: 125px
+
+	.movie-cont-right
+		padding-left: 25px
+
+	.media-category
+		overflow: hidden
+
+		h2, h2 a
+			color: #dddddd
+
+		> div
+			&:hover h2, &:hover h2 a
+				color: #000
+
+		.cat-active 
+
+			a 
+				color: #000 !important
+
+			p
+				visibility: visible
+
+		p
+			visibility: hidden
+			@extend %six-close
+
+		>div
+			&:hover p
+				@extend %six-close
+				visibility: visible
+				
+		
+		> div 
+			&:nth-child(1) p
+				padding-left: 105px
+
+			&:nth-child(2), &:nth-child(2) p
+				text-align: center
+
+			&:nth-child(3)
+				text-align: right
+
+	.movies-catalog
+		margin: 55px 0 140px 0
+		overflow: hidden
+
+		h3, h3 a
+			@extend %monserat-gray
+			margin-top: 25px
+
+			&:hover
+				color: #000
+
+		h3,p
+			padding-left: 20px
+
+		img
+			margin-top: 45px
+
+	.loading-link
+		padding-bottom: 150px
+		text-align: center
+		display: block
+
+	#owl-movies
+		margin-bottom: 120px
+
+.movies-catalog > div
+	&:nth-child(4n+1)
+		clear: left
+
+
+/*  ************ MOVIE SINGLE PAGE ***************** */
+
+.movie-title
+	overflow: hidden
+	margin-bottom: 90px
+
+	a
+		margin-left: 54px
+		color: #b8b8b8
+		display: block
+		margin-top: 55px
+	
+		&:before
+			content: ""
+			background: url("../img/small-left-arrow.png")
+			display: block
+			width: 39px
+			height: 30px
+			position: absolute
+			left: 10px
+			top: 51px
+
+	p
+		@extend %six-close
+		padding-left: 9%
+
+.movie-content
+	overflow: hidden
+	margin-bottom: 90px
+
+	.feedback
+
+		h4
+			@extend %monserat-gray
+			color: #b8b8b8
+			padding: 20px 0
+
+	p 
+		font: 28px "PlayfairDisplayRegular"
+		line-height: 39px
+		margin-bottom: 20px
+
+	span 
+		font: 22px "PlayfairDisplay-Black"
+
+	.movie-params
+		margin-top: 40px
+
+		span
+			@extend %monserat-gray
+			color: #000
+			line-height: 45px
+
+		p
+			line-height: 45px
+
+
+
+.movie-content .movie-params p, .movie-desc h4
+	@extend %monserat-gray
+	color: #b8b8b8
+
+.movie-desc h4
+	padding: 30px 0
+
+/* ******* override default owl-theme.css*********** */
+
+#owl-movie-feedback
+	
+	.owl-controls
+		text-align: left
+
+	.owl-controls .owl-page span
+		margin: 30px 40px 0 7px
+
+	.owl-controls .owl-page.active span
+		background: #000
+
+	.owl-controls.clickable .owl-page
+		&:hover span
+			background: #000
+
+/* ******* override default owl-theme.css*********** */
+
+.wrap-movie-video
+	iframe
+		width: 100%
+		height: 670px
+
+.movie-desc
+	text-align: center
+
+	p
+		font: 28px "PlayfairDisplayRegular"
+		line-height: 39px
+
+
+
+/* *********** BIO PAGE ************ */
+html,body 
+	height: 100%
+
+.bio_page
+	
+	.btn-media
+		position: absolute
+		// bottom: 140px
+		// right: 135px		
+		bottom: 140px
+		right: 65px
+		z-index: 4
+
+	.img-overlay
+		position: relative
+		z-index: 1
+		width: 100%
+		height: 100%
+		margin: 0 0 0 -30px
+		// padding-right: 120px
+		overflow: hidden
+		// max-width: 684px
+
+
+		&:before 
+			content: ''
+			display: block
+			position: absolute
+			top: 0
+			left: 0
+			width: 100%
+			height: 100%
+			background: rgba(0,0,0,0.4)
+			z-index: 2
+			// margin-left: -65px
+			// margin-left: -9%
+	
+	.bio_content
+		// padding: 0 10% 0 0%
+		padding: 0 7% 0 5%
+
+		.soc-network
+			position: absolute
+			right: 6%
+			top: 42px
+
+			.fa
+				font-size: 30px
+				padding-left: 25px
+
+	p
+		font: bold 20px "Montserrat-Light"
+		color: #a3a3a3
+		margin-bottom: 32px
+		line-height: 32px
+	h2
+		font: 200px "PlayfairDisplay-Black" !important
+		margin-top: 0
+	
+	footer
+		display: none
+
+/* ************** PAGE GALLERY ************* */
+
+.page-gallery
+	background: #000
+	padding: 0 0 70px 0
+	position: relative
+	// height: 100%
+	min-height: 100%
+
+	h3
+		margin-bottom: 30px
+
+	.big-btn-bar
+		left: 34px
+
+	.btn-small-media
+		width: 41px
+		height: 41px
+		display: block
+		background: url("../img/small-media.jpg")
+		position: absolute
+		right: 38px
+		top: 60px
+
+.page-gallery #owl-gallery a
+	@extend %monserat-gray
+	color: #585858
+
+#owl-gallery
+
+	.owl-controls
+		top: 4%
+	
+	img 
+		max-width: 100%
+	
+	.gal-link-bot
+		margin-top: 60px
+
+	.gal-link-top
+		margin-bottom: 60px
+
+	.gal-img
+		line-height: 662px
+
+.aaa
+	height: 100%
+	background: red
+
+
+
+
+/* ********* page music ******** */
+
+.wrap-audio-img
+	position: relative
+	cursor: pointer
+	z-index: 1
+	overflow: hidden
+	margin-top: 45px
+
+	&:hover
+		&:after
+			content: ""
+			z-index: 2
+			background: rgba(0,0,0,0.7)
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			width: 100%
+
+	img
+		z-index: 1
+		display: block
+		width: 100%
+		max-width: 100%
+		margin-top: 0 !important
+
+	
+	&:hover .play-music-img
+		// background: url("../img/play.png") no-repeat
+		background: url("../img/play.png") no-repeat
+		width: 127px
+		height: 140px
+		position: absolute
+		top: 29%
+		left: 34%
+		z-index: 3
+		background-size: cover
+
+
+
+
+
+
+
+
+
+/* ********* style audio player ******** */
+
+
+.jp-audio
+	background: #000
+	// background: #b7abab
+	color: #fff
+	position: fixed
+	bottom: 0
+	color: #fff
+	width: 100%
+	z-index: 10
+
+	a
+		color: #fff
+
+	button
+		border: 0
+		outline: 0
+		text-indent: -9999px
+	
+	.jp-controls
+		float: left
+		margin-top: -19px
+
+		button
+			margin-left: 30px
+
+	.jp-controls, .jp-volume-controls, .jp-playlist, .jpa-time-toogles
+		padding: 40px 0 30px 0
+
+	.jp-volume-controls, .jp-playlist
+		float: left
+
+	.jpa-time-toogles
+		float: right
+
+	.jp-progress
+		background: #f0f2f7
+		height: 5px
+		overflow: hidden
+
+	.jp-play-bar
+		background: #b2b2b2
+		height: 5px
+
+	.jp-volume-controls
+		position: relative
+
+	.jp-volume-bar
+		width: 105px
+		background: #fff
+		// border: 1px solid #fff
+		height: 8px
+		position: absolute
+		top: 48px
+		left: 81px
+		cursor: pointer
+		border-radius: 3px
+		// display: none !important
+
+	.jp-volume-bar-value
+		background: #333
+		height: 8px
+		border-radius: 3px 0 0 3px
+		border: 1px solid #ccc
+
+	.jp-volume-max
+		background: url("../img/jplayer/volume.png") 0 0 no-repeat
+		width: 33px
+		height: 29px
+		margin: 0 0 0 40px	
+
+	.jp-playlist
+		width: 57%
+		// width: 64%
+
+	.jp-playlist-item, 
+	.jp-playlist li
+		display: none
+
+	.jp-playlist li.show-playlist-title, .jp-playlist li.show-playlist-title a
+		// &:nth-child(2)
+		display: block
+
+	.jp-playlist-current
+		display: block !important
+
+	.jp-play
+		background: url("../img/jplayer/audio_s_p.png") 0 0 no-repeat
+		width: 60px
+		height: 61px
+
+		&:hover
+			background-position: 0 -61px
+
+	.jp-previous
+		background: url("../img/jplayer/audio_prev.png") 0 0 no-repeat
+		width: 34px
+		height: 27px
+
+		&:hover
+			background-position: 0 -27px 
+
+	.jp-next
+		background: url("../img/jplayer/audio_next.png") 0 0 no-repeat
+		width: 34px
+		height: 27px
+
+		&:hover
+			background-position: 0 -27px
+
+	.jp-repeat
+		background: url("../img/jplayer/repeat.png") 0 0 no-repeat
+		width: 35px
+		height: 30px
+
+		&:hover
+			background-position: 0 -30px
+
+
+	.jp-shuffle
+		background: url("../img/jplayer/shuffle.png") 0 0 no-repeat
+		width: 38px
+		height: 30px
+
+		&:hover
+			background-position: 0 -30px
+		
+	.jp-stop, .jp-mute
+		display: none
+
+	.jpa-time-toogles > div
+		// display: inline-block
+		float: left
+
+	.jp-current-time, .jp-duration, .jpa-slash, a
+		@extend %monserat-gray
+		font-size: 16px
+		line-height: 28px
+
+	.jp-current-time
+		color: #fff
+
+	.jp-duration, .jpa-slash
+		color: #333
+
+	.jp-toggles button, .jp-duration
+		margin-right: 30px
+
+
+/* **************** video page ************** */
+
+
+.video-catalog
+	margin-top: 70px !important
+	margin-bottom: 140px
+	overflow: hidden
+	
+	> div
+		margin-bottom: 50px
+	
+	iframe
+		width: 100%
+		height: 465px
+
+	// .item-video-2
+	// 	text-align: right
