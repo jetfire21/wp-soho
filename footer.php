@@ -10,33 +10,36 @@
 				<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 				</div>
 
-				<ul class="foot-menu list-inline">
-					<li> 
-						 <a href="index.html">home </a>
-					</li>
-					<li>
-						<a href="bio.html">bio</a>
-					</li>
-					<li>
-						<a href="media.html">media</a>
-					</li>
-					<li>
-						<a href="gallery.html">gallery</a>
-					</li>
-					<li>
-						<a href="">blog</a>
-					</li>
-					<li>
-						<a href="">contact</a>
-					</li>
-				</ul>	
+				<!-- footer menu  -->
+
+				<?php
+					$args = array(
+					  'theme_location'  => 'loc_menu',
+					  'menu'            => 'hf-menu', 
+					  'container'       => '', 
+					  'container_class' => '', 
+					  'container_id'    => '',
+					  'menu_class'      => 'foot-menu list-inline', 
+					  'menu_id'         => '',
+					  'echo'            => true,
+					  'fallback_cb'     => 'wp_page_menu',
+					  'before'          => '',
+					  'after'           => '',
+					  'link_before'     => '',
+					  'link_after'      => '',
+					  'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+					  'depth'           => 0
+					);
+
+					 wp_nav_menu( $args );
+				?>
 
 			</div>
 		</div>
 	</footer>
 
 </div>
-<!-- внимательным быть !!! это главная обертка -->
+<!-- end .alex-wrap внимательным быть !!! это главная обертка -->
 
 <?php wp_footer(); ?>
 

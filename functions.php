@@ -30,8 +30,7 @@ add_theme_support('post-thumbnails'); // поддержка миниатюр
 // add_theme_support( 'menus' );
 
 register_nav_menus( array(
-  'header_menu' => 'main_menu',
-  'left_sidebar' => 'left_menu'
+  'loc_menu' => 'hf-menu',
 ) );
 
 
@@ -55,6 +54,7 @@ add_filter('xmlrpc_enabled', '__return_false');
 
 
 // Disable Embeds WordPres scripts
+
 function disable_embeds_init() {
 
     // Remove the REST API endpoint.
@@ -72,6 +72,7 @@ function disable_embeds_init() {
 }
 
 add_action('init', 'disable_embeds_init', 9999);
+
 // Disable Embeds WordPres scripts
 
 
@@ -79,12 +80,12 @@ add_action('init', 'disable_embeds_init', 9999);
 
 /* **************** пользовательский тип записей - слайдер ************************* */
 
-add_action('init', 'custom_type_slider');
-function custom_type_slider()
+add_action('init', 'custom_type_movie');
+function custom_type_movie()
 {
   $labels = array(
-  'name' => 'Слайдер', // Основное название типа записи
-  'singular_name' => 'Слайдер', // отдельное название записи типа Book
+  'name' => 'Movie', // Основное название типа записи
+  'singular_name' => 'Movie', // отдельное название записи типа Book
   'add_new' => 'Добавить новую',
   'add_new_item' => 'Добавить новую книгу',
   'edit_item' => 'Редактировать книгу',
@@ -94,7 +95,7 @@ function custom_type_slider()
   'not_found' =>  'Книг не найдено',
   'not_found_in_trash' => 'В корзине книг не найдено',
   'parent_item_colon' => '',
-  'menu_name' => 'Слайдеры'
+  'menu_name' => 'movies'
 
   );
   $args = array(
@@ -111,7 +112,7 @@ function custom_type_slider()
   'menu_position' => null,
   'supports' => array('title','excerpt','thumbnail')
   );
-  register_post_type('slider',$args);
+  register_post_type('movie',$args);
 }
 
 /* **************** пользовательский тип записей - слайдер (на главной) ************************* */
