@@ -23,6 +23,7 @@ function css_js_for_theme(){
 add_editor_style('editor-style.css');
 
 /* ******hide admin-bar******** */
+
 add_filter('show_admin_bar', '__return_false');
 
 add_theme_support('post-thumbnails'); // поддержка миниатюр
@@ -36,9 +37,9 @@ register_nav_menus( array(
 
 //создание дополнительно пропоционального размера миниатюры
 // add_image_size( 'my-cat-thumb', 130, 200 );
-remove_action( 'wp_head', 'rel_canonical');
 
 // cleaning trash
+remove_action( 'wp_head', 'rel_canonical');
 remove_action('wp_head', 'wp_generator');
 remove_action( 'wp_head', 'feed_links_extra', 3 ); 
 remove_action( 'wp_head', 'feed_links', 2 );
@@ -76,6 +77,80 @@ add_action('init', 'disable_embeds_init', 9999);
 // Disable Embeds WordPres scripts
 
 
+// for metabox plugin
+
+add_filter( 'rwmb_meta_boxes', 'movie_meta_boxes' );
+function movie_meta_boxes( $meta_boxes ) {
+
+    $prefix = 'movie_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Test Meta Box', 'textdomain' ),
+        'post_types' => 'movie',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}feedback",
+                'name' => __( 'What people say', 'textdomain' ),
+                'type' => 'textarea',
+                'clone' => true,
+            ),
+            array(
+                'id'   => "{$prefix}video_url",
+                'name' => __( 'Video url', 'textdomain' ),
+                'type' => 'textarea',
+            ),
+            array(
+                'id'   => "{$prefix}year",
+                'name' => __( 'Year', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}release_date",
+                'name' => __( 'Release date', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}director",
+                'name' => __( 'Director', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}cast",
+                'name' => __( 'Cast', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}genre",
+                'name' => __( 'Genre', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}country",
+                'name' => __( 'Country', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'      => 'gender',
+                'name'    => __( 'Gender', 'textdomain' ),
+                'type'    => 'radio',
+                'options' => array(
+                    'm' => __( 'Male', 'textdomain' ),
+                    'f' => __( 'Female', 'textdomain' ),
+                ),
+            ),
+            array(
+                'id'   => 'email',
+                'name' => __( 'Email', 'textdomain' ),
+                'type' => 'email',
+            ),
+            array(
+                'id'   => 'bio',
+                'name' => __( 'Biography', 'textdomain' ),
+                'type' => 'textarea',
+            ),
+        ),
+    );
+    return $meta_boxes;
+}
 
 
 /* **************** пользовательский тип записей - слайдер ************************* */
@@ -110,7 +185,7 @@ function custom_type_movie()
   'has_archive' => true,
   'hierarchical' => false,
   'menu_position' => null,
-  'supports' => array('title','excerpt','thumbnail')
+  'supports' => array('title','editor','thumbnail')
   );
   register_post_type('movie',$args);
 }
