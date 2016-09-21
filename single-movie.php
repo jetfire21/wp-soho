@@ -39,7 +39,7 @@
 
 				 <?php if(have_posts() ): ?>
 				<?php while(have_posts() ) : the_post();?>
-					 <?php the_post_thumbnail('cat-movies', array('class'=>'img-responsive'));?>
+					 <?php the_post_thumbnail('full', array('class'=>'img-responsive'));?>
 				<?php endwhile; ?>
 				<?php else: ?>
 				   	<p>no content</p>
@@ -169,3 +169,4 @@
 </section>
 
 <?php get_footer(); ?>
+

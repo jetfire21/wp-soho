@@ -40,7 +40,11 @@ register_nav_menus( array(
 
 
 //создание дополнительно пропоционального размера миниатюры
-add_image_size( 'cat-movies', 404 ); // by width crop
+// add_image_size( 'cat-movies', 404 ); // by width crop
+// add_image_size( 'cat-movies', 404,562, true); 
+// add_image_size( 'cat-movies', 404,562, true); 
+// add_image_size( 'cat-movies', 375,500, true); 
+add_image_size( 'cat-movies', 400,553, true); 
 
 // cleaning trash
 remove_action( 'wp_head', 'rel_canonical');
@@ -79,6 +83,7 @@ function disable_embeds_init() {
 add_action('init', 'disable_embeds_init', 9999);
 
 // Disable Embeds WordPres scripts
+
 
 
 // for metabox plugin
@@ -136,6 +141,46 @@ function movie_meta_boxes( $meta_boxes ) {
     );
     return $meta_boxes;
 }
+
+
+
+// Auto load content on scroll down - movies
+
+function true_load_posts(){
+
+      $prefix = "movie_";
+     $paged = $_POST['page'] + 1; // следующая страница
+?>
+      <?php $args = array( 'post_type' => 'movie','order'=>'ASC','posts_per_page' => 2, 'paged' => $paged,'post_status' => 'publish'); ?>
+      <?php $movie = new WP_Query( $args ); ?>
+      <?php if($movie->have_posts() ): ?>
+      <?php while($movie->have_posts() ) : $movie->the_post();?>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+           <?php the_post_thumbnail('cat-movies', array('class'=>'img-responsive'));?>
+           <?php 
+             $strlen = strlen( get_the_title() );
+             $subtitle = substr( get_the_title(),0,15 ); 
+             if( $strlen > 15) $subtitle = $subtitle .".."; 
+            ?>
+           <h3><a href="<?php the_permalink() ?>"><?php echo $subtitle; ?></a></h3>
+           <p><?php echo rwmb_meta( "{$prefix}year"); ?></p>
+         </div>
+      <?php endwhile; ?>
+      <?php else: ?>
+          <p>Cлайдер еще не добавлен!</p>
+      <?php endif; ?> 
+
+<?php
+  wp_reset_postdata();
+  die();
+}
+
+add_action('wp_ajax_loadmore', 'true_load_posts');
+add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
+
+
+
+
 
 
 /* **************** пользовательский тип записей - слайдер ************************* */
