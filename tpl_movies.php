@@ -3,8 +3,9 @@
 Template Name: Movies
 */
 ?>
-
+<!-- /movies/ -->
 <?php get_header(); ?>
+<?php $prefix = "movie_"; ?>
 
 <div class="alex-wrap block-media">
 
@@ -32,11 +33,11 @@ Template Name: Movies
 			<?php while($slider->have_posts() ) : $slider->the_post();?>
 				 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
 				 	 <!-- <img class="img-responsive" src="img/movie-1.jpg" alt=""> -->
-				 	 <?php the_post_thumbnail('full', array('class'=>'img-responsive'));?>
+				 	 <?php the_post_thumbnail('cat-movies', array('class'=>'img-responsive'));?>
 				 	 <h3><a href="<?php the_permalink() ?>"><?php echo the_title(); ?></a></h3>
 				 	 <!-- <p>2015</p> -->
 				 	 <!-- <?php echo rwmb_meta( $field_id, $args, $post_id ); ?> -->
-				 	 <p><?php echo rwmb_meta( 'year'); ?></p>
+				 	 <p><?php echo rwmb_meta( "{$prefix}year"); ?></p>
 				 </div>
 			<?php endwhile; ?>
 			<?php else: ?>

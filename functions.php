@@ -18,6 +18,10 @@ function css_js_for_theme(){
        wp_enqueue_script('grayscale-a', get_template_directory_uri()."/libs/grayscale2/js/grayscale.js",array('jquery'),'',true);
        wp_enqueue_script('grayscale-func-a', get_template_directory_uri()."/libs/grayscale2/js/functions.js",array('jquery'),'',true);
     }
+    // if( is_single() ){  
+    //    wp_register_style('owl-theme',  get_template_directory_uri()."/libs/owl-carousel/owl.theme.css");
+    //    wp_enqueue_style( 'owl-theme');
+    // }
 }
 
 add_editor_style('editor-style.css');
@@ -36,7 +40,7 @@ register_nav_menus( array(
 
 
 //создание дополнительно пропоционального размера миниатюры
-// add_image_size( 'my-cat-thumb', 130, 200 );
+add_image_size( 'cat-movies', 404 ); // by width crop
 
 // cleaning trash
 remove_action( 'wp_head', 'rel_canonical');
@@ -127,25 +131,6 @@ function movie_meta_boxes( $meta_boxes ) {
                 'id'   => "{$prefix}country",
                 'name' => __( 'Country', 'textdomain' ),
                 'type' => 'text',
-            ),
-            array(
-                'id'      => 'gender',
-                'name'    => __( 'Gender', 'textdomain' ),
-                'type'    => 'radio',
-                'options' => array(
-                    'm' => __( 'Male', 'textdomain' ),
-                    'f' => __( 'Female', 'textdomain' ),
-                ),
-            ),
-            array(
-                'id'   => 'email',
-                'name' => __( 'Email', 'textdomain' ),
-                'type' => 'email',
-            ),
-            array(
-                'id'   => 'bio',
-                'name' => __( 'Biography', 'textdomain' ),
-                'type' => 'textarea',
             ),
         ),
     );

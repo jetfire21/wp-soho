@@ -25,7 +25,11 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/media.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/grayscale2/css/grayscale.css" />
 
+	<?php if( is_single() ):?>
 	<!-- <link rel="stylesheet" href="libs/owl-carousel/owl.theme.css"> -->
+		<!-- for only movie single (нужно еще додумать) -->
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/owl-carousel/owl.theme.css">
+	<?php endif;?>
 
 	<!--[if gte IE 9]>
 	  <style type="text/css">
