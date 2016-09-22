@@ -139,6 +139,20 @@ function movie_meta_boxes( $meta_boxes ) {
             ),
         ),
     );
+
+    $prefix = 'video_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Test Meta Box', 'videopage' ),
+        'post_types' => 'video',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}url",
+                'name' => __( 'Video code', 'videopage' ),
+                'type' => 'oembed',
+            ),
+          ),
+    );
+
     return $meta_boxes;
 }
 
@@ -151,7 +165,7 @@ function true_load_posts(){
       $prefix = "movie_";
      $paged = $_POST['page'] + 1; // следующая страница
 ?>
-      <?php $args = array( 'post_type' => 'movie','order'=>'ASC','posts_per_page' => 2, 'paged' => $paged,'post_status' => 'publish'); ?>
+      <?php $args = array( 'post_type' => 'movie','order'=>'ASC','posts_per_page' => 4, 'paged' => $paged,'post_status' => 'publish'); ?>
       <?php $movie = new WP_Query( $args ); ?>
       <?php if($movie->have_posts() ): ?>
       <?php while($movie->have_posts() ) : $movie->the_post();?>
@@ -167,7 +181,7 @@ function true_load_posts(){
          </div>
       <?php endwhile; ?>
       <?php else: ?>
-          <p>Cлайдер еще не добавлен!</p>
+          <p>no movies</p>
       <?php endif; ?> 
 
 <?php
@@ -183,24 +197,24 @@ add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
 
 
 
-/* **************** пользовательский тип записей - слайдер ************************* */
+/* **************** custom post type - movies ************************ */
 
 add_action('init', 'custom_type_movie');
 function custom_type_movie()
 {
   $labels = array(
-  'name' => 'Movie', // Основное название типа записи
+  'name' => 'Movies', // Основное название типа записи
   'singular_name' => 'Movie', // отдельное название записи типа Book
-  'add_new' => 'Добавить новую',
-  'add_new_item' => 'Добавить новую книгу',
-  'edit_item' => 'Редактировать книгу',
-  'new_item' => 'Новая книга',
-  'view_item' => 'Посмотреть книгу',
-  'search_items' => 'Найти книгу',
-  'not_found' =>  'Книг не найдено',
-  'not_found_in_trash' => 'В корзине книг не найдено',
+  'add_new' => 'Add new',
+  'add_new_item' => 'Add new movie',
+  'edit_item' => 'Edit movie',
+  'new_item' => 'New movie',
+  'view_item' => 'View movie',
+  'search_items' => 'Search movie',
+  'not_found' =>  'Not found',
+  'not_found_in_trash' => 'No found in trash',
   'parent_item_colon' => '',
-  'menu_name' => 'movies'
+  'menu_name' => 'Movies'
 
   );
   $args = array(
@@ -224,22 +238,22 @@ function custom_type_movie()
 
 /* **************** пользовательский тип записей - услуги (на главной) ************************* */
 
-add_action('init', 'custom_type_service');
-function custom_type_service()
+add_action('init', 'custom_type_video');
+function custom_type_video()
 {
   $labels = array(
-  'name' => 'Услуги', // Основное название типа записи
-  'singular_name' => 'Услуга', // отдельное название записи типа Book
-  'add_new' => 'Добавить новую',
-  'add_new_item' => 'Добавить новую Услугу',
-  'edit_item' => 'Редактировать Услугу',
-  'new_item' => 'Новая услуга',
-  'view_item' => 'Посмотреть услугу',
-  'search_items' => 'Найти услугу',
-  'not_found' =>  'Услуг не найдено',
-  'not_found_in_trash' => 'В корзине услуг не найдено',
+  'name' => 'Vodeos', // Основное название типа записи
+  'singular_name' => 'Vodeo', // отдельное название записи типа Book
+  'add_new' => 'Add new',
+  'add_new_item' => 'Add new video',
+  'edit_item' => 'Edit video',
+  'new_item' => 'New Video',
+  'view_item' => 'View Video',
+  'search_items' => 'Search Video',
+  'not_found' =>  'Not found',
+  'not_found_in_trash' => 'No found in trash',
   'parent_item_colon' => '',
-  'menu_name' => 'Услуги'
+  'menu_name' => 'Videos'
 
   );
   $args = array(
@@ -254,51 +268,13 @@ function custom_type_service()
   'has_archive' => true,
   'hierarchical' => false,
   'menu_position' => null,
-  'supports' => array('title','excerpt','thumbnail','custom-fields',"editor")
+  'supports' => array('title')
   );
-  register_post_type('service',$args);
+  register_post_type('video',$args);
 }
 
 /* **************** пользовательский тип записей - услуги (на главной) ************************* */
 
-/* **************** пользовательский тип записей - преимущества (на главной) ************************* */
-
-add_action('init', 'custom_type_advantages');
-function custom_type_advantages()
-{
-  $labels = array(
-  'name' => 'Преимущества', // Основное название типа записи
-  'singular_name' => 'Преимущества', // отдельное название записи типа Book
-  'add_new' => 'Добавить новую',
-  'add_new_item' => 'Добавить новое преимущество',
-  'edit_item' => 'Редактировать преимущество',
-  'new_item' => 'Новое преимущество',
-  'view_item' => 'Посмотреть преимущество',
-  'search_items' => 'Найти преимущество',
-  'not_found' =>  'Преимуществ не найдено',
-  'not_found_in_trash' => 'В корзине преимуществ не найдено',
-  'parent_item_colon' => '',
-  'menu_name' => 'Преимущества'
-
-  );
-  $args = array(
-  'labels' => $labels,
-  'public' => true,
-  'publicly_queryable' => true,
-  'show_ui' => true,
-  'show_in_menu' => true,
-  'query_var' => true,
-  'rewrite' => true,
-  'capability_type' => 'post',
-  'has_archive' => true,
-  'hierarchical' => false,
-  'menu_position' => null,
-  'supports' => array('title','excerpt','thumbnail','custom-fields')
-  );
-  register_post_type('advantage',$args);
-}
-
-/* **************** пользовательский тип записей - преимущества (на главной) ************************* */
 
 
 /* **************** Добаление нового пункта меню Главные опции в Настройки ************************* */

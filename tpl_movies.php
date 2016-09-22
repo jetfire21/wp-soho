@@ -2,10 +2,14 @@
 /*
 Template Name: Movies
 */
+
+ // page /movies/ 
+
+get_header(); 
+
+$prefix = "movie_";
+
 ?>
-<!-- /movies/ -->
-<?php get_header(); ?>
-<?php $prefix = "movie_"; ?>
 
 <div class="alex-wrap block-media">
 
@@ -28,7 +32,7 @@ Template Name: Movies
 		
 		<div class="movies-catalog">
 
-			<?php $args = array('post_type' => 'movie','order'=>'ASC','posts_per_page' => 2); ?>
+			<?php $args = array('post_type' => 'movie','order'=>'ASC','posts_per_page' => 4); ?>
 
 	 		<?php $movie = new WP_Query( $args ); ?>
 			<?php if($movie->have_posts() ): ?>
@@ -48,12 +52,13 @@ Template Name: Movies
 				 </div>
 			<?php endwhile; ?>
 			<?php else: ?>
-			   	<p>Cлайдер еще не добавлен!</p>
+			   	<p>no movies</p>
 			<?php endif; ?>	
 
 		</div>
 
-		<a class="loading-link" href="#">Loading ...</a>
+		<!-- <div id="loading-text"><a class="loading-link" href="#">Loading ...</a></div> -->
+		<div id="loading-text"></div>
 
 	</div>
 
@@ -75,46 +80,39 @@ Template Name: Movies
 <?php endif;?>
 
 
+<?php // Auto load content on scroll down - movies ?>
 
 <script type="text/javascript">
 
-            // var count = 2;
-            // $(window).scroll(function(){
-            //         if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-            //            loadArticle(count);
-            //            count++;
-            //            console.log( "yes" );
-            //         }
-            // }); 
- 
-            // function loadArticle(pageNumber){
-            //     $.ajax({
-            //             url: "<?php bloginfo('wpurl') ?>/wp-admin/admin-ajax.php",
-            //             type:'POST',
-            //             data: "action=infinite_scroll&page_no="+ pageNumber + '&loop_file=loop',
-            //             success: function(html){
-            //                 $("#content").append(html);   // This will be the div where our content will be loaded
-            //             }
-            //         });
-            //     console.log("ajax");
-            //     return false;
-            // }
-            //    console.log( $(window).scrollTop() );
-            //    console.log( "doc window " + $(document).height() - $(window).height() );
-
-
-
-<?php // Auto load content on scroll down - movies ?>
-
 jQuery(function($){
-	$('#true_loadmore').click(function(){
-		$(this).text('Загружаю...'); // изменяем текст кнопки, вы также можете добавить прелоадер
-		console.log(current_page);
+
+	
+	// var h = $(document).height() - $(window).height();
+	// console.log( "scroll " + $(window).scrollTop() );
+	// console.log( "doc window " + h );
+
+    var count = 1;
+    $(window).scroll(function(){
+    	if( count < max_pages ){
+            if ( $(window).scrollTop() == $(document).height() - $(window).height()){
+               loadArticle(count);
+               count++;
+               console.log( "yes" );
+            }
+         }
+  //       console.log("count " + count);
+  //   	console.log( "scroll " + $(window).scrollTop() );
+		// console.log( "doc window " + h );
+    }); 
+
+    function loadArticle(){
+
 		var data = {
 			'action': 'loadmore',
 			// 'query': true_posts,
 			'page' : current_page
 		};
+
 		$.ajax({
 			url:ajaxurl, // обработчик
 			data:data, // данные
@@ -122,6 +120,7 @@ jQuery(function($){
 			success:function(data){
 				console.log("ajax yes!");
 				if( data ) { 
+					$("#loading-text").html('');
 					$('#true_loadmore').text('Загрузить ещё');
 					$(".movies-catalog").append(data); // вставляем новые посты
 					current_page++; // увеличиваем номер страницы на единицу
@@ -129,9 +128,14 @@ jQuery(function($){
 				} else {
 					$('#true_loadmore').remove(); // если мы дошли до последней страницы постов, скроем кнопку
 				}
+			},
+			beforeSend: function(){
+				$("#loading-text").html('<a class="loading-link" href="#">Loading ...</a>');
 			}
-		});
-	});
+
+			 });
+	}
+
 });
 
 </script> 
