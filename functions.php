@@ -333,7 +333,7 @@ function alex_fern_cb_options(){
     <?php
     if($_POST['client_id']) $_SESSION['client_id'] = trim($_POST['client_id']);
     if($_POST['client_id']) $_SESSION['client_secret'] = trim($_POST['client_secret']);
-    $redirect_uri = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+    $redirect_uri = "http://".$_SERVER['HTTP_HOST']."/wp-admin/admin.php?page=slug_alex_spotify";
 
     $client_id = $_SESSION['client_id'];
     $client_secret = $_SESSION['client_secret'];
@@ -464,33 +464,61 @@ if(!empty($code)){
   $res4 = curl_exec($ch4);
   $res4 = json_decode($res4);  // обьект
 
-  echo "<hr>";
-  echo "<pre>";
-  print_r($res4);
-  echo "</pre>";
+  // echo "<hr>";
+  // echo "<pre>";
+  // print_r($res4);
+  // echo "</pre>";
 
   // echo "<hr>";
 
-  // foreach ($res4->items as $items) {
+  global $wpdb;
+  $wpdb->fer_table_name = $wpdb->prefix .  "spotify_api_music";
+  $charset_collate = $wpdb->get_charset_collate();  //DEFAULT CHARACTER SET utf8mb4 COLLATE 
 
-  //  // echo "<pre>";
-  //  // print_r($items->track);
-  //  // echo "</pre>";
+  $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->fer_table_name} ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `track_name` VARCHAR(255) NOT NULL , `album` VARCHAR(255) NOT NULL , `artists` VARCHAR(255) NOT NULL , `track_url` VARCHAR(255) NOT NULL , `img` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE=InnoDB $charset_collate AUTO_INCREMENT=1";
+  $wpdb->query($sql);
 
-  //   echo "<br>";   
-  //   $img_track = $items->track->album->images[1]->url; // 1- 300x300 2- 640x640
-  //   echo "<img src='{$img_track}' alt='' />";
-  //   echo "<br>";   
-  //   echo "Album: ".$items->track->album->name;
-  //   echo "<br>";
-  //   echo "Artists: ".$items->track->artists[0]->name;
-  //   echo "<br>";
-  //   echo "Track: ".$items->track->name;
-  //   echo "<br>";
-  //   $demo_track = $items->track->preview_url;
-  //   echo ' <audio controls="" name="media"><source src="'.$demo_track.'" type="audio/mpeg"></audio>';
-    
-  // }
+
+    $tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
+    // echo "type "; var_dump($tracks);
+
+    if( empty( $tracks[0]['track_name'] )) {
+
+      foreach ($res4->items as $items) {
+
+         // echo "<pre>";
+         // print_r($items->track);
+         // echo "</pre>";
+
+          $img_track = $items->track->album->images[1]->url; // 1- 300x300 2- 640x640
+          $demo_track = $items->track->preview_url;
+
+            $add_track = $wpdb->insert( 
+            $wpdb->fer_table_name, 
+            array( 
+              'track_name' => $items->track->name, 
+              'album' => $items->track->album->name,
+              'artists' => $items->track->artists[0]->name,
+              'track_url' =>  $demo_track,
+              'img' =>   $img_track
+            ), 
+            array( 
+              '%s', 
+              '%s', 
+              '%s', 
+              '%s', 
+              '%s' 
+            ) 
+          );
+           // return $add_track;      
+      }
+  }
+  echo '<div id="for_message" class="fade updated"><p>Music added successfully !</p></div>';
+  // $tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
+   // var_dump($tracks);
+   // print_r($tracks);
+   // if( !empty( $tracks[0]['track_name'] )) echo "is tracks!";
+
 }
     
     ?>
