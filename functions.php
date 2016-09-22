@@ -223,6 +223,41 @@ add_action('wp_ajax_loadmorevideo', 'true_load_posts2');
 add_action('wp_ajax_nopriv_loadmorevideo', 'true_load_posts2');
 
 
+function true_load_posts3(){
+
+  global $wpdb;
+  $wpdb->fer_table_name = $wpdb->prefix .  "spotify_api_music";
+
+  $limit = 4;
+  $offset = $_POST['current_offset'];
+  $limit = $offset.",".$limit;
+$i = $offset;
+  $tracks_part = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name LIMIT {$limit}", ARRAY_A);
+?>
+        <?php foreach($tracks_part as $item):?>
+         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+           <div class="wrap-audio-img" data-index="<?php echo $i;?>">           
+              <img class="img-responsive" src="<?php echo $item['img'];?>" alt="">
+              <div class="play-music-img"></div>
+           </div>
+            <h3><?php echo $item['track_name'];?></h3>
+            <p>buy</p>
+         </div>
+        <?php $i++; endforeach;?>
+<?php
+  // echo "<h1>d</h1>";
+  // echo "<pre>";
+  // print_r($tracks_part);
+  //   echo "</pre>";
+
+  wp_reset_postdata();
+  die();
+}
+
+add_action('wp_ajax_loadmore_music', 'true_load_posts3');
+add_action('wp_ajax_nopriv_loadmore_music', 'true_load_posts3');
+
+
 
 
 

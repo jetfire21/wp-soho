@@ -780,6 +780,9 @@ html,body
 
 /* ********* page music ******** */
 
+.music-autoload
+	height: 70px
+
 .wrap-audio-img
 	position: relative
 	cursor: pointer
@@ -813,8 +816,11 @@ html,body
 		width: 127px
 		height: 140px
 		position: absolute
-		top: 29%
-		left: 34%
+		top: 0
+		left: 0
+		bottom: 0
+		right: 0
+		margin: auto
 		z-index: 3
 		background-size: cover
 
@@ -841,6 +847,9 @@ html,body
 
 	a
 		color: #fff
+
+	.jp-no-solution
+		padding-top: 5%
 
 	button
 		border: 0
