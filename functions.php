@@ -104,8 +104,9 @@ function movie_meta_boxes( $meta_boxes ) {
             ),
             array(
                 'id'   => "{$prefix}video_url",
-                'name' => __( 'Video url', 'textdomain' ),
+                'name' => __( 'Video code', 'textdomain' ),
                 'type' => 'textarea',
+                'desc' => 'Example: &lt;iframe src="https://player.vimeo.com/video/182784437?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen &gt; &lt;/iframe &gt;'
             ),
             array(
                 'id'   => "{$prefix}year",
@@ -147,7 +148,7 @@ function movie_meta_boxes( $meta_boxes ) {
         'fields'     => array(
             array(
                 'id'   => "{$prefix}url",
-                'name' => __( 'Video code', 'videopage' ),
+                'name' => __( 'Video url', 'videopage' ),
                 'type' => 'oembed',
             ),
           ),
@@ -191,6 +192,35 @@ function true_load_posts(){
 
 add_action('wp_ajax_loadmore', 'true_load_posts');
 add_action('wp_ajax_nopriv_loadmore', 'true_load_posts');
+
+
+
+function true_load_posts2(){
+
+      $prefix = "video_";
+     $paged = $_POST['page'] + 1; // следующая страница
+?>
+      <?php $args = array('post_type' => 'video','order'=>'ASC','posts_per_page' => 4, 'paged' => $paged,'post_status' => 'publish'); ?>
+
+      <?php $video = new WP_Query( $args );?>
+      <?php if($video->have_posts() ): ?>
+      <?php while($video->have_posts() ) : $video->the_post();?>
+         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+          <?php $prefix = 'video_'; echo rwmb_meta( "{$prefix}url"); ?>
+           <h3><?php the_title(); ?></h3>
+         </div>
+      <?php endwhile; ?>
+      <?php else: ?>
+          <p>no videos</p>
+      <?php endif; ?> 
+
+<?php
+  wp_reset_postdata();
+  die();
+}
+
+add_action('wp_ajax_loadmorevideo', 'true_load_posts2');
+add_action('wp_ajax_nopriv_loadmorevideo', 'true_load_posts2');
 
 
 
@@ -276,219 +306,196 @@ function custom_type_video()
 /* **************** пользовательский тип записей - услуги (на главной) ************************* */
 
 
+    add_action('init', 'my_insert_post_hook');
 
-/* **************** Добаление нового пункта меню Главные опции в Настройки ************************* */
-
-add_action('admin_menu', 'alex_upload_file');
-add_action('admin_init', 'alex_setting');
-
-//добавляем страницу для опции (внешнее оформление)
-function alex_upload_file(){
-  add_options_page( 'Главные опции', 'Главные опции', 'manage_options', 'alex_upload_file_option', 'alex_f_make_page');
-}
-
-// регистрация опций и генерация полей для ввода
-function alex_setting(){
-  register_setting( 'alex_options_group', 'alex_upload_file_option', 'alex_option_sanitize');
-  add_settings_section( 'alex_options_section', 'Шапка', '', 'alex_upload_file_option');
-  add_settings_section( 'alex_options_section_phone', 'На всех страницах сайта', '', 'alex_upload_file_option');
-  // add_settings_field('alex_color_bg_id', 'Цвет фона', 'alex_color_bg_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_color_bg_id') );
-
-  add_settings_field('alex_header_logo_id', 'Добавить логотип', 'alex_header_logo_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_header_logo_id') );
-  add_settings_field('alex_del_header_logo_id', 'Удалить логотип', 'alex_del_header_logo_cb',  'alex_upload_file_option', 'alex_options_section', array('label_for' => 'alex_del_header_logo_id') );
-  add_settings_field('alex_add_phone_id', 'Моб. телефон (будет выводится в шапке и подвале сайта)', 'alex_add_phone_cb',  'alex_upload_file_option', 'alex_options_section_phone', array('label_for' => 'alex_add_phone_id') );
-  add_settings_field('alex_add_email_id', 'Email (будет выводится в шапке и подвале сайта)', 'alex_add_email_cb',  'alex_upload_file_option', 'alex_options_section_phone', array('label_for' => 'alex_add_email_id') );
-  add_settings_field('alex_add_timework_id', 'Время работы (будет выводится в шапке и подвале сайта)', 'alex_add_timework_cb',  'alex_upload_file_option', 'alex_options_section_phone', array('label_for' => 'alex_add_timework_id') );
-}
-
-
-function alex_add_phone_cb(){
-  $option = get_option('alex_upload_file_option' );
-  // print_r($option);
-
-  if(empty($option['phone'])){
-    ?>
-     <input type="text" class="regular-text" id="alex_add_phone_id" name="alex_upload_file_option[phone]" value="<?php echo esc_attr($option['alex']); ?>"> 
-    <?php
-  }else{
-    ?>
-    <input type="text" class="regular-text" id="alex_add_phone_id" name="alex_upload_file_option[phone]" value="<?php echo $option['phone'];?>">
-    <?php
-  }
-
-}
-
-function alex_add_email_cb(){
-  $option = get_option('alex_upload_file_option' );
-  // print_r($option);
-
-  if(empty($option['email'])){
-    ?>
-     <input type="text" class="regular-text" id="alex_add_email_id" name="alex_upload_file_option[email]" value="<?php echo esc_attr($option['alex']); ?>"> 
-    <?php
-  }else{
-    ?>
-    <input type="text" class="regular-text" id="alex_add_email_id" name="alex_upload_file_option[email]" value="<?php echo $option['email'];?>">
-    <?php
-  }
-
-}
-
-function alex_add_timework_cb(){
-  $option = get_option('alex_upload_file_option' );
-  // print_r($option);
-
-  if(empty($option['timework'])){
-    ?>
-     <input type="text" class="regular-text" id="alex_add_timework_id" name="alex_upload_file_option[timework]" value="<?php echo esc_attr($option['alex']); ?>"> 
-    <?php
-  }else{
-    ?>
-    <input type="text" class="regular-text" id="alex_add_timework_id" name="alex_upload_file_option[timework]" value="<?php echo $option['timework'];?>">
-    <?php
-  }
-
-}
-
-
-
-function alex_header_logo_cb(){
-  $option = get_option('alex_upload_file_option' );
-  ?>
-   <input type="file" id="alex_header_logo_id" name="uploadfile_logo"> 
-  <?php
-  if(!empty($option['url_file_logo'])){
-    echo "<p><img src='{$option['url_file_logo']}' alt='logo' width='200'></p>";
-  }
-  else echo "<p><img src='" . get_template_directory_uri() ."/img/logo2.jpg' style='max-width: 200px;
-    max-height: 70px;'></p>";
-}
-
-
-function alex_del_header_logo_cb(){
-  ?>
-   <input type="checkbox" name="del_header_logo"> 
-  <?php
-}
-
-
-function alex_option_sanitize($option){
-
-
-  if( !empty($_FILES['uploadfile_logo']['tmp_name'])  ){
-    $overrides = array('test_form' => false);
-    $file = wp_handle_upload( $_FILES['uploadfile_logo'], $overrides );
-    $option['url_file_logo'] = $file['url'];
-    //print_r($file);
-  }
-  else{
-    $old_option = get_option('alex_upload_file_option' );
-    $option['url_file_logo'] = $old_option['url_file_logo'];
-  }
-
-
-  if($_POST['del_header_logo'] == 'on'){
-    unset($option['url_file_logo']);
-  }
-
-  if( !empty($_POST['phone']) ) $option['phone'] = $_POST['phone'];
-
-  if( !empty($_POST['email']) ) $option['email'] = $_POST['email'];
-  if( !empty($_POST['timework']) ) $option['timework'] = $_POST['timework'];
-
-   return $option;
-}
-
-function alex_f_make_page(){
-  ?>
-  <div class="wrap">
-    <h2>Главные опции</h2>
-    <form action="options.php" method="post" enctype="multipart/form-data">
-      <?php settings_fields( 'alex_options_group' ); //выводит скрытые поля для проверки безопасности ?>
-      <?php do_settings_sections( 'alex_upload_file_option' ); // вывод всех полей связанный с секцией ?>
-      <?php submit_button(); ?>
-    </form>
-  </div>
-  <?php
-}
-
-// вывод на сайте $option = get_option('alex_upload_file_option');
-
-/* **************** Добаление нового пункта меню Главные опции в Настройки ************************* */
-
-function the_breadcrumb() {
-    if (!is_front_page()) {
-        echo '<li>';
-        // echo '<a href="';
-        // echo get_option('home');
-        echo 'Главная';
-        echo "</li> &nbsp;&gt;&nbsp; ";
-        // echo "</a> &nbsp;&gt;&nbsp; ";
-        if (is_category() || is_single()) {
-          echo "<li>";
-            the_category(' ');
-           echo "</li>";
-            if (is_single()) {
-                // echo " &nbsp;&gt;&nbsp; ";
-                // the_title();
-            }
-        } elseif (is_page()) {
-            echo "<li>";
-            echo the_title();
-            echo "</li>";
-        }
+    function my_insert_post_hook(){
+         //  wp_redirect("http://ya.ru");
+         // exit;
+      session_start();
     }
-    else {
-        echo '<li>Главная</li>';
-    }
+
+
+function alex_fern_reg_menu_page(){
+  add_menu_page(  'spotify','Spotify API', 'manage_options', 'slug_alex_spotify','alex_fern_cb_options','
+dashicons-editor-alignleft' );
+
 }
 
+add_action( 'admin_menu', 'alex_fern_reg_menu_page' );
 
-/* ************************ custom style in visual editor ***************************/ 
+function alex_fern_cb_options(){
+?>
 
-function wpb_mce_buttons_2($buttons) {
-  array_unshift($buttons, 'styleselect');
-  return $buttons;
+<div class='wrap'>
+
+    <h1>Spotify API (now at the stage of integration WP)</h1>
+
+    <?php
+    if($_POST['client_id']) $_SESSION['client_id'] = trim($_POST['client_id']);
+    if($_POST['client_id']) $_SESSION['client_secret'] = trim($_POST['client_secret']);
+    $redirect_uri = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+    $client_id = $_SESSION['client_id'];
+    $client_secret = $_SESSION['client_secret'];
+    
+    // echo "ses"; print_r($_SESSION);
+    ?>
+
+   <form method="post" action="">
+
+   <?php //wp_nonce_field('sp_add_poll'); ?>
+
+    <table class="form-table table1">
+    <tr>
+      <th scope="row"><label for="client_id">Client id: </label></th>
+      <td><input maxlength="200" name="client_id" type="text" id="client_id" class="regular-text" value="<?php echo $_SESSION['client_id'];?>"/></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"><label for="client_secret">Client secret: </label></th>
+      <td><input maxlength="200" name="client_secret" type="text" id="client_secret" class="regular-text" value="<?php echo $_SESSION['client_secret'];?>" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row"><label for="client_secret">Redirect uri </label></th>
+      <td><?php echo $redirect_uri ;?></td>
+      <td></td>
+    </tr>
+
+    </table>
+    
+    <p class="submit">
+      <input type="submit" name="add" id="submit" class="button button-primary" value="Send" />
+    </p>
+    </form> 
+
+      <?php
+
+$query = "https://accounts.spotify.com/authorize/?client_id=".$client_id."&response_type=code&redirect_uri=".$redirect_uri."&state=34fFs29kd09";
+
+ if( !empty($client_id) && !empty($client_secret) ) echo "<a href='".$query."'>Now click here</a>";
+
+
+if( !empty($_GET['code'])) $code = $_GET['code'];
+
+if(!empty($code)){
+
+  // get access token
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL,            'https://accounts.spotify.com/api/token' );
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt($ch, CURLOPT_POST,           1 );
+  curl_setopt($ch, CURLOPT_POSTFIELDS,     'grant_type=authorization_code&code='.$code.'&redirect_uri='.$redirect_uri ); 
+  curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Authorization: Basic '.base64_encode($client_id.':'.$client_secret))); 
+
+
+  // $ch = curl_init();
+  // curl_setopt($ch, CURLOPT_URL,            'https://accounts.spotify.com/api/token' );
+  // curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+  // curl_setopt($ch, CURLOPT_POST,           1 );
+  // curl_setopt($ch, CURLOPT_POSTFIELDS,     'grant_type=client_credentials' ); 
+  // curl_setopt($ch, CURLOPT_HTTPHEADER,     array('Authorization: Basic '.base64_encode($client_id.':'.$client_secret))); 
+
+  $res = curl_exec($ch);
+  $res = json_decode($res);  // обьект
+
+  // echo "<pre>";
+  // print_r($res);
+  // echo "</pre>";
+
+  // echo "<br><br>";
+
+  // echo $access_token = $res->access_token;
+  $access_token = $res->access_token;
+
+  // echo "<br><br>";
+
+  // echo base64_encode($access_token);
+  // echo $access_token = "BQCkQxlSKqrGNFATXSnqKq0DKy8pFBIjoq3i5J6W6rUu0TsZ4butToSkrK8aLdTUUyfvBf06jfH9op1MqxZt-v5LhD4BZn3fwWFbxCR6f-nvVaTgRvTu9IiKEar5UoSuh_uq8vKG33JCwBvIC8gzqFDuW22cdyHTLsh7rdZGR9pCDJGT9O7mUnk";
+
+  // get user_info
+
+  $ch2 = curl_init();
+  curl_setopt($ch2, CURLOPT_URL,            'https://api.spotify.com/v1/me' );
+  curl_setopt($ch2, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt($ch2, CURLOPT_HTTPHEADER,   array("Authorization: Bearer ".$access_token )); 
+  $res2 = curl_exec($ch2);
+  $res2 = json_decode($res2);  // обьект
+
+  // echo "<pre>";
+  // print_r($res2);
+  // echo "</pre>";
+
+  // echo $user_id = $res2->id;
+  $user_id = $res2->id;
+
+  // curl -X GET "https://api.spotify.com/v1/me" -H "Authorization: Bearer {your access token}"
+
+
+  // get user playlists
+
+  $ch3 = curl_init();
+  curl_setopt($ch3, CURLOPT_URL,            'https://api.spotify.com/v1/users/'.$user_id.'/playlists' );
+  curl_setopt($ch3, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt($ch3, CURLOPT_HTTPHEADER,   array("Authorization: Bearer ".$access_token )); 
+  $res3 = curl_exec($ch3);
+  $res3 = json_decode($res3);  // обьект
+
+  // echo "<pre>";
+  // print_r($res3);
+  // echo "</pre>";
+
+  // echo "<hr>";
+
+  // echo $playlist_id = $res3->items[0]->id;
+  // echo $link_tracks = $res3->items[0]->tracks->href;
+  $playlist_id = $res3->items[0]->id;
+  $link_tracks = $res3->items[0]->tracks->href;
+
+
+  // get all tracks
+
+
+  $ch4 = curl_init();
+  curl_setopt($ch4, CURLOPT_URL,            $link_tracks );
+  curl_setopt($ch4, CURLOPT_RETURNTRANSFER, 1 );
+  curl_setopt($ch4, CURLOPT_HTTPHEADER,   array("Authorization: Bearer ".$access_token )); 
+  $res4 = curl_exec($ch4);
+  $res4 = json_decode($res4);  // обьект
+
+  echo "<hr>";
+  echo "<pre>";
+  print_r($res4);
+  echo "</pre>";
+
+  // echo "<hr>";
+
+  // foreach ($res4->items as $items) {
+
+  //  // echo "<pre>";
+  //  // print_r($items->track);
+  //  // echo "</pre>";
+
+  //   echo "<br>";   
+  //   $img_track = $items->track->album->images[1]->url; // 1- 300x300 2- 640x640
+  //   echo "<img src='{$img_track}' alt='' />";
+  //   echo "<br>";   
+  //   echo "Album: ".$items->track->album->name;
+  //   echo "<br>";
+  //   echo "Artists: ".$items->track->artists[0]->name;
+  //   echo "<br>";
+  //   echo "Track: ".$items->track->name;
+  //   echo "<br>";
+  //   $demo_track = $items->track->preview_url;
+  //   echo ' <audio controls="" name="media"><source src="'.$demo_track.'" type="audio/mpeg"></audio>';
+    
+  // }
 }
-add_filter('mce_buttons_2', 'wpb_mce_buttons_2');
+    
+    ?>
 
-/*
-* Callback function to filter the MCE settings
-*/
+</div>
 
-function my_mce_before_init_insert_formats( $init_array ) {  
-
-// Define the style_formats array
-
-  $style_formats = array(  
-    // Each array child is a format with it's own settings
-    array(  
-      'title' => 'Content Block',  
-      'block' => 'span',  
-      'classes' => 'content-block',
-      'wrapper' => true,
-      
-    ),  
-    array(  
-      'title' => 'Red Button',  
-      'block' => 'span',  
-      'classes' => 'red-button',
-      'wrapper' => true,
-    ),
-    array(  
-      'title' => 'Ramka s tenyami',  
-      'block' => 'div',  
-      'classes' => 'ramka',
-      'wrapper' => true,
-    ),
-  );  
-  // Insert the array, JSON ENCODED, into 'style_formats'
-  $init_array['style_formats'] = json_encode( $style_formats );  
-  
-  return $init_array;  
-  
-} 
-// Attach callback to 'tiny_mce_before_init' 
-add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' ); 
-
-/* ************************ custom style in visual editor ***************************/ 
+<?php
+}

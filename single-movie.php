@@ -18,7 +18,7 @@
 		<h1 class="main-name">Fernanda romero</h1>
 
 		<div class="movie-title">
-			<div class="col-md-5"><a href="media.html">movies</a></div>
+			<div class="col-md-5"><a href="/movies">movies</a></div>
 			<div class="col-md-7">
 
 				 <?php if(have_posts() ): ?>

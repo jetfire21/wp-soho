@@ -26,9 +26,10 @@ get_header();
 		<h1 class="main-name">Fernanda romero</h1>
 
 		<div class="media-category">
-			<div class="col-md-4 col-sm-4 col-xs-12 "><h2><a  href="media.html">Movies</a></h2><p>xxxxxx</p></div>
-			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="music.php">Music</a></h2><p>xxxxxx</p></div>
-			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a href="video.html">Video</a></h2><p>xxxxxx</p></div>
+			<?php //get_template_part( 'menu','media' ); ?>
+			<div class="col-md-4 col-sm-4 col-xs-12 "><h2><a href="/movies">Movies</a></h2><p>xxxxxx</p></div>
+			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="#">Music</a></h2><p>xxxxxx</p></div>
+			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a href="video">Video</a></h2><p>xxxxxx</p></div>
 		</div>
 		
 		<!-- <div class="movies-catalog video-catalog"> -->
@@ -45,15 +46,84 @@ get_header();
 				 </div>
 			<?php endwhile; ?>
 			<?php else: ?>
-			   	<p>no movies</p>
+			   	<p>no videos</p>
 			<?php endif; ?>	
 
 		</div>
 		
-		<a class="loading-link" href="#">Loading ...</a>
+		<!-- <a class="loading-link" href="#">Loading ...</a> -->
+		<div id="loading-text"></div>
+
 
 	</div>
 <!-- </div> end block media-->
 
 
 <?php get_footer(); ?>
+
+ <?php if (  $video->max_num_pages > 1 ) : ?>
+	<script>
+	var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
+	var current_page = <?php echo (get_query_var('paged')) ? get_query_var('paged') : 1; ?>;
+	var max_pages = '<?php echo $video->max_num_pages; ?>';
+	</script>
+<?php endif;?>
+
+
+<script type="text/javascript">
+
+jQuery(function($){
+
+	
+	// var h = $(document).height() - $(window).height();
+	// console.log( "scroll " + $(window).scrollTop() );
+	// console.log( "doc window " + h );
+
+    var count = 1;
+    $(window).scroll(function(){
+    	if( count < max_pages ){
+            if ( $(window).scrollTop() == $(document).height() - $(window).height()){
+               loadArticle(count);
+               count++;
+               console.log( "yes" );
+            }
+         }
+  //       console.log("count " + count);
+  //   	console.log( "scroll " + $(window).scrollTop() );
+		// console.log( "doc window " + h );
+    }); 
+
+    function loadArticle(){
+
+		var data = {
+			'action': 'loadmorevideo',
+			// 'query': true_posts,
+			'page' : current_page
+		};
+
+		$.ajax({
+			url:ajaxurl, // обработчик
+			data:data, // данные
+			type:'POST', // тип запроса
+			success:function(data){
+				console.log("ajax yes!");
+				if( data ) { 
+					$("#loading-text").html('');
+					$('#true_loadmore').text('Загрузить ещё');
+					$(".video-catalog").append(data); // вставляем новые посты
+					current_page++; // увеличиваем номер страницы на единицу
+					if (current_page == max_pages) $("#true_loadmore").remove(); // если последняя страница, удаляем кнопку
+				} else {
+					$('#true_loadmore').remove(); // если мы дошли до последней страницы постов, скроем кнопку
+				}
+			},
+			beforeSend: function(){
+				$("#loading-text").html('<a class="loading-link" href="#">Loading ...</a>');
+			}
+
+			 });
+	}
+
+});
+
+</script> 

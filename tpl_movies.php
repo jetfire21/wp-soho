@@ -25,9 +25,10 @@ $prefix = "movie_";
 		<h1 class="main-name">Fernanda romero</h1>
 
 		<div class="media-category">
-			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a  href="media.html">Movies</a></h2><p>xxxxxx</p></div>
-			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="music.php">Music</a></h2><p>xxxxxx</p></div>
-			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="video.html">Video</a></h2><p>xxxxxx</p></div>
+			<?php //get_template_part( 'menu','media' ); ?>
+			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a href="/movies">Movies</a></h2><p>xxxxxx</p></div>
+			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="#">Music</a></h2><p>xxxxxx</p></div>
+			<div class="col-md-4 col-sm-4 col-xs-12 "><h2><a href="video">Video</a></h2><p>xxxxxx</p></div>
 		</div>
 		
 		<div class="movies-catalog">
@@ -65,7 +66,7 @@ $prefix = "movie_";
 <!-- </div> -->
 <!-- end block-media -->
 
-<div id="true_loadmore">Загрузить ещё</div>
+<!-- <div id="true_loadmore">Загрузить ещё</div> -->
 
 <?php get_footer(); ?>
 
