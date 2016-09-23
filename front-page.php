@@ -8,57 +8,63 @@
 	<?php get_template_part( 'menu','header' ); ?>
 	
 	<div id="owl-demo" class="owl-carousel owl-theme">
+			
+		<?php $prefix = 'main_slider_'; $args = array('post_type' => 'main_slider','order'=>'ASC'); ?>
 
-		  <div class="item">
+		<?php $slider = new WP_Query( $args ); ?>
+		<?php if($slider->have_posts() ): ?>
+		<?php while($slider->have_posts() ) : $slider->the_post();?>
+				 
+		  	<div class="item">
+			 	<?php $slide = rwmb_meta( "{$prefix}slide"); ?>
+			 	<?php foreach($slide as $k=>$v):?>
+			  		<img src="<?php echo get_template_directory_uri();?>/img/img-transp.png" alt=" " style="background-image:url('<?php echo $v['full_url']; ?>');">
+				<?php endforeach;?>
 
-		  		<img src="<?php echo get_template_directory_uri();?>/img/img-transp.png" alt=" " style="background-image:url('<?php echo get_template_directory_uri();?>/img/slide1.jpg');">
-		  		<!-- <img src="about:blank" alt=" " style="background-image:url('<?php echo get_template_directory_uri();?>/img/slide1.jpg');"> -->
-		  		<!-- <img src="<?php echo get_template_directory_uri();?>/img/slide1.jpg" alt="The Last of us" style="background-image:url('<?php echo get_template_directory_uri();?>/img/slide1.jpg');"> -->
-		  		<div class="wrap-a">
-					<div class="bg-color">
-	<!-- 					<div class="container">
-							<div class="row"> -->
-								<img class="btn-bar-top hidden-lg hidden-md" src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
-								<h1 class="main-name">Fernanda romero</h1>
-								<img class="big-btn-bar hidden-xs hidden-sm"  src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
-								<div class="slogan">
-									<h3>Imperfection <span>is beauty, </span>madness <span>is genius.</span></h3>
-									<div class="btn-media">
-										<img src="<?php echo get_template_directory_uri();?>/img/play.png" alt="">
-										<a href="media.html">media</a>
-									</div>
-								</div>
-	<!-- 						</div>
-						</div> -->
-					</div>
-		  		</div>
+				  		<div class="wrap-a">
+							<div class="bg-color">
+										<img class="btn-bar-top hidden-lg hidden-md" src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
+										<h3 class="main-name">Fernanda romero</h3>
+										<img class="big-btn-bar hidden-xs hidden-sm"  src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
+										<div class="slogan">
+										 	 <?php 
+										 	 	 $slogan = explode(" ",get_the_title());
+										 	 	 if( count($slogan) > 2){
+										 	 	 	 $slogan[1] = "<span>".$slogan[1];
+										 	 	 	 $slogan[2] = $slogan[2]."</span>";
+										 	 	 	 $slogan[ count($slogan)-2 ] = "<span>".$slogan[ count($slogan)-2 ];
+										 	 	 	 $slogan[ count($slogan)-1 ] = $slogan[ count($slogan)-1 ]."</span>";
+										 	 	 }elseif( count($slogan) == 2){
+										 	 	 	$slogan[1] = "<span>".$slogan[1]."</span>";
+										 	 	 }
+										 	 	 $slogan = implode(" ", $slogan);
+										 	 	 // var_dump($slogan); 
+										 	  ?>
+											<h3><?php echo $slogan;?></h3>
+											<div class="btn-media">
+												<img src="<?php echo get_template_directory_uri();?>/img/btn-basket.png" alt="">
+												<a href="<?php echo rwmb_meta( "{$prefix}url_link"); ?>"><?php echo rwmb_meta( "{$prefix}text_link"); ?></a>
+											</div>
+										</div>
+							</div>
+				  		</div>
 
-		  </div>
 
-		  <div class="item">
-
-		  		<!-- <img src="<?php echo get_template_directory_uri();?>/img/slide2.jpg" alt="The Last of us"> -->
-		  		<img src="<?php echo get_template_directory_uri();?>/img/img-transp.png" alt=" " style="background-image:url('<?php echo get_template_directory_uri();?>/img/slide2.jpg');">
-		  		<div class="wrap-a">
-					<div class="bg-color">
-						<!--<div class="container">
-							<div class="row">-->
-								<img class="btn-bar-top hidden-lg hidden-md" src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
-								<h3 class="main-name">Fernanda romero</h3>
-								<img class="big-btn-bar hidden-xs hidden-sm"  src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
-								<div class="slogan">
-									<h3>VITA <span>perfume</span></h3>
-									<div class="btn-media">
-										<img src="<?php echo get_template_directory_uri();?>/img/btn-basket.png" alt="">
-										<a href="#">shop now</a>
-									</div>
-								</div>
-							<!--</div>
-						</div>-->
-					</div>
-		  		</div>
-
-		  </div>
+			 	 <h3><a href="<?php the_permalink() ?>"><?php echo $subtitle; ?></a></h3>
+			 	 <!-- <p>2015</p> -->
+			 	 <!-- <?php echo rwmb_meta( $field_id, $args, $post_id ); ?> -->
+			 	<?php $slide = rwmb_meta( "{$prefix}slide"); ?>
+			 	<?php foreach($slide as $k=>$v):?>
+			 	 <p><?php echo $v['full_url']; ?></p>
+				<?php endforeach;?>
+			 	 <p><?php echo rwmb_meta( "{$prefix}slogan"); ?></p>
+			 	 <p></p>
+			 	 <p></p>
+			 </div>
+		<?php endwhile; ?>
+		<?php else: ?>
+		   	<p>no sliders</p>
+		<?php endif; ?>	
 
 		
 	</div>
@@ -165,3 +171,6 @@
 
 
 <?php get_footer(); ?>
+
+
+

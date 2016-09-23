@@ -24,7 +24,32 @@ function css_js_for_theme(){
     // }
 }
 
-add_editor_style('editor-style.css');
+ add_editor_style('editor-style.css');
+
+function my_mce_before_init_insert_formats( $init_array ) {  
+
+// Define the style_formats array
+
+  $style_formats = array(  
+    // Each array child is a format with it's own settings
+    array(  
+      'title' => 'slider-slogan-font-light1',  
+      'block' => 'span',  
+      'classes' => 'slider-slogan-font-light',
+      'wrapper' => true,
+      
+    ),  
+  );  
+  // Insert the array, JSON ENCODED, into 'style_formats'
+  $init_array['style_formats'] = json_encode( $style_formats );  
+  
+  return $init_array;  
+  
+} 
+// Attach callback to 'tiny_mce_before_init' 
+add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' ); 
+
+/* ************************ custom style in visual editor ***************************/ 
 
 /* ******hide admin-bar******** */
 
@@ -151,6 +176,30 @@ function movie_meta_boxes( $meta_boxes ) {
                 'name' => __( 'Video url', 'videopage' ),
                 'type' => 'oembed',
             ),
+          ),
+    );
+
+    $prefix = 'main_slider_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Test Meta Box', 'slidertype' ),
+        'post_types' => 'main_slider',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}slide",
+                'name' => __( 'Slide image', 'slidertype' ),
+                'type' => 'image',
+            ),
+            array(
+                'id'   => "{$prefix}text_link",
+                'name' => __( 'Text link', 'textdomain' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}url_link",
+                'name' => __( 'Link url', 'textdomain' ),
+                'type' => 'url',
+            ),
+
           ),
     );
 
@@ -340,6 +389,42 @@ function custom_type_video()
 
 /* **************** пользовательский тип записей - услуги (на главной) ************************* */
 
+/* **************** custom post type - main slider ************************ */
+
+add_action('init', 'custom_type_main_slider');
+function custom_type_main_slider()
+{
+  $labels = array(
+  'name' => 'Slides', // Основное название типа записи
+  'singular_name' => 'Slides', // отдельное название записи типа Book
+  'add_new' => 'Add new',
+  'add_new_item' => 'Add new slide',
+  'edit_item' => 'Edit slide',
+  'new_item' => 'New slide',
+  'view_item' => 'View slide',
+  'search_items' => 'Search slide',
+  'not_found' =>  'Not found',
+  'not_found_in_trash' => 'No found in trash',
+  'parent_item_colon' => '',
+  'menu_name' => 'Slider'
+
+  );
+  $args = array(
+  'labels' => $labels,
+  'public' => true,
+  'publicly_queryable' => true,
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'query_var' => true,
+  'rewrite' => true,
+  'capability_type' => 'post',
+  'has_archive' => true,
+  'hierarchical' => false,
+  'menu_position' => null,
+  'supports' => array('title')
+  );
+  register_post_type('main_slider',$args);
+}
 
     add_action('init', 'my_insert_post_hook');
 
