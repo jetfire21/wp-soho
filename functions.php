@@ -203,6 +203,20 @@ function movie_meta_boxes( $meta_boxes ) {
           ),
     );
 
+    $prefix = 'gallery_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Test Meta Box', 'gallerytype' ),
+        'post_types' => 'gallery',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}slides",
+                'name' => __( 'Slide images', 'gallerytype' ),
+                'type' => 'image',
+                'desc' => 'Upload 2 images'
+            ),
+          ),
+    );
+
     return $meta_boxes;
 }
 
@@ -424,6 +438,44 @@ function custom_type_main_slider()
   'supports' => array('title')
   );
   register_post_type('main_slider',$args);
+}
+
+
+/* **************** custom post type - gallery ************************ */
+
+add_action('init', 'custom_type_alex_gallery');
+function custom_type_alex_gallery()
+{
+  $labels = array(
+  'name' => 'Slides', // Основное название типа записи
+  'singular_name' => 'Slides', // отдельное название записи типа Book
+  'add_new' => 'Add new',
+  'add_new_item' => 'Add new slide',
+  'edit_item' => 'Edit slide',
+  'new_item' => 'New slide',
+  'view_item' => 'View slide',
+  'search_items' => 'Search slide',
+  'not_found' =>  'Not found',
+  'not_found_in_trash' => 'No found in trash',
+  'parent_item_colon' => '',
+  'menu_name' => 'Gallery'
+
+  );
+  $args = array(
+  'labels' => $labels,
+  'public' => true,
+  'publicly_queryable' => true,
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'query_var' => true,
+  'rewrite' => true,
+  'capability_type' => 'post',
+  'has_archive' => true,
+  'hierarchical' => false,
+  'menu_position' => null,
+  'supports' => array('title')
+  );
+  register_post_type('gallery',$args);
 }
 
     add_action('init', 'my_insert_post_hook');
