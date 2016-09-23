@@ -6,6 +6,11 @@
 	    top: 47.5%;
 	    width: 80px;
 	} 
+
+	.page-gallery .media-category a{
+		font-size: 73px;
+	}
+
 }
 
 @media only screen and (max-width : 1600px) {
@@ -47,6 +52,10 @@
 
 	.block-media .movies-catalog h3, .block-media .movies-catalog p {
 		padding-left: 0;
+	}
+
+	.page-gallery .media-category a{
+		font-size: 53px;
 	}
 }
 
@@ -178,6 +187,11 @@
 	.page-gallery .btn-small-media {
 	    top: 40px;
 	}
+
+	.page-gallery .media-category a{
+		font-size: 53px;
+	}
+
 }
 
 /* Medium Devices, Desktops */
@@ -223,6 +237,15 @@
 
 	.wrap-movie-video iframe {
 	    height: 480px;
+	}
+	
+	.page-gallery .media-category a{
+		font-size: 45px;
+	}
+
+	.page-gallery .media-category p{
+		letter-spacing: 4px;
+		margin-top: -10px;
 	}
 
 }

@@ -718,6 +718,7 @@ html, body {
 }
 #owl-gallery img {
   max-width: 100%;
+  max-height: 662px;
 }
 #owl-gallery .gal-link-bot {
   margin-top: 60px;
@@ -727,6 +728,7 @@ html, body {
 }
 #owl-gallery .gal-img {
   line-height: 662px;
+  text-align: center;
 }
 
 .aaa {
@@ -934,6 +936,19 @@ html, body {
 .video-catalog iframe {
   width: 100%;
   height: 465px;
+}
+
+.page-gallery .media-category {
+  margin: 100px 0 60px 0;
+  overflow: hidden;
+  text-align: center;
+}
+.page-gallery .media-category p, .page-gallery .media-category a {
+  color: #fff !important;
+}
+.page-gallery .media-category p {
+  font: 18px "Montserrat";
+  letter-spacing: 12px;
 }
 
 /*# sourceMappingURL=main.css.map */

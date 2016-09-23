@@ -1,4 +1,14 @@
-<?php get_header(); ?>
+<?php
+/*
+Template Name: Home
+*/
+
+ // page /videos 
+
+get_header(); 
+
+
+?>
 
 
 <div class="alex-wrap page-home">
@@ -148,6 +158,3 @@
 
 
 <?php get_footer(); ?>
-
-
-

@@ -217,6 +217,29 @@ function movie_meta_boxes( $meta_boxes ) {
           ),
     );
 
+    $prefix = 'page_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Test Meta Box', 'pagetype' ),
+        'post_types' => 'page',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}title",
+                'name' => __( 'Title', 'pagetype' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}keys",
+                'name' => __( 'Meta keywords', 'pagetype' ),
+                'type' => 'textarea',
+            ),
+            array(
+                'id'   => "{$prefix}desc",
+                'name' => __( 'Meta description', 'pagetype' ),
+                'type' => 'textarea',
+            ),
+          ),
+    );
+
     return $meta_boxes;
 }
 
@@ -370,7 +393,7 @@ add_action('init', 'custom_type_video');
 function custom_type_video()
 {
   $labels = array(
-  'name' => 'Vodeos', // Основное название типа записи
+  'name' => 'Videos', // Основное название типа записи
   'singular_name' => 'Vodeo', // отдельное название записи типа Book
   'add_new' => 'Add new',
   'add_new_item' => 'Add new video',
@@ -500,7 +523,7 @@ function alex_fern_cb_options(){
 
 <div class='wrap'>
 
-    <h1>Spotify API (now at the stage of integration WP)</h1>
+    <h1>Spotify music API </h1>
 
     <?php
     if($_POST['client_id']) $_SESSION['client_id'] = trim($_POST['client_id']);

@@ -29,13 +29,13 @@ get_header();
 			<?php //get_template_part( 'menu','media' ); ?>
 			<div class="col-md-4 col-sm-4 col-xs-12 "><h2><a href="/movies">Movies</a></h2><p>xxxxxx</p></div>
 			<div class="col-md-4 col-sm-4 col-xs-12"><h2><a href="/music">Music</a></h2><p>xxxxxx</p></div>
-			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a href="/video">Video</a></h2><p>xxxxxx</p></div>
+			<div class="col-md-4 col-sm-4 col-xs-12 cat-active"><h2><a href="/video-2">Video</a></h2><p>xxxxxx</p></div>
 		</div>
 		
 		<!-- <div class="movies-catalog video-catalog"> -->
 		<div class="video-catalog">
 
-			<?php $args = array('post_type' => 'video','order'=>'ASC','posts_per_page' => 4); ?>
+			<?php $args = array('post_type' => 'video','order'=>'DESC','posts_per_page' => 4); ?>
 
 	 		<?php $video = new WP_Query( $args );?>
 			<?php if($video->have_posts() ): ?>

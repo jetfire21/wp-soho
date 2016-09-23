@@ -134,39 +134,7 @@
 
 	</div>
 
-<section class="home-movies">
-	<div class="container">
-
-		<div class="block-movies-title">
-	    	<h2>Movies</h2>
-	    	<p>xxxxxx</p>
-	    	<h3><a href="media.html">All movies</a></h3>
-		</div>
-
-	 </div>
-
-	<div class="wrap-carousel">
-		<div id="owl-movies" class="owl-carousel">
-
-			<div class="item"> 
-				<img src="<?php echo get_template_directory_uri();?>/img/hotel.jpg" alt="">
-				 <h3><a href="movie-single.html"> El hotel </a></h3> <p>2016</p> 
-			</div>
-
-			<div class="item"><img src="<?php echo get_template_directory_uri();?>/img/400days.jpg" alt=""> <h3> <a href="movie-single.html">400 days </a></h3> <p>2015</p>
-			</div>
-			<div class="item"><img src="<?php echo get_template_directory_uri();?>/img/sold.jpg" alt=""><h3> <a href="movie-single.html">Sold </a></h3> <p>2014</p></div>
-			<div class="item"><img src="<?php echo get_template_directory_uri();?>/img/400days.jpg" alt=""> <h3> <a href="movie-single.html">400 days </a></h3> <p>2015</p></div>
-			<div class="item"><img src="<?php echo get_template_directory_uri();?>/img/sold.jpg" alt=""><h3><a href="movie-single.html"> Sold </a></h3> <p>2014</p></div>
-			<div class="item"> <img src="<?php echo get_template_directory_uri();?>/img/hotel.jpg" alt=""> <h3><a href="movie-single.html"> El hotel</a> </h3> <p>2016</p>
-			 </div>
-			<div class="item"><img src="<?php echo get_template_directory_uri();?>/img/400days.jpg" alt=""> <h3><a href="movie-single.html"> 400 days</a></h3> <p>2015</p>
-			</div>
-
-		</div>
-	</div>
-
-</section>
+<?php get_template_part("movie","carousel");?>
 
 <?php get_footer(); ?>
 

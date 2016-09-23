@@ -23,11 +23,23 @@ get_header();
 	<h1 class="main-name">Fernanda romero</h1>
 	<a class="btn-small-media hidden-xs" href="media.html"></a>
 
+
+
+	<div class="media-category">
+		<div class="col-md-1"></div>
+		<div class="col-md-2 col-sm-4 col-xs-12 cat-active"><h2><a  href="media.html">On-Set</a></h2><p>xxxxxx</p></div>
+		<div class="col-md-3 col-sm-4 col-xs-12"><h2><a href="music.php">Brands</a></h2><p>xxxxxx</p></div>
+		<div class="col-md-3 col-sm-4 col-xs-12"><h2><a href="video.html">Collaboration</a></h2><p>xxxxxx</p></div>
+		<div class="col-md-2 col-sm-4 col-xs-12"><h2><a href="video.html">Press</a></h2><p>xxxxxx</p></div>
+		<div class="col-md-1"></div>
+	</div>
+
+
 	<div id="owl-gallery" class="owl-carousel owl-theme gal-hide-slider">
 
 		<?php
 		 $prefix = 'gallery_';
-		$args = array('post_type' => 'gallery','order'=>'ASC','posts_per_page' => 4); 
+		$args = array('post_type' => 'gallery','order'=>'ASC','posts_per_page' => -1); 
 		?>
 
  		<?php $gallery = new WP_Query( $args ); ?>
@@ -102,7 +114,7 @@ get_header();
 					<img src="<?php echo $slides[1];?>" alt=""> 
 				 </div>
 				<?php endif;?>
-						
+
 		  	</div>
 
 
