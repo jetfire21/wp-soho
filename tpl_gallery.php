@@ -21,8 +21,18 @@ get_header();
 
 
 	<h1 class="main-name">Fernanda romero</h1>
-	<a class="btn-small-media hidden-xs" href="media.html"></a>
+	<a class="btn-small-media hidden-xs" href="/movies"></a>
 
+<?php
+
+ 		 $link_cat_gal = $_SERVER['REQUEST_URI'];
+ 		 if( preg_match("/brands/i", $link_cat_gal))  $gal_cat = 'brands';
+ 		 if( preg_match("/press/i", $link_cat_gal)) $gal_cat = 'press';
+ 		 if( preg_match("/on-set/i", $link_cat_gal)) $gal_cat = 'on-set';
+ 		 if( preg_match("/collaboration/i", $link_cat_gal))  $gal_cat = 'collaboration';
+ 		 if( !$gal_cat) { $gal_cat = "collaboration"; $cat_active = "current-menu-item"; }
+
+?>
 
 
 	<div class="media-category">
@@ -58,7 +68,9 @@ get_header();
 		 $gal_text = str_replace("li", "div", $gal_text);
 		 $gal_text = preg_replace('/class="menu-item/i','class="col-md-2 col-sm-2 col-xs-12 ',$gal_text, 1);
  		 $gal_text = preg_replace('/class="menu-item/i','class="col-md-3 col-sm-3 col-xs-12 ',$gal_text, 2);
- 		 echo $gal_text = str_replace('class="menu-item', 'class="col-md-2 col-sm-2 col-xs-12 ', $gal_text);
+ 		 if(!empty($gal_text)){
+ 			 echo $gal_text = str_replace('class="menu-item', 'class="col-md-2 col-sm-2 col-xs-12 ', $gal_text);
+ 		}
  	?>	
 		<div class="col-md-1 sol-sm-1"></div>
 	</div>
@@ -66,16 +78,6 @@ get_header();
 
 	<div id="owl-gallery" class="owl-carousel owl-theme gal-hide-slider">
 
-		<?php
-
- 		 $link_cat_gal = $_SERVER['REQUEST_URI'];
- 		 if( preg_match("/brands/i", $link_cat_gal))  $gal_cat = 'brands';
- 		 if( preg_match("/press/i", $link_cat_gal)) $gal_cat = 'press';
- 		 if( preg_match("/on-set/i", $link_cat_gal)) $gal_cat = 'on-set';
- 		 if( preg_match("/collaboration/i", $link_cat_gal))  $gal_cat = 'collaboration';
- 		 if( !$gal_cat) $gal_cat = "on-set";
-
-?>
 
 
 		<?php

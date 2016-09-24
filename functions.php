@@ -497,27 +497,27 @@ function custom_type_alex_gallery()
 {
 
     register_taxonomy('gal_cat', array('gallery'), array(
-    'label'                 => 'Раздел вопроса', // определяется параметром $labels->name
+    'label'                 => 'Gallery Category', // определяется параметром $labels->name
     'labels'                => array(
-      'name'              => 'Разделы вопросов',
-      'singular_name'     => 'Раздел вопроса',
-      'search_items'      => 'Искать Раздел вопроса',
-      'all_items'         => 'Все Разделы вопросов',
-      'parent_item'       => 'Родит. раздел вопроса',
-      'parent_item_colon' => 'Родит. раздел вопроса:',
-      'edit_item'         => 'Ред. Раздел вопроса',
-      'update_item'       => 'Обновить Раздел вопроса',
-      'add_new_item'      => 'Добавить Раздел вопроса',
-      'new_item_name'     => 'Новый Раздел вопроса',
+      'name'              => 'Gallery Category',
+      'singular_name'     => 'Gallery Category',
+      'search_items'      => 'Find category',
+      'all_items'         => 'All category',
+      'parent_item'       => 'Edit category',
+      'parent_item_colon' => 'Parent category:',
+      'edit_item'         => 'Edit category',
+      'update_item'       => 'Update category',
+      'add_new_item'      => 'Add new category',
+      'new_item_name'     => 'New category',
       'menu_name'         => 'Category',
     ),
-    'description'           => 'Рубрики для раздела вопросов', // описание таксономии
+    'description'           => 'Category for gallery', // описание таксономии
     'public'                => true,
     'show_in_nav_menus'     => false, // равен аргументу public
     'show_ui'               => true, // равен аргументу public
     'show_tagcloud'         => false, // равен аргументу show_ui
     'hierarchical'          => true,
-    'rewrite'               => array('slug'=>'faq', 'hierarchical'=>false, 'with_front'=>false, 'feed'=>false ),
+    'rewrite'               => array('slug'=>'gal_cat', 'hierarchical'=>false, 'with_front'=>false, 'feed'=>false ),
     'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
   ) );
 

@@ -92,7 +92,7 @@ get_header();
 		<div class="wrap-gallery ie-gradient ">
 			<div class="gal-text">
 			<h2>Gallery</h2>
-			<a href="/gallery">see more</a>
+			<a href="/gallery-2">see more</a>
 			</div>
 		</div>	
 	</section>
