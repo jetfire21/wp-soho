@@ -61,7 +61,9 @@ add_theme_support('post-thumbnails'); // поддержка миниатюр
 
 register_nav_menus( array(
   'loc_menu' => 'hf-menu',
+  'sys_gal' => 'gallery_menu_cat'
 ) );
+
 
 
 //создание дополнительно пропоционального размера миниатюры
@@ -70,6 +72,7 @@ register_nav_menus( array(
 // add_image_size( 'cat-movies', 404,562, true); 
 // add_image_size( 'cat-movies', 375,500, true); 
 add_image_size( 'cat-movies', 400,553, true); 
+add_image_size( 'cat-gallery', 9999, 662); 
 
 // cleaning trash
 remove_action( 'wp_head', 'rel_canonical');
@@ -345,6 +348,29 @@ add_action('wp_ajax_nopriv_loadmore_music', 'true_load_posts3');
 
 
 
+function true_load_posts4(){
+    $gal_cat = trim($_POST['gal_cat']);
+    $args = array('post_type' => 'gallery','order'=>'ASC','posts_per_page' => -1, 'gal_cat' => $gal_cat); 
+?>
+
+    <?php $gallery = new WP_Query( $args ); ?>
+    <?php if($gallery->have_posts() ): ?>
+    <?php while($gallery->have_posts() ) : $gallery->the_post();?>    
+        <?php the_title(); ?>
+    <?php endwhile; ?>
+    <?php endif;?>
+
+<?php
+  wp_reset_postdata();
+  die();
+
+}
+
+add_action('wp_ajax_gallery_category', 'true_load_posts4');
+add_action('wp_ajax_nopriv_gallery_category', 'true_load_posts4');
+
+
+
 
 
 
@@ -469,36 +495,63 @@ function custom_type_main_slider()
 add_action('init', 'custom_type_alex_gallery');
 function custom_type_alex_gallery()
 {
-  $labels = array(
-  'name' => 'Slides', // Основное название типа записи
-  'singular_name' => 'Slides', // отдельное название записи типа Book
-  'add_new' => 'Add new',
-  'add_new_item' => 'Add new slide',
-  'edit_item' => 'Edit slide',
-  'new_item' => 'New slide',
-  'view_item' => 'View slide',
-  'search_items' => 'Search slide',
-  'not_found' =>  'Not found',
-  'not_found_in_trash' => 'No found in trash',
-  'parent_item_colon' => '',
-  'menu_name' => 'Gallery'
 
-  );
-  $args = array(
-  'labels' => $labels,
-  'public' => true,
-  'publicly_queryable' => true,
-  'show_ui' => true,
-  'show_in_menu' => true,
-  'query_var' => true,
-  'rewrite' => true,
-  'capability_type' => 'post',
-  'has_archive' => true,
-  'hierarchical' => false,
-  'menu_position' => null,
-  'supports' => array('title')
-  );
-  register_post_type('gallery',$args);
+    register_taxonomy('gal_cat', array('gallery'), array(
+    'label'                 => 'Раздел вопроса', // определяется параметром $labels->name
+    'labels'                => array(
+      'name'              => 'Разделы вопросов',
+      'singular_name'     => 'Раздел вопроса',
+      'search_items'      => 'Искать Раздел вопроса',
+      'all_items'         => 'Все Разделы вопросов',
+      'parent_item'       => 'Родит. раздел вопроса',
+      'parent_item_colon' => 'Родит. раздел вопроса:',
+      'edit_item'         => 'Ред. Раздел вопроса',
+      'update_item'       => 'Обновить Раздел вопроса',
+      'add_new_item'      => 'Добавить Раздел вопроса',
+      'new_item_name'     => 'Новый Раздел вопроса',
+      'menu_name'         => 'Category',
+    ),
+    'description'           => 'Рубрики для раздела вопросов', // описание таксономии
+    'public'                => true,
+    'show_in_nav_menus'     => false, // равен аргументу public
+    'show_ui'               => true, // равен аргументу public
+    'show_tagcloud'         => false, // равен аргументу show_ui
+    'hierarchical'          => true,
+    'rewrite'               => array('slug'=>'faq', 'hierarchical'=>false, 'with_front'=>false, 'feed'=>false ),
+    'show_admin_column'     => true, // Позволить или нет авто-создание колонки таксономии в таблице ассоциированного типа записи. (с версии 3.5)
+  ) );
+
+
+    $labels = array(
+    'name' => 'Slides', // Основное название типа записи
+    'singular_name' => 'Slides', // отдельное название записи типа Book
+    'add_new' => 'Add new',
+    'add_new_item' => 'Add new slide',
+    'edit_item' => 'Edit slide',
+    'new_item' => 'New slide',
+    'view_item' => 'View slide',
+    'search_items' => 'Search slide',
+    'not_found' =>  'Not found',
+    'not_found_in_trash' => 'No found in trash',
+    'parent_item_colon' => '',
+    'menu_name' => 'Gallery'
+
+    );
+    $args = array(
+    'labels' => $labels,
+    'public' => true,
+    'publicly_queryable' => true,
+    'show_ui' => true,
+    'show_in_menu' => true,
+    'query_var' => true,
+    'rewrite' => true,
+    'capability_type' => 'post',
+    'has_archive' => true,
+    'hierarchical' => false,
+    'menu_position' => null,
+    'supports' => array('title')
+    );
+    register_post_type('gallery',$args);
 }
 
     add_action('init', 'my_insert_post_hook');

@@ -1013,12 +1013,25 @@ html,body
 
 .page-gallery
 	.media-category 
-		margin: 100px 0 60px 0
+		margin: 100px 0 50px 0
 		overflow: hidden
 		text-align: center
+
+		> div
+			&:hover a, &:hover p
+				color: #fff!important
+	
+		a
+			font-size: 82px !important
 		
 		p, a
-			color: #fff !important
+			color: #7a7a7a  !important
+
+
+
+		.cat-active
+			p,a
+				color: #fff !important
 		p
 			font: 18px "Montserrat"
 			letter-spacing: 12px

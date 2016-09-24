@@ -8,7 +8,7 @@
 	} 
 
 	.page-gallery .media-category a{
-		font-size: 73px;
+		font-size: 73px !important;
 	}
 
 }
@@ -55,7 +55,7 @@
 	}
 
 	.page-gallery .media-category a{
-		font-size: 53px;
+		font-size: 53px !important;
 	}
 }
 
@@ -144,10 +144,17 @@
 	    height: 560px;
 	}
 
+	.page-gallery .media-category p {
+	    font: 16px "Montserrat";
+	    letter-spacing: 5px;
+	    margin-top: -10px;
+	}
+
 /*	.wrap-audio-img:hover .play-music-img{
 		top:25%;
 		left: 28%;
 	}*/
+
 }
 
 /* Large Devices, Wide Screens */
@@ -189,8 +196,14 @@
 	}
 
 	.page-gallery .media-category a{
-		font-size: 53px;
+		font-size: 45px !important;
 	}
+	.page-gallery .media-category p{
+		margin-top: -10px ;
+		letter-spacing: 4px;
+		font-size:15px;
+	}
+
 
 }
 
@@ -238,7 +251,7 @@
 	.wrap-movie-video iframe {
 	    height: 480px;
 	}
-	
+
 	.page-gallery .media-category a{
 		font-size: 45px;
 	}
@@ -246,6 +259,15 @@
 	.page-gallery .media-category p{
 		letter-spacing: 4px;
 		margin-top: -10px;
+	}
+
+	.page-gallery .media-category a{
+		font-size: 34px !important;
+	}
+	.page-gallery .media-category p {
+	    margin-top: -15px;
+	    letter-spacing: 3px;
+	    font-size: 13px;
 	}
 
 }
@@ -352,6 +374,16 @@
 	.wrap-movie-video iframe {
 	    height: 330px;
 	}
+
+	.page-gallery .media-category a{
+		font-size: 56px !important;
+	}
+	.page-gallery .media-category p {
+	    margin-top: -5px;
+	    letter-spacing: 9px;
+	    font-size: 18px;
+	}
+
 }
 
 /* Extra Small Devices, Phones */
