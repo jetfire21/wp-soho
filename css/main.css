@@ -441,6 +441,7 @@ footer {
   color: #fff;
   text-align: center;
   padding: 170px 0 155px 0;
+  width: 100%;
 }
 footer .fa {
   font-size: 30px;
@@ -469,6 +470,9 @@ footer .soc-network a {
 }
 
 /* **************BLOCK  MEDIA********** */
+.block-media > .container {
+  min-height: 500px;
+}
 .block-media .big-btn-bar {
   left: 40px;
   top: 550px;
@@ -958,6 +962,10 @@ html, body {
 .page-gallery .media-category p {
   font: 18px "Montserrat";
   letter-spacing: 12px;
+}
+
+.error_404 {
+  font: 80px "PlayfairDisplay-Black" !important;
 }
 
 /*# sourceMappingURL=main.css.map */

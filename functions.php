@@ -775,3 +775,129 @@ if(!empty($code)){
 
 <?php
 }
+
+/* ********* add socigal networks in section Settings ****************** */
+
+add_action('admin_menu', 'alex_upload_file');
+add_action('admin_init', 'alex_setting');
+
+
+function alex_upload_file(){
+  add_options_page( 'Social networks', 'Social networks', 'manage_options', 'alex_upload_file_option', 'alex_f_make_page');
+}
+
+
+function alex_setting(){
+  register_setting( 'alex_options_group', 'alex_upload_file_option', 'alex_option_sanitize');
+  add_settings_section( 'alex_options_section_facebook', ' ', '', 'alex_upload_file_option');
+
+
+  add_settings_field('alex_add_facebook_id', 'Facebook', 'alex_add_facebook_cb',  'alex_upload_file_option', 'alex_options_section_facebook', array('label_for' => 'alex_add_facebook_id') );
+  add_settings_field('alex_add_twitter_id', 'Twitter', 'alex_add_twitter_cb',  'alex_upload_file_option', 'alex_options_section_facebook', array('label_for' => 'alex_add_twitter_id') );
+  add_settings_field('alex_add_google_id', 'Google', 'alex_add_google_cb',  'alex_upload_file_option', 'alex_options_section_facebook', array('label_for' => 'alex_add_google_id') );
+  add_settings_field('alex_add_pinterest_id', 'Pinterest', 'alex_add_pinterest_cb',  'alex_upload_file_option', 'alex_options_section_facebook', array('label_for' => 'alex_add_tpinterest_id') );
+  add_settings_field('alex_add_linkedin_id', 'Linkedin', 'alex_add_linkedin_cb',  'alex_upload_file_option', 'alex_options_section_facebook', array('label_for' => 'alex_add_tlinkedin_id') );
+
+}
+
+
+function alex_add_facebook_cb(){
+  $option = get_option('alex_upload_file_option' );
+  // print_r($option);
+
+  if(empty($option['facebook'])){
+    ?>
+     <input type="text" class="regular-text" id="alex_add_facebook_id" name="alex_upload_file_option[facebook]"> 
+    <?php
+  }else{
+    ?>
+    <input type="text" class="regular-text" id="alex_add_facebook_id" name="alex_upload_file_option[facebook]" value="<?php echo $option['facebook'];?>">
+    <?php
+  }
+}
+
+
+function alex_add_twitter_cb(){
+  $option = get_option('alex_upload_file_option' );
+
+  if(empty($option['twitter'])){
+    ?>
+     <input type="text" class="regular-text" id="alex_add_twitter_id" name="alex_upload_file_option[twitter]"> 
+    <?php
+  }else{
+    ?>
+    <input type="text" class="regular-text" id="alex_add_twitter_id" name="alex_upload_file_option[twitter]" value="<?php echo $option['twitter'];?>">
+    <?php
+  }
+}
+
+function alex_add_pinterest_cb(){
+  $option = get_option('alex_upload_file_option' );
+
+  if(empty($option['pinterest'])){
+    ?>
+     <input type="text" class="regular-text" id="alex_add_pinterest_id" name="alex_upload_file_option[pinterest]" > 
+    <?php
+  }else{
+    ?>
+    <input type="text" class="regular-text" id="alex_add_pinterest_id" name="alex_upload_file_option[pinterest]" value="<?php echo $option['pinterest'];?>">
+    <?php
+  }
+}
+
+function alex_add_linkedin_cb(){
+  $option = get_option('alex_upload_file_option' );
+
+  if(empty($option['linkedin'])){
+    ?>
+     <input type="text" class="regular-text" id="alex_add_linkedin_id" name="alex_upload_file_option[linkedin]" > 
+    <?php
+  }else{
+    ?>
+    <input type="text" class="regular-text" id="alex_add_linkedin_id" name="alex_upload_file_option[linkedin]" value="<?php echo $option['linkedin'];?>">
+    <?php
+  }
+
+}
+
+function alex_add_google_cb(){
+  $option = get_option('alex_upload_file_option' );
+
+  if(empty($option['google'])){
+    ?>
+     <input type="text" class="regular-text" id="alex_add_google_id" name="alex_upload_file_option[google]" > 
+    <?php
+  }else{
+    ?>
+    <input type="text" class="regular-text" id="alex_add_google_id" name="alex_upload_file_option[google]" value="<?php echo $option['google'];?>">
+    <?php
+  }
+
+}
+
+
+function alex_option_sanitize($option){
+
+  if( !empty($_POST['facebook']) ) $option['facebook'] = $_POST['facebook'];
+  if( !empty($_POST['google']) ) $option['google'] = $_POST['google'];
+  if( !empty($_POST['twitter']) ) $option['twitter'] = $_POST['twitter'];
+  if( !empty($_POST['pinterest']) ) $option['pinterest'] = $_POST['pinterest'];
+  if( !empty($_POST['linkedin']) ) $option['linkedin'] = $_POST['linkedin'];
+
+  return $option;
+}
+
+function alex_f_make_page(){
+  ?>
+  <div class="wrap">
+    <h2>Social networks</h2>
+    <form action="options.php" method="post" enctype="multipart/form-data">
+      <?php settings_fields( 'alex_options_group' ); //выводит скрытые поля для проверки безопасности ?>
+      <?php do_settings_sections( 'alex_upload_file_option' ); // вывод всех полей связанный с секцией ?>
+      <?php submit_button(); ?>
+    </form>
+  </div>
+  <?php
+}
+
+/* ********* add socigal networks in section Settings ****************** */

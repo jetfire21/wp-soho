@@ -450,6 +450,7 @@ footer
 	color: #fff
 	text-align: center
 	padding: 170px 0 155px 0
+	width: 100%
 	
 	.fa
 		font-size: 30px
@@ -480,6 +481,16 @@ footer
 /* **************BLOCK  MEDIA********** */
 
 .block-media
+	// min-height: 100%
+	// position: relative
+
+	> .container
+		// padding-bottom: 300px
+		min-height: 500px
+
+	footer
+		// position: absolute
+		// bottom: 0
 
 	.big-btn-bar
 		left: 40px
@@ -1035,3 +1046,6 @@ html,body
 		p
 			font: 18px "Montserrat"
 			letter-spacing: 12px
+
+.error_404
+	font: 80px "PlayfairDisplay-Black" !important
