@@ -52,7 +52,13 @@ get_header();
 										 	  ?>
 											<h3><?php echo $slogan;?></h3>
 											<div class="btn-media">
-												<img src="<?php echo get_template_directory_uri();?>/img/btn-basket.png" alt="">
+												<!-- <img src="<?php echo get_template_directory_uri();?>/img/btn-basket.png" alt=""> -->
+											 	<?php $img_link = rwmb_meta( "{$prefix}img_link"); ?>
+											 	<?php if($img_link):?>
+											 	<?php foreach($img_link as $k=>$v):?>
+											  		<img src="<?php echo $v['full_url']; ?>" alt="">
+												<?php endforeach;?>
+												<?php endif;?>
 												<a href="<?php echo rwmb_meta( "{$prefix}url_link"); ?>"><?php echo rwmb_meta( "{$prefix}text_link"); ?></a>
 											</div>
 										</div>

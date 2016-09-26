@@ -193,6 +193,12 @@ function movie_meta_boxes( $meta_boxes ) {
                 'type' => 'image',
             ),
             array(
+                'id'   => "{$prefix}img_link",
+                'name' => __( 'The image before link', 'slidertype' ),
+                'type' => 'image',
+            ),
+
+            array(
                 'id'   => "{$prefix}text_link",
                 'name' => __( 'Text link', 'textdomain' ),
                 'type' => 'text',
