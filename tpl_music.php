@@ -49,7 +49,9 @@ get_header();
 	 				 	  <div class="play-music-img"></div>
 	 				 </div>
  				 	  <h3><?php echo $item['track_name'];?></h3>
- 				 	  <p>buy</p>
+
+ 				 	 	<p> <a class="buy-music" href="<?php echo $item['buy_link'];?>"> buy</a></p>
+ 				 	 <!-- <p> buy</p> -->
  				 </div>
 				<?php $i++; endforeach;?>
 

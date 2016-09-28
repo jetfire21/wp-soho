@@ -1,5 +1,10 @@
 <?php 
 
+add_action( 'admin_menu', 'alex_sp_register_menu_page' );
+function alex_sp_register_menu_page(){
+	wp_enqueue_style( 'alex-admin', get_template_directory_uri()."/css/alex_admin.css");
+}
+
 
 /* ************* include css and js files ******** */
 
@@ -624,6 +629,154 @@ function alex_fern_cb_options(){
     </form> 
 
       <?php
+    global $wpdb;
+    $wpdb->fer_table_name = $wpdb->prefix .  "spotify_api_music";
+
+    function alex_sp_pagination_params(){
+	global $wpdb;
+
+	$perpage = 9;
+	// кол-во записей
+	// $table_name = $wpdb->prefix . "plg_simply_polls"; 
+	$count = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->fer_table_name");
+	// необходимое кол-во страниц
+	$count_pages = ceil($count / $perpage);
+	// минимум 1 страница
+	if( !$count_pages ) $count_pages = 1;
+	// получение текущей страницы
+	if( isset($_GET['paged']) ){
+		$page = (int)$_GET['paged'];
+		if( $page < 1 ) $page = 1;
+	}else{
+		$page = 1;
+	}
+	// если запрошенная страница больше максимума
+	if( $page > $count_pages ) $page = $count_pages;
+	// начальная позиция для запроса
+	$start_pos = ($page - 1) * $perpage;
+
+	$pagination_params = array(
+		'page' => $page,
+		'count' => $count,
+		'count_pages' => $count_pages,
+		'perpage' => $perpage,
+		'start_pos' => $start_pos
+	);
+	return $pagination_params;
+}
+
+
+function alex_sp_pagination($page, $count_pages){
+	// << < 3 4 5 6 7 > >>
+	$back = null; // ссылка НАЗАД
+	$forward = null; // ссылка ВПЕРЕД
+	$startpage = null; // ссылка В НАЧАЛО
+	$endpage = null; // ссылка В КОНЕЦ
+	$page2left = null; // вторая страница слева
+	$page1left = null; // первая страница слева
+	$page2right = null; // вторая страница справа
+	$page1right = null; // первая страница справа
+
+	$uri = "?";
+	if( $_SERVER['QUERY_STRING'] ){
+		foreach ($_GET as $key => $value) {
+			if( $key != 'paged' ) $uri .= "{$key}=$value&amp;";
+		}
+	}
+
+	if( $page > 1 ){
+		$back = "<a class='nav-link' href='{$uri}paged=" .($page-1). "'>".__( 'back', 'simply_polls' )."</a>";
+	}
+	if( $page < $count_pages ){
+		$forward = "<a class='nav-link' href='{$uri}paged=" .($page+1). "'>".__( 'next', 'simply_polls' )."</a>";
+	}
+	if( $page > 3 ){
+		$startpage = "<a class='nav-link' href='{$uri}paged=1'>В начало</a>";
+	}
+	if( $page < ($count_pages - 2) ){
+		$endpage = "<a class='nav-link' href='{$uri}paged={$count_pages}'>В конец</a>";
+	}
+	if( $page - 2 > 0 ){
+		$page2left = "<a class='nav-link' href='{$uri}paged=" .($page-2). "'>" .($page-2). "</a>";
+	}
+	if( $page - 1 > 0 ){
+		$page1left = "<a class='nav-link' href='{$uri}paged=" .($page-1). "'>" .($page-1). "</a>";
+	}
+	if( $page + 1 <= $count_pages ){
+		$page1right = "<a class='nav-link' href='{$uri}paged=" .($page+1). "'>" .($page+1). "</a>";
+	}
+	if( $page + 2 <= $count_pages ){
+		$page2right = "<a class='nav-link' href='{$uri}paged=" .($page+2). "'>" .($page+2). "</a>";
+	}
+
+	return $startpage.$back.$page2left.$page1left.'<a class="active-page">'.$page.'</a>'.$page1right.$page2right.$forward.$endpage;
+}
+
+$pagination_params = alex_sp_pagination_params();
+// print_r($pagination_params);
+
+    // echo "SELECT * FROM $wpdb->fer_table_name LIMIT {$tr_paged},5";
+   $sel_tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name LIMIT ".$pagination_params['start_pos'].",".$pagination_params['perpage'], ARRAY_A);
+   // var_dump($sel_tracks);
+
+   if($sel_tracks){
+   		
+   		echo '<form action="" method="post">
+   		<table class="wp-list-table widefat fixed striped pages">
+   					<tr>
+   						<th> Name </th>
+   						<th> Album </th>
+   						<th> Buy link </th>
+   					</tr>';
+   		foreach ($sel_tracks as $item) {
+   			echo "<tr><td>".$item['id'].". ".$item['track_name']."</td><td> ".$item['album']."</td><td><input class='music-input' type='text' name='tracks[".$item['id']."]' value='".$item['buy_link']."'/></td> 
+   			</tr>";
+   			
+   		}
+
+
+
+
+   		echo "<tr> <td></td><td></td>
+   		<td> <input type='submit' name='add_buy' class='button button-primary' value='Save'> </td> 
+   		</tr>
+		</table>
+		</form>";
+
+?>
+
+		<?php if( $pagination_params['count_pages'] > 1 ): ?>
+		<div class="pagination">
+			<?php echo alex_sp_pagination($pagination_params['page'], $pagination_params['count_pages']); ?>
+		</div>
+		<?php endif; ?>
+
+<?php
+
+
+		if( !empty($_POST['tracks']) ){
+
+			$post_tracks = $_POST['tracks'];
+			// print_r( $post_tracks);
+
+			foreach ($post_tracks as $k => $v) {
+				if( empty($v)) unset( $post_tracks[$k] );
+			}
+			// print_r( $post_tracks);
+
+			if( $post_tracks ){
+
+				foreach ($post_tracks as $k => $v) {
+					$wpdb->query($wpdb->prepare("UPDATE $wpdb->fer_table_name SET buy_link = '%s' WHERE id ='%d'", $v, $k));
+				}
+
+			}
+			echo '<div id="for_message" class="fade updated"><p>The data was successfully stored !</p></div>';
+
+		}
+
+   }
+
 
 $query = "https://accounts.spotify.com/authorize/?client_id=".$client_id."&response_type=code&redirect_uri=".$redirect_uri."&state=34fFs29kd09";
 
@@ -729,7 +882,7 @@ if(!empty($code)){
   $wpdb->fer_table_name = $wpdb->prefix .  "spotify_api_music";
   $charset_collate = $wpdb->get_charset_collate();  //DEFAULT CHARACTER SET utf8mb4 COLLATE 
 
-  $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->fer_table_name} ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `track_name` VARCHAR(255) NOT NULL , `album` VARCHAR(255) NOT NULL , `artists` VARCHAR(255) NOT NULL , `track_url` VARCHAR(255) NOT NULL , `img` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE=InnoDB $charset_collate AUTO_INCREMENT=1";
+  $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->fer_table_name} ( `id` INT UNSIGNED NOT NULL AUTO_INCREMENT , `track_name` VARCHAR(255) NOT NULL , `album` VARCHAR(255) NOT NULL , `artists` VARCHAR(255) NOT NULL , `track_url` VARCHAR(255) NOT NULL , `img` VARCHAR(255) NOT NULL , `buy_link` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE=InnoDB $charset_collate AUTO_INCREMENT=1";
   $wpdb->query($sql);
 
 
