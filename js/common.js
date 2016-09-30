@@ -1,4 +1,12 @@
+
+
 $(document).ready(function() {
+
+	$(window).on('load', function () {
+		var slider_img = $("#owl-shop-slider img:first-child").height();
+		$(".shop-home-page .shop-big-menu-btn").height(slider_img);
+		console.log('s2 '+ slider_img);
+	});
 
    /* ======= resize background image ======= */
 
@@ -19,12 +27,18 @@ $(document).ready(function() {
 	// img_overlay.css({"height":height});
 
 
+	$(window).resize(function() {
+	    var slider_img = $("#owl-shop-slider img").height();
+	    $(".shop-big-menu-btn").height(slider_img);
+	     console.log('s1 '+ slider_img);
 
-	$(".big-btn-bar").click(function(){
+	});
+
+	$(".big-btn-bar, .shop-big-menu-btn img").click(function(){
 		$(".top-menu").show();
 		// $(".bg-color").addClass("dark-bg");
 		$(".alex-wrap").addClass("alex-overlay");
-		console.log("dddd");
+		// console.log("dddd");
 	});
 
 	$(".close-top-menu").click(function(){
@@ -33,7 +47,7 @@ $(document).ready(function() {
 		$(".alex-wrap").removeClass("alex-overlay");
 	});
 
-	$(".btn-bar-top").click(function(){
+	$(".btn-bar-top, .shop-btn-mobile img").click(function(){
 		// $(".mob-menu").show();
 		$(".mob-menu").addClass("show_mob_menu");
 	});
@@ -66,17 +80,17 @@ $(document).ready(function() {
 
 
 	  function moved(){
-			var ind = $("header .owl-pagination .owl-page, #owl-gallery .owl-page").index( $(".active")) + 1; 	
+			var ind = $("#owl-demo .owl-pagination .owl-page, #owl-gallery .owl-page, #owl-shop-slider .owl-page").index( $(".active")) + 1; 	
 			console.log(ind);
-			$("header .owl-pagination .owl-page .num, #owl-gallery .owl-page .num").remove();
-			$("header .owl-pagination .owl-page.active, #owl-gallery .owl-page.active").append("<p class='num'>0" + ind + "</p>");
+			$("#owl-demo .owl-pagination .owl-page .num, #owl-gallery .owl-page .num, #owl-shop-slider .owl-page .num").remove();
+			$("#owl-demo .owl-pagination .owl-page.active, #owl-gallery .owl-page.active, #owl-shop-slider .owl-page.active").append("<p class='num'>0" + ind + "</p>");
 	  }
 
- 	  $("header .owl-pagination .owl-page, #owl-gallery .owl-page").click(function(){
-			var ind = $("header .owl-pagination .owl-page, #owl-gallery .owl-page").index( $(".active")) + 1; 	
+ 	  $("#owl-demor .owl-pagination .owl-page, #owl-gallery .owl-page, #owl-shop-slider .owl-page").click(function(){
+			var ind = $("#owl-demo .owl-pagination .owl-page, #owl-gallery .owl-page, #owl-shop-slider .owl-page").index( $(".active")) + 1; 	
 			// console.log(ind);
-			$("header .owl-pagination .owl-page .num, #owl-gallery .owl-page .num").remove();
-			$("header .owl-pagination .owl-page.active, #owl-gallery .owl-page.active").append("<p class='num'>0" + ind + "</p>");
+			$("#owl-demo .owl-pagination .owl-page .num, #owl-gallery .owl-page .num, #owl-shop-slider .owl-page .num").remove();
+			$("#owl-demo .owl-pagination .owl-page.active, #owl-gallery .owl-page.active, #owl-shop-slider .owl-page.active").append("<p class='num'>0" + ind + "</p>");
  	 });
 
 
@@ -157,7 +171,52 @@ if (width > 767){
 		
 	// });
 
+  $("#owl-shop-slider").owlCarousel({
+ 
+      navigation : true, // Show next and prev buttons
+      autoPlay: false,
+      slideSpeed : 400,
+      paginationSpeed : 500,
+      // theme: "owl-theme",
+      singleItem:true,
+	  afterMove: moved,
+     navigationText: ['','']
+ 
+  });
 
+     $("#owl-shop-slider .owl-page.active").append("<p class='num'>01</p>");
 
+if (width > 991){
+   $("#owl-shop-products").owlCarousel({
+ 
+      navigation : true, // Show next and prev buttons
+      autoPlay: false,
+      slideSpeed : 400,
+      paginationSpeed : 500,
+      // theme: "owl-theme",
+      singleItem:true,
+	  afterMove: moved,
+     navigationText: ['','']
+ 
+  });
+}
+
+	$(".single-product .thumbs > div").click( function(){
+		var big_img = $(this).children().attr("data-img");
+		console.log(big_img);
+		$(".single-main-img img").attr("src", big_img);
+	});
+
+  $(".wrap_quantity .plus").click(function(){
+   		var count = $(this).parent().find("input").val();
+   		count++;
+   		$(this).parent().find("input").val(count);
+   });
+
+   $(".wrap_quantity .minus").click(function(){
+   		var count = $(this).parent().find("input").val();
+   		if(count > 1) count--;
+   		$(this).parent().find("input").val(count);
+   });
 
 });

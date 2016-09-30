@@ -78,6 +78,9 @@ register_nav_menus( array(
 // add_image_size( 'cat-movies', 375,500, true); 
 add_image_size( 'cat-movies', 400,553, true); 
 add_image_size( 'cat-gallery', 9999, 662); 
+// add_image_size( 'prod_cat', 332,263, true); 
+// add_image_size( 'prod_cat', 332,9999); 
+add_image_size( 'prod_cat', 380,9999); 
 
 // cleaning trash
 remove_action( 'wp_head', 'rel_canonical');
@@ -1060,3 +1063,9 @@ function alex_f_make_page(){
 }
 
 /* ********* add socigal networks in section Settings ****************** */
+
+
+add_action( 'after_setup_theme', 'woocommerce_support' );
+function woocommerce_support() {
+    add_theme_support( 'woocommerce' );
+}

@@ -342,12 +342,6 @@ header .owl-page.active, #owl-gallery .owl-page.active {
   letter-spacing: 0;
 }
 
-a.buy-music {
-  font: 20px "PlayfairDisplay-Black";
-  letter-spacing: 0;
-  text-transform: lowercase;
-}
-
 .gallery {
   position: relative;
   padding-top: 301px;
@@ -447,7 +441,6 @@ footer {
   color: #fff;
   text-align: center;
   padding: 170px 0 155px 0;
-  width: 100%;
 }
 footer .fa {
   font-size: 30px;
@@ -476,9 +469,6 @@ footer .soc-network a {
 }
 
 /* **************BLOCK  MEDIA********** */
-.block-media > .container {
-  min-height: 500px;
-}
 .block-media .big-btn-bar {
   left: 40px;
   top: 550px;
@@ -728,7 +718,6 @@ html, body {
 }
 #owl-gallery img {
   max-width: 100%;
-  max-height: 662px;
 }
 #owl-gallery .gal-link-bot {
   margin-top: 60px;
@@ -738,7 +727,6 @@ html, body {
 }
 #owl-gallery .gal-img {
   line-height: 662px;
-  text-align: center;
 }
 
 .aaa {
@@ -747,10 +735,6 @@ html, body {
 }
 
 /* ********* page music ******** */
-.music-autoload {
-  height: 70px;
-}
-
 .wrap-audio-img {
   position: relative;
   cursor: pointer;
@@ -781,11 +765,8 @@ html, body {
   width: 127px;
   height: 140px;
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  margin: auto;
+  top: 29%;
+  left: 34%;
   z-index: 3;
   background-size: cover;
 }
@@ -802,9 +783,6 @@ html, body {
 }
 .jp-audio a {
   color: #fff;
-}
-.jp-audio .jp-no-solution {
-  padding-top: 5%;
 }
 .jp-audio button {
   border: 0;
@@ -949,29 +927,14 @@ html, body {
 }
 
 .page-gallery .media-category {
-  margin: 100px 0 50px 0;
-  overflow: hidden;
   text-align: center;
 }
-.page-gallery .media-category > div:hover a, .page-gallery .media-category > div:hover p {
-  color: #fff !important;
-}
-.page-gallery .media-category a {
-  font-size: 82px !important;
-}
 .page-gallery .media-category p, .page-gallery .media-category a {
-  color: #7a7a7a !important;
-}
-.page-gallery .media-category .cat-active p, .page-gallery .media-category .cat-active a, .page-gallery .media-category .current-menu-item p, .page-gallery .media-category .current-menu-item a {
   color: #fff !important;
 }
 .page-gallery .media-category p {
   font: 18px "Montserrat";
   letter-spacing: 12px;
-}
-
-.error_404 {
-  font: 80px "PlayfairDisplay-Black" !important;
 }
 
 /*# sourceMappingURL=main.css.map */
