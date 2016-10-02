@@ -203,7 +203,9 @@ if (width > 991){
 
 	$(".single-product .thumbs > div").click( function(){
 		var big_img = $(this).children().attr("data-img");
+		var srcset = $(".single-main-img img").attr("srcset");
 		console.log(big_img);
+		if(srcset) $(".single-main-img img").attr("srcset", "");
 		$(".single-main-img img").attr("src", big_img);
 	});
 

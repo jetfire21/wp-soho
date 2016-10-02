@@ -49,6 +49,8 @@
 
 if( is_shop()) $wrap_page = 'shop-home-page'; 
 if( is_product_category()) $wrap_page = 'shop-cat-page'; 
+if( is_product()) $wrap_page = 'single-product'; 
+if( is_cart()) $wrap_page = 'cart-page'; 
 
 ?>
 
@@ -129,3 +131,5 @@ if( is_product_category()) $wrap_page = 'shop-cat-page';
 	</div>
 
 </header>
+
+
