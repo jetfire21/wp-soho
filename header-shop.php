@@ -48,9 +48,10 @@
 <?php
 
 if( is_shop()) $wrap_page = 'shop-home-page'; 
-if( is_product_category()) $wrap_page = 'shop-cat-page'; 
-if( is_product()) $wrap_page = 'single-product'; 
-if( is_cart()) $wrap_page = 'cart-page'; 
+elseif( is_product_category()) $wrap_page = 'shop-cat-page'; 
+elseif( is_product()) $wrap_page = 'single-product'; 
+elseif( is_cart()) $wrap_page = 'cart-page'; 
+else $wrap_page = "empty-page"
 
 ?>
 
@@ -123,8 +124,21 @@ if( is_cart()) $wrap_page = 'cart-page';
 		<div class="col-md-1 col-sm-2 col-xs-2 shop-btn-mobile"><img class="hidden-lg" src="<?php echo get_template_directory_uri();?>/img/black-top-btn.png" alt=""></div>
 		<div class="col-md-9 col-sm-8 col-xs-8 ">	<h1 class="main-name">Fernanda romero</h1></div>
 		<div class="col-md-2 col-sm-2 col-xs-2 padding-left-del text-right">
-			<div class="cart"><span>01</span></div>
-			<div class="profile hidden-sm hidden-xs "></div>
+			<!-- <div class="cart"><span>01</span></div> -->
+			<a class="cart" href="/cart"><span>
+				<?php if(WC()->cart->get_cart_item_quantities()):?>
+				<?php $count = 0; foreach ( WC()->cart->get_cart_item_quantities() as $item){
+							$count = $count + $item;
+					}
+					if ($count < 10 && $count != 0) $count = '0'.$count; 
+					;?>
+				<?php else:?>
+					<?php $count = '00';?>
+				<?php endif;?>
+				<?php echo $count;?>
+			</span></a>
+			<a class="profile hidden-sm hidden-xs " href="/my-account"></a>
+			<!-- <div class="profile hidden-sm hidden-xs "></div> -->
 		</div>
 		<div class="clearfix"></div>
 

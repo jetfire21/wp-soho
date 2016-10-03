@@ -76,7 +76,7 @@ get_header( 'shop' ); ?>
 				</div>
 				<div class="wrap-price-cart">
 					<!-- <p>$ 3,300</p> -->
-					<p>$ <?php echo $product->get_price();?></p>
+					<p><?php echo wc_price($product->get_price());?></p>
 					<!-- <p>$ <?php //echo get_woocommerce_price_format();?></p> -->
 					<!-- <a href="cart.html">add to cart</a> -->
 					<?php woocommerce_template_loop_add_to_cart(); ?>

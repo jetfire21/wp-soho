@@ -74,7 +74,7 @@ h2, h2 a {
       border-radius: 17px;
       width: 35px;
       height: 35px;
-      padding: 8px 7px 0 0;
+      padding: 8px 0 0 0;
       font-weight: bold;
       font: 16px "Montserrat"; }
   .header-top .profile {
@@ -559,13 +559,14 @@ footer {
     font-size: 26px;
     padding-left: 20px;
     font-weight: bold; }
-.cart-page .proc-checkout {
-  background: #000;
+.cart-page .proc-checkout, .cart-page .woocommerce .button {
+  background: #000 !important;
   padding: 15px 40px;
   color: #fff;
   display: table;
   float: right;
-  margin-top: -20px; }
+  margin-top: -20px;
+  color: #fff !important; }
 .cart-page .wrap_quantity {
   border: 1px solid #ccc;
   overflow: hidden;
@@ -597,5 +598,12 @@ footer {
     background: #000;
     padding-left: 20px !important;
     width: 30%; }
+
+.woocommerce {
+  padding: 50px 30px;
+  min-height: 480px; }
+  .woocommerce .button {
+    float: none !important;
+    margin-top: 0 !important; }
 
 /*# sourceMappingURL=main-shop.css.map */

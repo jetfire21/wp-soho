@@ -80,7 +80,8 @@ h2, h2 a
 			border-radius: 17px
 			width: 35px
 			height: 35px
-			padding: 8px 7px 0 0
+			padding: 8px 0 0 0
+			// padding: 8px 7px 0 0
 			font-weight: bold
 			font: 16px "Montserrat"
 
@@ -765,13 +766,14 @@ footer
 			padding-left: 20px
 			font-weight: bold
 
-	.proc-checkout
-		background: #000
+	.proc-checkout, .woocommerce .button
+		background: #000 !important
 		padding: 15px 40px
 		color: #fff
 		display: table
 		float: right
 		margin-top: -20px
+		color: #fff !important
 
 	.wrap_quantity
 		border: 1px solid #ccc
@@ -813,3 +815,13 @@ footer
 		background: #000
 		padding-left: 20px !important
 		width: 30%
+
+
+
+.woocommerce
+	padding: 50px 30px
+	min-height: 480px
+
+	.button
+		float: none !important
+		margin-top: 0 !important
