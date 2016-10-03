@@ -29,9 +29,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 
-<?php do_action( 'woocommerce_before_cart_table' ); ?>
+<?php //do_action( 'woocommerce_before_cart_table' ); ?>
 
-		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
+		<?php //do_action( 'woocommerce_before_cart_contents' ); ?>
 
 
    <div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
@@ -131,7 +131,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					<td class="price" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 					<span>
 						<?php
-							$price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+							$price = apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
 							echo $price = str_replace(",", " , ", $price);
 						?>
 						</span>
@@ -287,14 +287,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 	</div>
 
 
-				<?php 		do_action( 'woocommerce_cart_contents' );?>
+				<?php 	//	do_action( 'woocommerce_cart_contents' );?>
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 
 				<?php wp_nonce_field( 'woocommerce-cart' ); ?>
 
 		<?php do_action( 'woocommerce_after_cart_contents' ); ?>
 
-<?php do_action( 'woocommerce_after_cart_table' ); ?>
+<?php //do_action( 'woocommerce_after_cart_table' ); ?>
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
 

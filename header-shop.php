@@ -57,65 +57,9 @@ else $wrap_page = "empty-page"
 
 <div class="alex-wrap <?php echo $wrap_page;?> ">	
 
-	<nav class="top-menu hidden-xs hidden-sm">
-		<img class="close-top-menu" src="<?php echo get_template_directory_uri();?>/img/close.jpg" alt="">
-		<ul class="list-inline">
-			<li> 
-				 <span class="vert-line"></span>
-				 <a href="index.html">home </a>
-				 <span class="vert-line"></span>						 
-			</li>
-			<li>
-				 <span class="vert-line"></span>						 					
-				<a href="bio.html">bio</a>
-				 <span class="vert-line"></span>						 
-			</li>
-			<li>
-				 <span class="vert-line"></span>						 
-				<a href="media.html">media</a>
-				 <span class="vert-line"></span>						 
-			</li>
-			<li>
-				 <span class="vert-line"></span>						 
-				<a href="gallery.html">gallery</a>
-				 <span class="vert-line"></span>						 
-			</li>
-			<li>
-				 <span class="vert-line"></span>						 
-				<a href="">blog</a>
-				 <span class="vert-line"></span>						 
-			</li>
-			<li>
-				 <span class="vert-line"></span>						 
-				<a href="">contact</a>
-				 <span class="vert-line"></span>						 
-			</li>
-		</ul>			                         
-	</nav>	
 
-	<nav class="mob-menu hidden-lg hidden-md">
-		<img class="close-mob-menu" src="<?php echo get_template_directory_uri();?>/img/close.jpg" alt="">
-		<ul class="list-unstyled">
-			<li> 
-				 <a href="index.html">home</a>
-			</li>
-			<li>
-				<a href="bio.html">bio</a>
-			</li>
-			<li>
-				<a href="media.html">media</a>
-			</li>
-			<li>
-				<a href="gallery.html">gallery</a>
-			</li>
-			<li>
-				<a href="">blog</a>
-			</li>
-			<li>
-				<a href="">contact</a>
-			</li>
-		</ul>			                         
-	</nav>
+			<?php get_template_part( 'menu','header' ); ?>
+
 
 <header>
 

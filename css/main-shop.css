@@ -74,9 +74,10 @@ h2, h2 a {
       border-radius: 17px;
       width: 35px;
       height: 35px;
-      padding: 8px 0 0 0;
+      padding: 8px 4px 0 0;
       font-weight: bold;
-      font: 16px "Montserrat"; }
+      font: 16px "Montserrat";
+      letter-spacing: 2px; }
   .header-top .profile {
     background: url("../img/shop/profile.png") no-repeat;
     width: 45px;
@@ -601,7 +602,8 @@ footer {
 
 .woocommerce {
   padding: 50px 30px;
-  min-height: 480px; }
+  min-height: 480px;
+  overflow: hidden; }
   .woocommerce .button {
     float: none !important;
     margin-top: 0 !important; }

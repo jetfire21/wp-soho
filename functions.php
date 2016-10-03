@@ -1069,3 +1069,22 @@ add_action( 'after_setup_theme', 'woocommerce_support' );
 function woocommerce_support() {
     add_theme_support( 'woocommerce' );
 }
+
+
+
+
+function woo_includes_tax_text_filter_1( $content ) {
+
+  // set up regex match, replace regex with nothing
+  $find     = '/\<span.*\"\>/Ui';
+  $content  = preg_replace( $find, '', $content );
+  $find     = '<strong>';
+  $content  = str_replace( $find, '', $content );
+  $find     = '</strong>';
+  $content  = str_replace( $find, '', $content );
+  $find     = '</span>';
+  $content  = str_replace( $find, '', $content );
+
+  return $content;
+}
+add_filter( 'woocommerce_cart_totals_order_total_html', 'woo_includes_tax_text_filter_1', 99, 1 );
