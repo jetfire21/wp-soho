@@ -1088,3 +1088,106 @@ function woo_includes_tax_text_filter_1( $content ) {
   return $content;
 }
 add_filter( 'woocommerce_cart_totals_order_total_html', 'woo_includes_tax_text_filter_1', 99, 1 );
+
+
+add_filter( 'woocommerce_checkout_fields', 'custom_edit_checkout_fields' );
+
+function custom_edit_checkout_fields( $fields ) {
+  // Author: apppresser.com
+
+  // Change placeholder
+  $fields['billing']['billing_email']['placeholder'] = 'yourname@youremail.com';
+  $fields['billing']['billing_email']['label'] = 'E-mail';
+  $fields['billing']['billing_address_2']['label'] = '&nbsp;';
+  $fields['billing']['billing_last_name']['clear'] = false;
+  $fields['billing']['billing_first_name']['class'] = array('col-md-6 name-phone-email');
+  $fields['billing']['billing_last_name']['class'] = array('col-md-6 name-phone-email');
+  $fields['billing']['billing_email']['class'] = array('col-md-6 name-phone-email');
+  $fields['billing']['billing_phone']['class'] = array('col-md-6 name-phone-email');
+
+  $fields['billing']['billing_country']['class'] = array('col-md-4 country-city-zip');
+  $fields['billing']['billing_postcode']['class'] = array('col-md-4 country-city-zip');
+  $fields['billing']['billing_city']['class'] = array('col-md-4 country-city-zip billing_house_number_field');
+  $fields['billing']['billing_state']['class'] = array('col-md-4 country-city-zip ');
+  $fields['billing']['billing_address_1']['class'] = array('col-md-5 country-city-zip');
+  $fields['billing']['billing_address_2']['class'] = array('col-md-3 country-city-zip');
+
+  // $fields['billing']['billing_postcode']['required'] = false;
+
+    // Move these around as necessary. You'll see we added email first.
+  $billing_order = array(
+    "billing_first_name", 
+    "billing_last_name", 
+    "billing_phone",
+    "billing_email",
+    "billing_country",
+    "billing_city",
+    "billing_postcode",
+    "billing_state",
+    "billing_address_1",
+    "billing_address_2",
+  );
+
+  // This sets the billing fields in the order above
+  foreach($billing_order as $billing_field) {
+      $billing_fields[$billing_field] = $fields["billing"][$billing_field];
+  }
+
+  $fields["billing"] = $billing_fields;
+
+   unset($fields['order']['order_comments']);
+
+  // Change all attributes on a field
+  // $fields['shipping']['shipping_phone'] = array(
+  //   'label'     => __('Shipping Phone', 'woocommerce'),
+  //   'placeholder'   => _x('(555) 555 5555', 'placeholder', 'woocommerce'),
+  //   'required'  => false,
+  //   'class'     => array('my-special-class'),
+  //   'clear'     => true
+  // );
+
+   return $fields;
+}
+
+add_filter( 'woocommerce_default_address_fields' , 'override_default_address_fields' );
+function override_default_address_fields( $address_fields ) {
+
+
+    $address_fields['city']['label'] = __('City', 'woocommerce');
+    $address_fields['postcode']['label'] = __('Zip', 'woocommerce');
+    $address_fields['state']['label'] = __('State', 'woocommerce');
+
+    return $address_fields;
+}
+
+
+
+function vnmTheme_addressFieldsOverride() {
+    if (is_wc_endpoint_url('edit-address') || is_checkout()) {
+        ?>
+
+        <script>
+            jQuery(document).ready(function($) {
+                // $(".select2-choice b:after").css({"left":"95% !important"});
+
+                $(document.body).on('country_to_state_changing', function(event, country, wrapper) {
+
+                    var $postcodeField = wrapper.find('#billing_postcode_field, #shipping_postcode_field');
+                    var $housenoField = wrapper.find('.billing_house_number_field, #shipping_house_number_field' );
+
+                    var fieldTimeout = setTimeout(function() {
+                        $postcodeField.insertAfter($housenoField);
+                    }, 50);
+                });
+
+                 $(".select2-arrow").css({"left":"45%"});
+                 $(".select2-search").css({"margin-top":"5px"});
+
+            });
+        </script>
+
+        <?php
+    }
+}
+
+add_action('wp_footer', 'vnmTheme_addressFieldsOverride', 999);

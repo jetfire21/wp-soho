@@ -338,17 +338,17 @@ footer {
   .perfume-cat * {
     color: #fff; }
 
-.shop-cat-page .shop-big-menu-btn, .single-product .shop-big-menu-btn, .cart-page .shop-big-menu-btn, .shop-home-page .shop-big-menu-btn {
+.shop-cat-page .shop-big-menu-btn, .single-product .shop-big-menu-btn, .cart-page .shop-big-menu-btn, .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
   background: #e5e5e5;
   height: 800px;
   padding: 0;
   position: relative; }
-  .shop-cat-page .shop-big-menu-btn img, .single-product .shop-big-menu-btn img, .cart-page .shop-big-menu-btn img, .shop-home-page .shop-big-menu-btn img {
+  .shop-cat-page .shop-big-menu-btn img, .single-product .shop-big-menu-btn img, .cart-page .shop-big-menu-btn img, .shop-home-page .shop-big-menu-btn img, .empty-page .shop-big-menu-btn img {
     top: 50%;
     position: relative;
     margin-top: -25px; }
 
-.shop-home-page .shop-big-menu-btn {
+.shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
   background: #fff; }
 
 .shop-cat-page h2.title-category, .single-product .block-right h3, .single-product .wrap-price-cart p, .cart-page .wrap_cart h3 {
@@ -560,7 +560,7 @@ footer {
     font-size: 26px;
     padding-left: 20px;
     font-weight: bold; }
-.cart-page .proc-checkout, .cart-page .woocommerce .button {
+.cart-page .proc-checkout, .cart-page .button {
   background: #000 !important;
   padding: 15px 40px;
   color: #fff;
@@ -600,12 +600,62 @@ footer {
     padding-left: 20px !important;
     width: 30%; }
 
+input, select, .select2-choice {
+  border: 0 !important;
+  outline: 0;
+  display: block;
+  font: bold 16px "Montserrat-Light";
+  text-transform: lowercase !important;
+  padding: 10px 15px !important;
+  background: #f2f2f2 !important;
+  border-radius: 5px;
+  color: #9a9a9a;
+  letter-spacing: 0 !important; }
+
 .woocommerce {
   padding: 50px 30px;
   min-height: 480px;
   overflow: hidden; }
-  .woocommerce .button {
-    float: none !important;
-    margin-top: 0 !important; }
+  .woocommerce form .required {
+    visibility: hidden; }
+
+.login {
+  padding: 0 15px; }
+
+label {
+  font: 16px "Montserrat";
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  margin-top: 20px; }
+
+.empty-page .button {
+  float: none !important;
+  margin-top: 45px !important;
+  letter-spacing: 6px !important;
+  text-transform: uppercase !important;
+  border-radius: 0 !important;
+  font-size: 16px !important;
+  background: #000 !important;
+  color: #fff !important;
+  padding: 15px 40px !important; }
+
+.woocommerce-checkout {
+  overflow: hidden;
+  margin: 50px 0; }
+  .woocommerce-checkout .clear {
+    clear: none; }
+  .woocommerce-checkout .name-phone-email *, .woocommerce-checkout .country-city-zip * {
+    width: 100% !important; }
+  .woocommerce-checkout .name-phone-email p, .woocommerce-checkout .country-city-zip p {
+    float: left; }
+
+.woocommerce-billing-fields {
+  margin-left: -15px; }
+  .woocommerce-billing-fields p {
+    padding-right: 35px !important; }
+
+.select2-arrow {
+  left: 45%; }
 
 /*# sourceMappingURL=main-shop.css.map */

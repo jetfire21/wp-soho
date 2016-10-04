@@ -18,7 +18,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-echo "payment.php";
+// echo "payment.php";
 if ( ! is_ajax() ) {
 	do_action( 'woocommerce_review_order_before_payment' );
 }
@@ -53,7 +53,7 @@ wc_cart_totals_order_total_html();
 $a = ob_get_contents();
 ob_end_clean();
 ?>
-
+<div class="clearfix"></div>
 		<?php echo apply_filters( 'woocommerce_order_button_html', '<input type="submit" class="button alt" name="woocommerce_checkout_place_order" id="place_order" value="pay '.$a. '" data-value="' . esc_attr( $order_button_text ) . '" />' ); ?>
 
 		<?php do_action( 'woocommerce_review_order_after_submit' ); ?>
@@ -65,4 +65,4 @@ ob_end_clean();
 if ( ! is_ajax() ) {
 	do_action( 'woocommerce_review_order_after_payment' );
 }
-echo "payment.php";
+// echo "payment.php";
