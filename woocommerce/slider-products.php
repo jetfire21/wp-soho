@@ -51,3 +51,24 @@
 
 	<div class="clearfix"></div>
 	<h2 class="title-category"><?php echo $cat[0]->name;?></h2>
+
+
+
+<section class="prod-no-slider hidden-md hidden-lg">
+
+
+ <?php if ( have_posts() ) : ?>
+    <?php while ( have_posts() ) : the_post(); ?>
+    	<div class="col-sm-12 product">
+			<div class="wrap_prod_img">		
+				 <?php echo the_post_thumbnail("prod_cat", array('class'=>'img-responsive'));?>
+			</div>
+			<h2> <?php the_title();?></h2>
+			<a href=" <?php the_permalink();?>">see</a>
+		</div>
+<?php endwhile; // end of the loop. ?>
+<?php  else:?>
+    <h3 class="error">not found</h3>
+<?php endif; ?>
+
+</section>	
