@@ -36,19 +36,7 @@ if ( $order ) : ?>
 
 	<?php else : ?>
 
-	<h2>Congrants! Your Order has been Accepted</h2>
-
-	<?php endif; ?>
-
-	<?php //do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
-	<?php // do_action( 'woocommerce_thankyou', $order->id ); ?>
-
-<?php else : ?>
-
-	<!-- <p class="woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p> -->
-
-
-<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
+	<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
 	<img src="http://wp-soho/wp-content/themes/fernanda/img/shop/shop-big-menu-btn.png" alt="">
 </div>
 
@@ -60,6 +48,15 @@ if ( $order ) : ?>
 	<h2 class="checkout-receive">Congrants! Your Order has been Accepted</h2>
 </div>
 <div class="clearfix"></div>
+
+	<?php endif; ?>
+
+	<?php //do_action( 'woocommerce_thankyou_' . $order->payment_method, $order->id ); ?>
+	<?php // do_action( 'woocommerce_thankyou', $order->id ); ?>
+
+<?php else : ?>
+
+	<!-- <p class="woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p> -->
 
 
 <?php endif; ?>

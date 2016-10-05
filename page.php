@@ -2,7 +2,7 @@
 // global $pagenow;
 // print_r($pagenow);
 		
-echo $link_cat_gal = $_SERVER['REQUEST_URI'];
+ $link_cat_gal = $_SERVER['REQUEST_URI'];
 if( preg_match("/lost-password/i", $link_cat_gal) or preg_match("/my-account/i", $link_cat_gal) or preg_match("/order-received/i", $link_cat_gal) ) {
 
 	 get_header('shop'); 

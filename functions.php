@@ -1096,7 +1096,13 @@ function custom_edit_checkout_fields( $fields ) {
   // Author: apppresser.com
 
   // Change placeholder
+  $fields['billing']['billing_first_name']['placeholder'] = 'Denis';
+  $fields['billing']['billing_last_name']['placeholder'] = 'Shepovalov';
   $fields['billing']['billing_email']['placeholder'] = 'yourname@youremail.com';
+  $fields['billing']['billing_phone']['placeholder'] = '555 465 2175';
+  $fields['billing']['billing_city']['placeholder'] = 'California';
+  $fields['billing']['billing_state']['placeholder'] = 'California';
+  $fields['billing']['billing_postcode']['placeholder'] = '123456';
   $fields['billing']['billing_email']['label'] = 'E-mail';
   $fields['billing']['billing_address_2']['label'] = '&nbsp;';
   $fields['billing']['billing_last_name']['clear'] = false;
@@ -1159,7 +1165,7 @@ function vnmTheme_addressFieldsOverride() {
 
         <script>
             jQuery(document).ready(function($) {
-                // $(".select2-choice b:after").css({"left":"95% !important"});
+
               $(".shop-wrap-padding").prepend( $(".woocommerce-error"));
 
                 $(document.body).on('country_to_state_changing', function(event, country, wrapper) {
@@ -1183,3 +1189,24 @@ function vnmTheme_addressFieldsOverride() {
 }
 
 add_action('wp_footer', 'vnmTheme_addressFieldsOverride', 999);
+
+function alex_js_overrife_wooccommerce() {
+    if (is_cart()) {
+        ?>
+
+        <script>
+            jQuery(document).ready(function($) {
+
+                   $(".wrap_quantity .minus, .wrap_quantity .plus").on("click", function(){
+               
+                         $( '.shop_table.cart' ).closest( 'form' ).find( 'input[name="update_cart"]' ).prop( 'disabled', false );
+                   });
+                  
+
+            });
+        </script>
+
+        <?php
+    }
+}
+add_action('wp_footer', 'alex_js_overrife_wooccommerce', 998);

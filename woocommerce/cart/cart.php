@@ -20,11 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 // get_header( 'shop' );
+?>
 
-wc_print_notices();
 
-
-do_action( 'woocommerce_before_cart' ); ?>
 
 <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
@@ -40,8 +38,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 
     <div class="col-lg-10 col-md-12  wrap_cart">
 
+    <?php do_action( 'woocommerce_before_cart' ); ?>
+
+
+    <?php wc_print_notices(); ?>
+
+
 		<div class="table-responsive table-desctop hidden-xs hidden-sm">
-		  <table class="table">
+		  <table class="table shop_table cart">
 		    <tr>
 		    	<th>item</th>
 		    	<th> </th>
@@ -153,11 +157,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 		}
 		?>
 						  </table>
+				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+
 		</div>
 
 
 
-		<div class=" table-mobile hidden-lg hidden-md">
+		<div class=" table-mobile hidden-lg hidden-md shop_table cart">
 		  <table class="table">
 
 		<?php
@@ -277,7 +283,11 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 
 	  </table>
+
 		</div>
+
+	  				<input type="submit" class="upd_cart button hidden-lg hidden-md" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+	  						<div class="clearfix"></div>
 
 
 		<div class="str-total-sum">total: <?php $total = WC()->cart->get_cart_total(); echo $total = str_replace(",", " , ", $total);?></div>

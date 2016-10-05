@@ -209,16 +209,20 @@ if (width > 991){
 		$(".single-main-img img").attr("src", big_img);
 	});
 
-  $(".wrap_quantity .plus").click(function(){
+  $(".wrap_quantity .plus").click(function(e){
+  	e.preventDefault();
    		var count = $(this).parent().find("input").val();
    		count++;
    		$(this).parent().find("input").val(count);
+   		 $(".wrap_quantity input").attr("value",count);
+   		 console.log("ddd")
    });
 
    $(".wrap_quantity .minus").click(function(){
    		var count = $(this).parent().find("input").val();
    		if(count > 1) count--;
    		$(this).parent().find("input").val(count);
+   		$(".wrap_quantity input").attr("value",count);
    });
 
 });
