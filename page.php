@@ -1,9 +1,33 @@
-1111
-
 <?php
+// global $pagenow;
+// print_r($pagenow);
+		
+echo $link_cat_gal = $_SERVER['REQUEST_URI'];
+if( preg_match("/lost-password/i", $link_cat_gal) or preg_match("/my-account/i", $link_cat_gal) or preg_match("/order-received/i", $link_cat_gal) ) {
 
-get_header(); 
+	 get_header('shop'); 
+?>
 
+<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
+	<img src="http://wp-soho/wp-content/themes/fernanda/img/shop/shop-big-menu-btn.png" alt="">
+</div>
+
+<div class="col-lg-10 col-md-12 shop-wrap-padding">
+	<?php if(have_posts() ): ?>
+	<?php while(have_posts() ) : the_post();?>
+		<?php the_content();?>
+	<?php endwhile; ?>
+	<?php else: ?>
+	   	<p>no content</p>
+	<?php endif; ?>	
+
+</div>
+<div class="clearfix"></div>
+<?php
+	 get_footer(); 
+}
+else{
+	get_header(); 
 ?>
 
 <div class="alex-wrap block-media">
@@ -46,3 +70,4 @@ get_header();
 
 <?php get_footer(); ?>
 
+<? } ?>

@@ -615,12 +615,16 @@ input, select, .select2-choice {
 .woocommerce {
   padding: 50px 30px;
   min-height: 480px;
-  overflow: hidden; }
+  overflow: hidden;
+  min-height: 500px; }
   .woocommerce form .required {
     visibility: hidden; }
 
-.login {
-  padding: 0 15px; }
+form.login, form.register {
+  padding: 0 15px !important;
+  border: 0 !important;
+  margin: 0 !important;
+  border-radius: 0; }
 
 label {
   font: 16px "Montserrat";
@@ -639,6 +643,17 @@ label {
   background: #000 !important;
   color: #fff !important;
   padding: 15px 40px !important; }
+.empty-page p {
+  font-size: 21px; }
+
+.return-to-shop .button {
+  float: none !important; }
+
+.woocommerce-MyAccount-navigation {
+  margin-bottom: 50px; }
+
+.woocommerce-MyAccount-content .button {
+  margin-top: 0 !important; }
 
 .woocommerce-checkout {
   overflow: hidden;
@@ -657,5 +672,41 @@ label {
 
 .select2-arrow {
   left: 45%; }
+
+input#rememberme {
+  margin-right: 10px;
+  display: inline;
+  margin-left: 30px;
+  margin-top: 8px; }
+
+.wrap_quantity input {
+  background: none !important; }
+
+.wrap-circle-check {
+  width: 230px;
+  height: 230px;
+  border: 1px solid #000;
+  display: block;
+  border-radius: 115px;
+  margin: 120px auto 0; }
+
+.circle-check {
+  position: relative;
+  width: 230px;
+  height: 230px; }
+  .circle-check .demo-icon, .circle-check img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: auto;
+    display: table !important; }
+
+h2.checkout-receive {
+  font-size: 60px !important;
+  text-align: center;
+  margin-top: 50px; }
 
 /*# sourceMappingURL=main-shop.css.map */

@@ -1137,15 +1137,6 @@ function custom_edit_checkout_fields( $fields ) {
 
    unset($fields['order']['order_comments']);
 
-  // Change all attributes on a field
-  // $fields['shipping']['shipping_phone'] = array(
-  //   'label'     => __('Shipping Phone', 'woocommerce'),
-  //   'placeholder'   => _x('(555) 555 5555', 'placeholder', 'woocommerce'),
-  //   'required'  => false,
-  //   'class'     => array('my-special-class'),
-  //   'clear'     => true
-  // );
-
    return $fields;
 }
 
@@ -1169,6 +1160,7 @@ function vnmTheme_addressFieldsOverride() {
         <script>
             jQuery(document).ready(function($) {
                 // $(".select2-choice b:after").css({"left":"95% !important"});
+              $(".shop-wrap-padding").prepend( $(".woocommerce-error"));
 
                 $(document.body).on('country_to_state_changing', function(event, country, wrapper) {
 

@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( $order ) : ?>
-echo "thankyou.php ";
+<!-- echo "thankyou.php "; -->
 
 	<?php if ( $order->has_status( 'failed' ) ) : ?>
 
@@ -36,7 +36,7 @@ echo "thankyou.php ";
 
 	<?php else : ?>
 
-	<h1>Congrants! Your Order has been Accepted</h1>
+	<h2>Congrants! Your Order has been Accepted</h2>
 
 	<?php endif; ?>
 
@@ -45,6 +45,21 @@ echo "thankyou.php ";
 
 <?php else : ?>
 
-	<p class="woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p>
+	<!-- <p class="woocommerce-thankyou-order-received"><?php echo apply_filters( 'woocommerce_thankyou_order_received_text', __( 'Thank you. Your order has been received.', 'woocommerce' ), null ); ?></p> -->
+
+
+<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
+	<img src="http://wp-soho/wp-content/themes/fernanda/img/shop/shop-big-menu-btn.png" alt="">
+</div>
+
+<div class="col-lg-10 col-md-12 shop-wrap-padding">
+	<div class="wrap-circle-check"><div class="circle-check">
+	<!-- <i class="demo-icon icon-ok">&#xe801;</i> -->
+	<img src="<?php  echo get_template_directory_uri();?>/img/shop/check.png" alt="">
+	</div></div>
+	<h2 class="checkout-receive">Congrants! Your Order has been Accepted</h2>
+</div>
+<div class="clearfix"></div>
+
 
 <?php endif; ?>

@@ -19,6 +19,13 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+?>
+<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
+	<img src="<?php echo get_template_directory_uri();?>/img/shop/shop-big-menu-btn.png" alt="">
+</div>
+
+<div class="col-lg-10 col-md-12 shop-wrap-padding">
+<?php
 
 wc_print_notices();
 
@@ -32,6 +39,7 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 ?>
 
+
 <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data">
 
 	<?php if ( sizeof( $checkout->checkout_fields ) > 0 ) : ?>
@@ -40,6 +48,8 @@ if ( ! $checkout->enable_signup && ! $checkout->enable_guest_checkout && ! is_us
 
 
 				<?php do_action( 'woocommerce_checkout_billing' ); ?>
+				<?php do_action( 'woocommerce_checkout_shipping' ); ?>
+
 
 
 		<?php do_action( 'woocommerce_checkout_after_customer_details' ); ?>

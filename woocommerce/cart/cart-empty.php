@@ -24,6 +24,12 @@ wc_print_notices();
 
 ?>
 
+<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
+	<img src="http://wp-soho/wp-content/themes/fernanda/img/shop/shop-big-menu-btn.png" alt="">
+</div>
+
+<div class="col-lg-10 col-md-12 shop-wrap-padding">
+
 <p class="cart-empty">
 	<?php _e( 'Your cart is currently empty.', 'woocommerce' ) ?>
 </p>
@@ -37,3 +43,6 @@ wc_print_notices();
 		</a>
 	</p>
 <?php endif; ?>
+
+
+</div>

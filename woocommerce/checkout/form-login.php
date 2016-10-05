@@ -29,16 +29,12 @@ if ( is_user_logged_in() || 'no' === get_option( 'woocommerce_enable_checkout_lo
 // wc_print_notice( $info_message, 'notice' );
 ?>
 
-<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
-	<img src="<?php echo get_template_directory_uri();?>/img/shop/shop-big-menu-btn.png" alt="">
-</div>
 
-<div class="col-lg-10 col-md-12 shop-wrap-padding">
 
 <?php
 	woocommerce_login_form(
 		array(
-			'message'  => __( 'If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.', 'woocommerce' ),
+			//'message'  => __( 'If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing &amp; Shipping section.', 'woocommerce' ),
 			'redirect' => wc_get_page_permalink( 'checkout' ),
 			'hidden'   => false
 		)

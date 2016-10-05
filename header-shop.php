@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/main-shop.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/media-shop.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/grayscale2/css/grayscale.css" />
+	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/fontello-icon/css/fontello.css" />
 
 	<?php if( is_product_category()):?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/owl-carousel/owl.theme.css">
