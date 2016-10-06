@@ -81,6 +81,7 @@ add_image_size( 'cat-gallery', 9999, 662);
 // add_image_size( 'prod_cat', 332,263, true); 
 // add_image_size( 'prod_cat', 332,9999); 
 add_image_size( 'prod_cat', 380,9999); 
+add_image_size( 'shop_slider', 1686,951,true); 
 
 // cleaning trash
 remove_action( 'wp_head', 'rel_canonical');
@@ -214,6 +215,31 @@ function movie_meta_boxes( $meta_boxes ) {
             array(
                 'id'   => "{$prefix}url_link",
                 'name' => __( 'Link url', 'textdomain' ),
+                'type' => 'url',
+            ),
+
+          ),
+    );
+
+    $prefix = 'shop_slider_';
+    $meta_boxes[] = array(
+        'title'      => __( 'Fields', 'sslidertype' ),
+        'post_types' => 'shop_slider',
+        'fields'     => array(
+            array(
+                'id'   => "{$prefix}slide",
+                'name' => __( 'Slide image', 'sslidertype' ),
+                'type' => 'image',
+            ),
+
+            array(
+                'id'   => "{$prefix}text_link",
+                'name' => __( 'Text link', 'sslidertype' ),
+                'type' => 'text',
+            ),
+            array(
+                'id'   => "{$prefix}url_link",
+                'name' => __( 'Link url', 'sslidertype' ),
                 'type' => 'url',
             ),
 
@@ -501,6 +527,43 @@ function custom_type_main_slider()
   'supports' => array('title')
   );
   register_post_type('main_slider',$args);
+}
+
+/* **************** custom post type - shop slider ************************ */
+
+add_action('init', 'custom_type_shop_slider');
+function custom_type_shop_slider()
+{
+  $labels = array(
+  'name' => 'Slides', // Основное название типа записи
+  'singular_name' => 'Slides', // отдельное название записи типа Book
+  'add_new' => 'Add new',
+  'add_new_item' => 'Add new slide',
+  'edit_item' => 'Edit slide',
+  'new_item' => 'New slide',
+  'view_item' => 'View slide',
+  'search_items' => 'Search slide',
+  'not_found' =>  'Not found',
+  'not_found_in_trash' => 'No found in trash',
+  'parent_item_colon' => '',
+  'menu_name' => 'Shop slider'
+
+  );
+  $args = array(
+  'labels' => $labels,
+  'public' => true,
+  'publicly_queryable' => true,
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'query_var' => true,
+  'rewrite' => true,
+  'capability_type' => 'post',
+  'has_archive' => true,
+  'hierarchical' => false,
+  'menu_position' => null,
+  'supports' => array('title')
+  );
+  register_post_type('shop_slider',$args);
 }
 
 

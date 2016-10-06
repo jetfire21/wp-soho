@@ -174,7 +174,7 @@ if (width > 767){
   $("#owl-shop-slider").owlCarousel({
  
       navigation : true, // Show next and prev buttons
-      autoPlay: false,
+      autoPlay: true,
       slideSpeed : 400,
       paginationSpeed : 500,
       // theme: "owl-theme",

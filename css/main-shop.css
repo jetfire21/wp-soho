@@ -524,7 +524,7 @@ footer {
     vertical-align: middle;
     padding: 20px 0; }
 .cart-page .table-desctop table {
-  border-bottom: 1px solid #f0f2f7; }
+  border-bottom: 1px solid #f0f2f7 !important; }
 .cart-page .table-desctop th {
   color: #fff; }
   .cart-page .table-desctop th:first-child {
@@ -611,6 +611,9 @@ input, select, .select2-choice {
   border-radius: 5px;
   color: #9a9a9a;
   letter-spacing: 0 !important; }
+
+.wrap_quantity input {
+  color: #000 !important; }
 
 .checkout input, .checkout select, .checkout .select2-choice {
   text-transform: capitalize !important; }
@@ -721,5 +724,10 @@ h2.checkout-receive {
   font-size: 60px !important;
   text-align: center;
   margin-top: 50px; }
+
+.woocommerce table.shop_table {
+  border-left: 0 !important;
+  border-right: 0 !important;
+  padding-bottom: 7px; }
 
 /*# sourceMappingURL=main-shop.css.map */

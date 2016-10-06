@@ -35,7 +35,57 @@ get_header( 'shop' ); ?>
 
 		<div id="owl-shop-slider" class="owl-carousel owl-theme">
 
+		<?php $prefix = 'shop_slider_'; $args = array('post_type' => 'shop_slider','order'=>'ASC'); ?>
+
+		<?php $slider = new WP_Query( $args ); ?>
+		<?php if($slider->have_posts() ): ?>
+		<?php while($slider->have_posts() ) : $slider->the_post();?>
+
+		<?php $img_link = rwmb_meta( "{$prefix}slide"); ?>
+		<?php $text_link = rwmb_meta( "{$prefix}text_link"); ?>
+		<?php $url_link = rwmb_meta( "{$prefix}url_link"); 
+		 // print_r($img_link);
+		// echo '-----------'.$slide = $slide['full_url']; the_title();
+		?>
 			<div class="item">		
+				 <div class="grayscale">
+					 <!-- <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/img/shop/shop-slider1.jpg" alt="">	 -->
+			 		<?php if($img_link):?>
+					<?php foreach($img_link as $k=>$v):?>
+						
+						
+						 <?php 
+						 if( $v['sizes']['shop_slider']['file']){
+
+						 	$img_name = $v['sizes']['shop_slider']['file'];
+							 $substr = preg_replace("#^http:\/\/#i","",$v['url']);
+							 $substr = explode("/",$substr);
+							 // print_r($substr);
+							 $last_el = (count($substr))-1;
+							 // echo $last_el;
+							 unset($substr[ $last_el ]);
+							  $substr = implode("/", $substr);
+							  // full url shop_slider size img
+							  $gen_url = "http://".$substr."/".$img_name;
+						}
+						else { $gen_url = $v['full_url']; }
+						 ?>
+						<img class="img-responsive" src="<?php echo $gen_url; ?>" alt="">
+
+					<?php endforeach;?>
+					<?php endif;?>
+
+				</div>	
+				<div class="col-xs-12 slider-text text-right">
+					 <h2><?php echo the_title();?></h2>
+					 <a href="<?php echo $url_link;?>"><?php echo $text_link;?></a>
+				</div>
+			</div>
+
+		<?php endwhile;?>
+		<?php endif;?>
+
+<!-- 			<div class="item">		
 				 <div class="grayscale">
 					 <img class="img-responsive" src="<?php echo get_template_directory_uri();?>/img/shop/shop-slider1.jpg" alt="">	
 				</div>	
@@ -72,7 +122,7 @@ get_header( 'shop' ); ?>
 					 <h2>Fer favorite add text</h2>
 					 <a href="#">out now add text</a>
 				</div>
-			</div>
+			</div> -->
 			
 		</div>
 		<!-- # end owl-demo -->
