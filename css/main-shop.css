@@ -523,20 +523,22 @@ footer {
   .cart-page .wrap_cart td {
     vertical-align: middle;
     padding: 20px 0; }
-.cart-page .table-desctop table {
-  border-bottom: 1px solid #f0f2f7 !important; }
-.cart-page .table-desctop th {
-  color: #fff; }
-  .cart-page .table-desctop th:first-child {
-    border-top-left-radius: 9px;
-    border-bottom-left-radius: 9px;
-    padding-left: 20px; }
-  .cart-page .table-desctop th:last-child {
-    border-top-right-radius: 9px;
-    border-bottom-right-radius: 9px; }
-.cart-page .table-desctop tr:first-child {
-  background: #000;
-  border-radius: 5px; }
+.cart-page .table-desctop {
+  min-height: 500px; }
+  .cart-page .table-desctop table {
+    border-bottom: 1px solid #f0f2f7 !important; }
+  .cart-page .table-desctop th {
+    color: #fff; }
+    .cart-page .table-desctop th:first-child {
+      border-top-left-radius: 9px;
+      border-bottom-left-radius: 9px;
+      padding-left: 20px; }
+    .cart-page .table-desctop th:last-child {
+      border-top-right-radius: 9px;
+      border-bottom-right-radius: 9px; }
+  .cart-page .table-desctop tr:first-child {
+    background: #000;
+    border-radius: 5px; }
 .cart-page .del-product, .cart-page .price a.remove-prod {
   float: right;
   padding-right: 50px;
@@ -555,7 +557,7 @@ footer {
 .cart-page .str-total-sum {
   width: 430px;
   float: right;
-  margin-top: 300px; }
+  margin-top: 50px; }
   .cart-page .str-total-sum span {
     font-size: 26px;
     padding-left: 20px;

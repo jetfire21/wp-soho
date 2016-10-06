@@ -214,15 +214,14 @@ if (width > 991){
    		var count = $(this).parent().find("input").val();
    		count++;
    		$(this).parent().find("input").val(count);
-   		 $(".wrap_quantity input").attr("value",count);
-   		 console.log("ddd")
+   		$(this).parent().find("input").attr("value",count);
    });
 
    $(".wrap_quantity .minus").click(function(){
    		var count = $(this).parent().find("input").val();
    		if(count > 1) count--;
    		$(this).parent().find("input").val(count);
-   		$(".wrap_quantity input").attr("value",count);
+   		$(this).parent().find("input").attr("value",count);
    });
 
 });

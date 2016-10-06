@@ -330,6 +330,8 @@ header .owl-page.active, #owl-gallery .owl-page.active {
   .blog .blog-main-text {
     text-align: right;
     margin-bottom: 20px; }
+  .blog .grayscale {
+    margin-top: -20px; }
   .blog h3 {
     font: 20px "Montserrat";
     text-transform: uppercase;
@@ -340,20 +342,24 @@ header .owl-page.active, #owl-gallery .owl-page.active {
     position: relative;
     margin-bottom: 150px; }
     .blog .blog-img img {
-      margin-left: 20%; }
+      margin-left: 20%;
+      max-height: 720px; }
   .blog .blog-img:last-child {
     margin-bottom: 0; }
   .blog .blog-img-text {
     position: absolute;
-    top: 30%;
+    top: 35%;
     left: 0; }
   .blog .blog-right {
-    margin-top: 150px; }
+    margin-top: 44%; }
     .blog .blog-right .exclusive-more {
-      padding: 170px 0 0 23%;
+      padding: 170px 0 0 31%;
       display: block; }
     .blog .blog-right .blog-img-text {
       top: 25%; }
+
+.blog-left, .blog-right {
+  overflow: hidden; }
 
 footer {
   background: #000;

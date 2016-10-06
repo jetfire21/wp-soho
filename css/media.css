@@ -41,7 +41,8 @@
 	.blog .blog-right{ 	margin-left: 75px }
 	.blog h3, .blog .monser-gray{ font-size: 18px; }
 	.blog .blog-right .blog-img-text { top: 26%; }
-	.blog .blog-img img{ margin-left:25%; }
+	/*.blog .blog-img img{ margin-left:25%; }*/
+	.blog .blog-img img{ margin-left:17%; }
 
 	.foot-menu a{ font-size: 17px; letter-spacing: 5px; }
 
@@ -467,6 +468,7 @@
 @media only screen and (min-width: 1201px) and (max-width: 1600px){
 	
 	.col-lg-6{ width: 44.5% }
+	.blog .col-lg-6{ width: 50% }
 	.video-catalog .col-lg-6{ width: 50%; }
 }	
 

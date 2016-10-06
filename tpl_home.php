@@ -111,7 +111,108 @@ get_header();
 		    	<p>xxxxxx</p>
 			</div>
 
-			<div class="col-lg-6 col-lg-6 col-md-12 col-sm-12  blog-left">
+			<?php 
+			$instagram = get_option("sb_instagram_settings");
+			$access_token = $instagram['sb_instagram_at'];
+		 // $access_token="3314516008.af32c42.0941fe21333b4879a8011270fed16994";
+
+
+			if($access_token){
+
+				$count = 3;
+
+				$url = "https://api.instagram.com/v1/users/self/media/recent/?";
+				// $url.= "access_token={$access_token}&count={$photo_count}";
+				$url.= "access_token={$access_token}&count={$count}";
+
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL,            $url );
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
+				$res = curl_exec($ch);
+				$res = json_decode($res);  // обьект
+
+				// echo "<pre>";
+				// print_r($res->data);
+				// echo "</pre>";
+				// echo "<hr>";
+			}
+			?>
+
+
+			<?php $count = count($res->data); $i = 0; if( !empty($res->data)):?>
+				<?php foreach($res->data as $item):?>
+				<?php      
+				$img_url = $item->images->standard_resolution->url;
+				$width = $item->images->standard_resolution->width;
+				$height = $item->images->standard_resolution->height;
+
+				// $img_url = $item->images->low_resolution->url;
+				// $width = $item->images->low_resolution->width;
+				// $height = $item->images->low_resolution->height;
+				// $img_url = preg_replace("#\/s640x640#i","", $img_url);
+				// $img_url = preg_replace("#\/sh0.08#i","", $img_url);
+         		 ?>
+
+				<?php if($i == 0):?>
+				<div class="col-lg-6 col-lg-6 col-md-12 col-sm-12  blog-left">
+				<div class="row">
+		    	<?php endif;?>
+
+					<?php if($i < 2):?>
+					<div class="blog-img">
+						<div class="grayscale">
+						<!-- <img class=" img-responsive" src="<?php echo get_template_directory_uri();?>/img/blog1.jpg" alt=""> -->
+						<img class="img-responsive <?php if($width > 553) echo 'img-max-widht553';?>" src="<?php echo $img_url;?>" alt="" >
+						</div>
+						<div class="blog-img-text col-lg-8 col-md-12 col-sm-12">
+							<h3><?php echo $item->caption->text;?></h3>
+							<a class="monser-gray" href="<?php echo $item->link;?>">more</a>			
+						</div>
+					</div>
+				    <?php endif;?>
+				
+
+				<?php if($i == 1):?>
+					</div>
+				</div>						
+			    <?php endif;?>
+
+
+				<?php if($i > 1):?>
+			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+		    	<?php endif;?>
+
+					<?php if($i > 1):?>
+					<div class="blog-img blog-right">
+
+						<div class="grayscale">
+						<!-- <img class=" img-responsive" src="<?php echo get_template_directory_uri();?>/img/blog1.jpg" alt=""> -->
+						<img class=" img-responsive" src="<?php echo $img_url;?>" alt="">
+						</div>
+						<div class="blog-img-text col-lg-8 col-md-12 col-sm-12">
+							<h3><?php echo $item->caption->text;?></h3>
+							<a class="monser-gray" href="<?php echo $item->link;?>">more</a>			
+						</div>
+						<?php if($i == $count-1):?>
+						<a class="exclusive-more" href="/blog">more from blog</a>
+					    <?php endif;?>
+
+					</div>
+				    <?php endif;?>
+				
+
+				<?php if($i > 1):?>
+					</div>
+				</div>						
+			    <?php endif;?>
+
+
+
+			<?php $i++; endforeach;?>
+			<?php endif;?>
+
+<!-- 			<div class="col-lg-6 col-lg-6 col-md-12 col-sm-12  blog-left">
 				<div class="row">
 
 					<div class="blog-img">
@@ -136,9 +237,9 @@ get_header();
 					</div>
 
 				</div>
-			</div>
+			</div> -->
 
-			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+<!-- 			<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
 				<div class="row">
 
 					<div class="blog-img blog-right">
@@ -149,11 +250,11 @@ get_header();
 							</h3>
 							<a class="monser-gray" href="#">more</a>			
 						</div>
-							<a class="exclusive-more" href="#">more from blog</a>
+							<a class="exclusive-more" href="/blog">more from blog</a>
 					</div>
 
 				</div>
-			</div>
+			</div> -->
 
 		</div>
 	</section>
@@ -164,3 +265,4 @@ get_header();
 
 
 <?php get_footer(); ?>
+
