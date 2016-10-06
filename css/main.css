@@ -733,7 +733,8 @@ html, body {
     height: 465px; }
 
 .page-gallery .media-category {
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
   .page-gallery .media-category p, .page-gallery .media-category a {
     color: #fff !important; }
   .page-gallery .media-category p {

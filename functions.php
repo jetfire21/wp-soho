@@ -125,7 +125,7 @@ add_action('init', 'disable_embeds_init', 9999);
 
 // for metabox plugin
 
-add_filter( 'rwmb_meta_boxes', 'movie_meta_boxes' );
+    add_filter( 'rwmb_meta_boxes', 'movie_meta_boxes' );
 function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'movie_';
@@ -180,12 +180,12 @@ function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'video_';
     $meta_boxes[] = array(
-        'title'      => __( 'Test Meta Box', 'videopage' ),
+        'title'      => __( 'Test Meta Box', 'textdomain' ),
         'post_types' => 'video',
         'fields'     => array(
             array(
                 'id'   => "{$prefix}url",
-                'name' => __( 'Video url', 'videopage' ),
+                'name' => __( 'Video url', 'textdomain' ),
                 'type' => 'oembed',
             ),
           ),
@@ -193,17 +193,17 @@ function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'main_slider_';
     $meta_boxes[] = array(
-        'title'      => __( 'Test Meta Box', 'slidertype' ),
+        'title'      => __( 'Test Meta Box', 'textdomain' ),
         'post_types' => 'main_slider',
         'fields'     => array(
             array(
                 'id'   => "{$prefix}slide",
-                'name' => __( 'Slide image', 'slidertype' ),
+                'name' => __( 'Slide image', 'textdomain' ),
                 'type' => 'image',
             ),
             array(
                 'id'   => "{$prefix}img_link",
-                'name' => __( 'The image before link', 'slidertype' ),
+                'name' => __( 'The image before link', 'textdomain' ),
                 'type' => 'image',
             ),
 
@@ -223,23 +223,23 @@ function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'shop_slider_';
     $meta_boxes[] = array(
-        'title'      => __( 'Fields', 'sslidertype' ),
+        'title'      => __( 'Fields', 'textdomain' ),
         'post_types' => 'shop_slider',
         'fields'     => array(
             array(
                 'id'   => "{$prefix}slide",
-                'name' => __( 'Slide image', 'sslidertype' ),
+                'name' => __( 'Slide image', 'textdomain' ),
                 'type' => 'image',
             ),
 
             array(
                 'id'   => "{$prefix}text_link",
-                'name' => __( 'Text link', 'sslidertype' ),
+                'name' => __( 'Text link', 'textdomain' ),
                 'type' => 'text',
             ),
             array(
                 'id'   => "{$prefix}url_link",
-                'name' => __( 'Link url', 'sslidertype' ),
+                'name' => __( 'Link url', 'textdomain' ),
                 'type' => 'url',
             ),
 
@@ -248,12 +248,12 @@ function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'gallery_';
     $meta_boxes[] = array(
-        'title'      => __( 'Test Meta Box', 'gallerytype' ),
+        'title'      => __( 'Test Meta Box', 'textdomain' ),
         'post_types' => 'gallery',
         'fields'     => array(
             array(
                 'id'   => "{$prefix}slides",
-                'name' => __( 'Slide images', 'gallerytype' ),
+                'name' => __( 'Slide images', 'textdomain' ),
                 'type' => 'image',
                 'desc' => 'Upload 2 images'
             ),
@@ -262,22 +262,22 @@ function movie_meta_boxes( $meta_boxes ) {
 
     $prefix = 'page_';
     $meta_boxes[] = array(
-        'title'      => __( 'Test Meta Box', 'pagetype' ),
+        'title'      => __( 'Test Meta Box', 'textdomain' ),
         'post_types' => 'page',
         'fields'     => array(
             array(
                 'id'   => "{$prefix}title",
-                'name' => __( 'Title', 'pagetype' ),
+                'name' => __( 'Title', 'textdomain' ),
                 'type' => 'text',
             ),
             array(
                 'id'   => "{$prefix}keys",
-                'name' => __( 'Meta keywords', 'pagetype' ),
+                'name' => __( 'Meta keywords', 'textdomain' ),
                 'type' => 'textarea',
             ),
             array(
                 'id'   => "{$prefix}desc",
-                'name' => __( 'Meta description', 'pagetype' ),
+                'name' => __( 'Meta description', 'textdomain' ),
                 'type' => 'textarea',
             ),
           ),
