@@ -125,6 +125,22 @@
   .single-product  .block-right { height: 685px; }
   .single-product .block-left .single-main-img img{ max-height: 470px; }
 
+.cart-page .shop-big-menu-btn{
+    height: 400px;
+}
+
+.cart-page .str-cart-action {
+    margin-top: 60px;
+}
+
+.cart-page .table-desctop {
+    min-height: 300px;
+  }
+
+  .cart-page .str-total-sum {
+    margin-top: 50px;
+}
+
 }
 
 @media only screen and (max-width : 1200px) {

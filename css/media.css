@@ -53,12 +53,20 @@
 	.page-gallery .media-category{
 		font-size: 73px;
 	}
+		.page-gallery .media-category h2,  .page-gallery .media-category h2 a { font-size: 64px !important; }
+	/*.media-category h2,  .media-category h2 a { font-size: 66px !important; }*/
+
+	.page-gallery .media-category p {
+	    font: 17px "Montserrat";
+	    letter-spacing: 9px;
+	}
 }
 
 
 @media only screen and (max-width : 1366px) {
 
 	header, .bg-color, #owl-demo .item > img {  height: 768px; }
+	.block-media h1.main-name{ margin-bottom: 80px; }
 
 	.slogan{  width: 410px; top:232px;}
 
@@ -144,6 +152,15 @@
 		top:25%;
 		left: 28%;
 	}
+
+	.page-gallery .media-category h2,  .page-gallery .media-category h2 a { font-size: 56px !important; }
+	/*.media-category h2,  .media-category h2 a { font-size: 66px !important; }*/
+
+	.page-gallery .media-category p {
+	    font: 16px "Montserrat";
+	    letter-spacing: 7px;
+	}
+	.for-only-music{ margin-bottom: 100px; }
 }
 
 /* Large Devices, Wide Screens */
@@ -183,6 +200,14 @@
 	.page-gallery .btn-small-media {
 	    top: 40px;
 	}
+
+	.page-gallery .media-category h2,  .page-gallery .media-category h2 a{ font-size: 47px !important; }
+	/*.media-category h2,  .media-category h2 a { font-size: 66px !important; }*/
+
+	.page-gallery .media-category p {
+	    font: 16px "Montserrat";
+	    letter-spacing: 4px;
+	}
 }
 
 /* Medium Devices, Desktops */
@@ -212,7 +237,13 @@
 	.blog .blog-img-text{ padding: 0 10%; }
 	blog .blog-right .exclusive-more { padding: 40px 0 0 10%; }
 
-	.media-category h2,  .media-category h2 a { font-size: 66px !important; }
+	.page-gallery .media-category h2,  .page-gallery .media-category h2 a{ font-size: 36px !important; }
+	/*.media-category h2,  .media-category h2 a { font-size: 66px !important; }*/
+
+	.page-gallery .media-category p {
+	    font: 12px "Montserrat";
+	    letter-spacing: 3px;
+	}
     .block-media .media-category > div:nth-child(1) p{ padding-left: 51px; }
 	.block-media .movie-cont-right { padding-left: 15px; }
 	#owl-gallery .gal-img { line-height: 407px; }
@@ -228,6 +259,10 @@
 
 	.wrap-movie-video iframe {
 	    height: 480px;
+	}
+
+	.block-media .media-category h2, .block-media .media-category h2 a{
+		font-size: 74px !important;
 	}
 
 }

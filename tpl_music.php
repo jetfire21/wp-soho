@@ -17,7 +17,7 @@ get_header();
 		<?php get_template_part( 'menu','header' ); ?>
 
 
-	<div class="container">
+	<div class="container for-only-music">
 		
 		<img class="btn-bar-top hidden-lg" src="<?php echo get_template_directory_uri();?>/img/black-top-btn.png" alt="">
 		<h1 class="main-name">Fernanda romero</h1>

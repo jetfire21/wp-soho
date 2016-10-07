@@ -436,6 +436,9 @@ footer {
 .movies-catalog > div:nth-child(4n+1) {
   clear: left; }
 
+.page-gallery .media-category h2, .page-gallery .media-category h2 a {
+  font-size: 77px !important; }
+
 /*  ************ MOVIE SINGLE PAGE ***************** */
 .movie-title {
   overflow: hidden;
@@ -619,6 +622,10 @@ html, body {
     left: 34%;
     z-index: 3;
     background-size: cover; }
+
+p .buy-music {
+  font: 20px "PlayfairDisplay-Black" !important;
+  text-transform: lowercase; }
 
 /* ********* style audio player ******** */
 .jp-audio {
