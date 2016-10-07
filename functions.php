@@ -1290,9 +1290,14 @@ function alex_js_overrife_wooccommerce2() {
                 var id = $(this).parent().attr("data-id");
                 var qty = $(this).parent().find("input").attr("value");
                 var price = $(this).parent().parent().next();
+                var tab_mob = $(this).parent().parent().parent().next();
+                var tab_des = $(this).parent().parent().next();
+                // var d_sub_total = $(this).parents(".table-desctop").find(".d-sub-total");
 
-                // console.log(id);
-                // console.log(qty);
+
+                console.log(id);
+                console.log(qty);
+                console.log(price.html());
 
                     var data = {
                       'action': 'alex_update_cart',
@@ -1314,9 +1319,14 @@ function alex_js_overrife_wooccommerce2() {
                             // console.log(data.total);
                             // console.log(data.total_qty);
                             $(".header-top .cart span").html(data.total_qty);
-                            price.find("span").remove();
-                            price.append(data.price);
                             $(".str-total-sum").html("total "+data.total);
+
+                          tab_mob.find(".m-sub-total span").remove();
+                          tab_mob.find(".m-sub-total").append(data.price);
+                          tab_des.find("span").remove();
+ +                        tab_des.append(data.price);
+
+
                      } else {
                         console.log(error);
                      }
@@ -1336,10 +1346,12 @@ function alex_js_overrife_wooccommerce2() {
                 var price = $(this).parent().parent().next();
                 var c_k = $(this).parent().find("input").attr("name");
                 var input = $(this).parent().find("input");
+                var tab_mob = $(this).parent().parent().parent().next();
+                var tab_des = $(this).parent().parent().next();
 
-                console.log(c_k);
-                console.log(qty);
-                console.log(id);
+                // console.log(c_k);
+                // console.log(qty);
+                // console.log(id);
 
                     var data = {
                       'action': 'alex_update_cart_minus',
@@ -1363,9 +1375,11 @@ function alex_js_overrife_wooccommerce2() {
                             // console.log(data.total_qty);
                             // console.log("============");
                             $(".header-top .cart span").html(data.total_qty);
-                            price.find("span").remove();
-                            price.append(data.price);
-                            $(".str-total-sum").html("total "+data.total);
+                              $(".str-total-sum").html("total "+data.total);
+                          tab_mob.find(".m-sub-total span").remove();
+                          tab_mob.find(".m-sub-total").append(data.price);
+                          tab_des.find("span").remove();
+ +                        tab_des.append(data.price);
                      } else {
                         console.log(error);
                      }

@@ -608,7 +608,7 @@ input, select, .select2-choice {
   display: block;
   font: bold 16px "Montserrat-Light";
   text-transform: lowercase !important;
-  padding: 10px 15px !important;
+  padding: 10px 13px !important;
   background: #f2f2f2 !important;
   border-radius: 5px;
   color: #9a9a9a;

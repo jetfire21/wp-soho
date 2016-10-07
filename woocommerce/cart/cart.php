@@ -133,7 +133,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 					</td>
 
-					<td class="price" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
+					<td class="price d-sub-total" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 					<span>
 						<?php
 							$price = apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
@@ -158,7 +158,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		?>
 						  </table>
-				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart_alex" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+				<!-- <input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart_alex" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" /> -->
 
 		</div>
 
@@ -233,7 +233,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				    	<td class="first-td">quantity</td>
 					<td class="" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
-				    		<div class="wrap_quantity">
+				    		<div class="wrap_quantity" data-id="<?php echo $cart_item['product_id'];?>">
 				    			<div class="minus">-</div>
 
 						<?php
@@ -257,7 +257,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					
 		    	<td class="first-td">total price</td>
 
-					<td class="price" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
+					<td class="price m-sub-total" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 					<span>
 						<?php
 							$price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
@@ -284,7 +284,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	  </table>
 
-	  				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+	  				<!-- <input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" /> -->
 
 		</div>
 
@@ -311,49 +311,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </form>
 
-<div class="cart-collaterals">
 
-	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 
-</div>
+
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
 
-<?php  $cart = WC()->cart->get_cart(); print_r($cart);
-echo "============================================<hr>";
- $id = 177;
-  
-    // foreach ($cart as $cart_item_key => $cart_item) {
-    // 	if($cart_item['product_id'] == 177){
-    // 		$product = $cart_item['data'];
-    // 		echo $price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $product ), $cart_item, 177 );
-    // 	}
-
-    // }
-
-echo wc_price(2200);
-echo "============================================<hr>";
-
-// $a = WC()->cart->get_cart_item_quantities();
-
-// $a = WC()->cart->get_product_price( $_product );
-// print_r($a);
-echo "--------------product-------";
-print_r($_product);
-
-
-$qty = 2;
-$c_k = "cart[9766527f2b5d3e95d4a733fcfb77bd7e][qty]------";
-    preg_match("#\[[0-9a-zA-Z]*\]#i", $c_k, $matches);
-    $c_k = substr($matches[0], 0, -1);
-    $c_k = substr($c_k, 1);
-  
-echo "--".$c_k;
-print_r($matches);
-
-echo "-------------cccc------";
-// echo $ccc = WC()->cart->set_quantity($c_k, $qty,true);
-     // global $woocommerce;
-     // ob_start();
-     // $woocommerce->cart->set_quantity($c_k,$qty); 
-     // ob_get_clean();
