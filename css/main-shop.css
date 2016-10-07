@@ -348,6 +348,9 @@ footer {
     position: relative;
     margin-top: -25px; }
 
+.cart-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
+  height: 650px !important; }
+
 .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
   background: #fff; }
 
@@ -525,6 +528,8 @@ footer {
     padding: 20px 0; }
 .cart-page .table-desctop {
   min-height: 500px; }
+  .cart-page .table-desctop td {
+    height: 90px; }
   .cart-page .table-desctop table {
     border-bottom: 1px solid #f0f2f7 !important; }
   .cart-page .table-desctop th {

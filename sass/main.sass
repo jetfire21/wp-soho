@@ -157,14 +157,23 @@ h3.main-name, h1.main-name
 .mob-menu
 	position: absolute
 	background-color: #fff
-	width: 100%
+	// width: 100%
 	height: 100%
 	top: 0
-	display: none
+	// display: none
+	display: blcok
 	z-index: 9999
+	width: 0
+	transition: 0.5s
+	overflow-x: hidden
+
 
 .show_mob_menu
-	display: block !important
+	width: 100%
+
+.show_mob_menu, .mob-menu
+	// display: block !important
+	display: block
 
 	ul
 		text-align: center

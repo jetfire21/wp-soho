@@ -1295,9 +1295,9 @@ function alex_js_overrife_wooccommerce2() {
                 // var d_sub_total = $(this).parents(".table-desctop").find(".d-sub-total");
 
 
-                console.log(id);
-                console.log(qty);
-                console.log(price.html());
+                // console.log(id);
+                // console.log(qty);
+                // console.log(price.html());
 
                     var data = {
                       'action': 'alex_update_cart',

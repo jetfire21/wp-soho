@@ -134,34 +134,39 @@ h3.main-name, h1.main-name {
 .mob-menu {
   position: absolute;
   background-color: #fff;
-  width: 100%;
   height: 100%;
   top: 0;
-  display: none;
-  z-index: 9999; }
+  display: blcok;
+  z-index: 9999;
+  width: 0;
+  transition: 0.5s;
+  overflow-x: hidden; }
 
 .show_mob_menu {
-  display: block !important; }
-  .show_mob_menu ul {
+  width: 100%; }
+
+.show_mob_menu, .mob-menu {
+  display: block; }
+  .show_mob_menu ul, .mob-menu ul {
     text-align: center;
     margin-top: 50px;
     padding-left: 0; }
-  .show_mob_menu li {
+  .show_mob_menu li, .mob-menu li {
     margin-top: 20px; }
-  .show_mob_menu a {
+  .show_mob_menu a, .mob-menu a {
     font: 20px "Montserrat";
     text-transform: uppercase;
     color: #999; }
-    .show_mob_menu a:hover {
+    .show_mob_menu a:hover, .mob-menu a:hover {
       text-decoration: none;
       color: #000; }
-  .show_mob_menu a {
+  .show_mob_menu a, .mob-menu a {
     overflow: hidden;
     position: relative;
     margin: 0;
     text-align: center;
     white-space: nowrap; }
-  .show_mob_menu li:hover a:before, .show_mob_menu li:hover a:after {
+  .show_mob_menu li:hover a:before, .show_mob_menu li:hover a:after, .mob-menu li:hover a:before, .mob-menu li:hover a:after {
     content: "";
     display: inline-block;
     position: relative;
@@ -171,7 +176,7 @@ h3.main-name, h1.main-name {
     vertical-align: middle;
     background: black;
     margin: 0 15px 0 5px; }
-  .show_mob_menu .close-mob-menu {
+  .show_mob_menu .close-mob-menu, .mob-menu .close-mob-menu {
     position: absolute;
     left: 50%;
     cursor: pointer;

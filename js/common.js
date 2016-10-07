@@ -34,27 +34,6 @@ $(document).ready(function() {
 
 	});
 
-	$(".big-btn-bar, .shop-big-menu-btn img").click(function(){
-		$(".top-menu").show();
-		// $(".bg-color").addClass("dark-bg");
-		$(".alex-wrap").addClass("alex-overlay");
-		// console.log("dddd");
-	});
-
-	$(".close-top-menu").click(function(){
-		$(".top-menu").hide()
-		// $(".bg-color").removeClass("dark-bg");
-		$(".alex-wrap").removeClass("alex-overlay");
-	});
-
-	$(".btn-bar-top, .shop-btn-mobile img").click(function(){
-		// $(".mob-menu").show();
-		$(".mob-menu").addClass("show_mob_menu");
-	});
-
-	$(".close-mob-menu").click(function(){
-		$(".mob-menu").removeClass("show_mob_menu");
-	});
 
 
     $("#owl-demo").owlCarousel({
@@ -222,6 +201,51 @@ if (width > 991){
    		if(count > 1) count--;
    		$(this).parent().find("input").val(count);
    		$(this).parent().find("input").attr("value",count);
+   });
+
+
+
+   	$(".big-btn-bar, .shop-big-menu-btn img").click(function(){
+		$(".top-menu").show();
+		// $(".bg-color").addClass("dark-bg");
+		$(".alex-wrap").addClass("alex-overlay");
+		// console.log("dddd");
+	});
+
+	$(".close-top-menu").click(function(){
+		$(".top-menu").hide()
+		// $(".bg-color").removeClass("dark-bg");
+		$(".alex-wrap").removeClass("alex-overlay");
+	});
+
+	// $(".btn-bar-top, .shop-btn-mobile img").click(function(){
+	// 	// $(".mob-menu").show();
+	// 	$(".mob-menu").addClass("show_mob_menu");
+	// });
+
+	// $(".close-mob-menu").click(function(){
+	// 	// $(".mob-menu").removeClass("show_mob_menu");
+	// });
+
+	$(".btn-bar-top, .shop-btn-mobile img").click(function(){
+		// $(".mob-menu").show();
+		
+		 $(".mob-menu").addClass("show_mob_menu");
+	});
+
+	$(".close-mob-menu").click(function(){
+		$(".mob-menu").removeClass("show_mob_menu");
+	});
+
+
+
+   $(".shop-btn-mobile img").click( function(){
+   		$(".mob-menu").addClass("animated slideInLeft");
+   		 $(".mob-menu").removeClass("slideInRight");
+   });
+   $(".close-mob-menu").click( function(){
+   		$(".mob-menu").addClass("animated slideInRight");
+   		// $(".mob-menu").removeClass("show_mob_menu");
    });
 
 });
