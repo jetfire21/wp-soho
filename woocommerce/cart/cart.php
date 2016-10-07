@@ -57,6 +57,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+			// print_r($cart_item);
 			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
 			$product_id = apply_filters( 'woocommerce_cart_item_product_id', $cart_item['product_id'], $cart_item, $cart_item_key );
 
@@ -111,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</td>
 
 					<td class="" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
-				    		<div class="wrap_quantity">
+				    		<div class="wrap_quantity" data-id="<?php echo $cart_item['product_id'];?>">
 				    			<div class="minus">-</div>
 
 						<?php
@@ -157,10 +158,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		?>
 						  </table>
-				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart_alex" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
 
 		</div>
-
 
 
 		<div class=" table-mobile hidden-lg hidden-md shop_table cart">
@@ -284,9 +284,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	  </table>
 
+	  				<input type="submit" class="upd_cart button hidden-xs hidden-sm" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+
 		</div>
 
-	  				<input type="submit" class="upd_cart button hidden-lg hidden-md" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
 	  						<div class="clearfix"></div>
 
 
@@ -308,4 +309,47 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php do_action( 'woocommerce_after_cart' ); ?>
 
+</form>
 
+<div class="cart-collaterals">
+
+	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
+
+</div>
+
+<?php do_action( 'woocommerce_after_cart' ); ?>
+
+<?php  $cart = WC()->cart->get_cart(); print_r($cart);
+echo "============================================<hr>";
+ $id = 177;
+  
+    // foreach ($cart as $cart_item_key => $cart_item) {
+    // 	if($cart_item['product_id'] == 177){
+    // 		$product = $cart_item['data'];
+    // 		echo $price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $product ), $cart_item, 177 );
+    // 	}
+
+    // }
+
+echo wc_price(2200);
+echo "============================================<hr>";
+
+// $a = WC()->cart->get_cart_item_quantities();
+
+// $a = WC()->cart->get_product_price( $_product );
+// print_r($a);
+echo "--------------product-------";
+print_r($_product);
+
+
+
+$str = "cart[9766527f2b5d3e95d4a733fcfb77bd7e][qty]------";
+preg_match("#\[[0-9a-zA-Z]*\]#i", $str, $matches);
+echo $matches[0];
+print_r($matches);
+$c_k = substr($matches[0], 0, -1);
+$c_k = substr($c_k, 1);
+echo "--".$c_k;
+
+echo "-------------cccc------";
+echo $ccc = WC()->cart->set_quantity($c_k,5);

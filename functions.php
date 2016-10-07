@@ -1273,3 +1273,189 @@ function alex_js_overrife_wooccommerce() {
     }
 }
 add_action('wp_footer', 'alex_js_overrife_wooccommerce', 998);
+
+function alex_js_overrife_wooccommerce2() {
+    if (is_cart()) {
+        ?>
+
+        <script>
+            jQuery(document).ready(function($) {
+
+
+              jQuery(".wrap_quantity .plus").click(function(){
+              // console.log(wc_cart_params.ajax_url);
+                // console.log( $(this).parent().parent().prev().html() );
+
+
+                var id = $(this).parent().attr("data-id");
+                var qty = $(this).parent().find("input").attr("value");
+                var price = $(this).parent().parent().next();
+
+                // console.log(id);
+                // console.log(qty);
+
+                    var data = {
+                      'action': 'alex_update_cart',
+                      'id': id,
+                      'qty': qty
+                    };
+
+                  $.ajax({
+                   url: wc_cart_params.ajax_url, // обработчик
+                   data:data, // данные
+                   type:'POST', // тип запроса
+                   success:function(data){
+  
+                     if( data ) { 
+                      var data = JSON.parse(data);
+                            console.log(data);
+                            console.log(data.qty);
+                            console.log(data.price);
+                            console.log(data.total);
+                            console.log(data.total_qty);
+                            $(".header-top .cart span").html(data.total_qty);
+                            price.find("span").remove();
+                            price.append(data.price);
+                            $(".str-total-sum").html("total "+data.total);
+                     } else {
+                        console.log(error);
+                     }
+                   }
+
+                  });   
+
+              });    
+
+              jQuery(".wrap_quantity .minus").click(function(){
+              // console.log(wc_cart_params.ajax_url);
+                // console.log( $(this).parent().parent().prev().html() );
+
+
+                var id = $(this).parent().attr("data-id");
+                var qty = $(this).parent().find("input").attr("value");
+                var price = $(this).parent().parent().next();
+                var c_k = $(this).parent().find("input").attr("name");
+
+
+                console.log(c_k);
+                // console.log(qty);
+
+                    var data = {
+                      'action': 'alex_update_cart_minus',
+                      'id': id,
+                      'qty': qty,
+                      'c_k': c_k
+                    };
+
+                  $.ajax({
+                   url: wc_cart_params.ajax_url, // обработчик
+                   data:data, // данные
+                   type:'POST', // тип запроса
+                   success:function(data){
+  
+                     if( data ) { 
+                      var data = JSON.parse(data);
+                            console.log(data);
+                            console.log(data.qty);
+                            console.log(data.price);
+                            console.log(data.total);
+                            console.log(data.total_qty);
+                            $(".header-top .cart span").html(data.total_qty);
+                            price.find("span").remove();
+                            price.append(data.price);
+                            $(".str-total-sum").html("total "+data.total);
+                     } else {
+                        console.log(error);
+                     }
+                   }
+
+                  });
+
+            });
+
+
+          });
+        </script>
+
+        <?php
+    }
+}
+add_action('wp_footer', 'alex_js_overrife_wooccommerce2', 999);
+
+function alex_update_cart(){
+
+    if($_POST['id']) $id = (int)$_POST['id'];
+    if($_POST['qty']) $qty = (int)$_POST['qty'];
+
+
+   $cart = WC()->cart->add_to_cart($id, 1);
+   $cart = WC()->cart->get_cart();
+    foreach ($cart as $cart_item_key => $cart_item) {
+      if($cart_item['product_id'] == $id){
+          $product = $cart_item['data'];
+           // $price = apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $product ), $cart_item, $id );
+          $price = $product->price;
+          $price = $price * $qty;
+          break;
+       }
+    }
+
+
+    
+      $qty_prod_cart = WC()->cart->get_cart_item_quantities();
+      foreach ($qty_prod_cart as $k => $v) {
+        $total_qty  = $total_qty + $v;
+      }
+    if($total_qty < 10) $total_qty = "0".$total_qty;
+     $new_qty = $qty_prod_cart[$id];
+    
+    $cart_item_key = $id;
+   $total = WC()->cart->get_cart_total();  $total = str_replace(",", " , ", $total);
+   $price = str_replace(",", " , ", wc_price($price) );
+   $res['qty'] = $new_qty;
+   $res['price'] = $price;
+   $res['total'] = $total;
+   $res['total_qty'] = $total_qty;
+
+    echo json_encode($res);;
+
+      die();
+}
+add_action('wp_ajax_alex_update_cart', 'alex_update_cart');
+add_action('wp_ajax_nopriv_alex_update_cart', 'alex_update_cart');
+
+
+function alex_update_cart_minus(){
+
+    if($_POST['id']) $id = (int)$_POST['id'];
+    if($_POST['qty']) $qty = (int)$_POST['qty'];
+    if($_POST['c_k']) $c_k = $_POST['c_k'];
+
+    preg_match("#\[[0-9a-zA-Z]*\]#i", $c_k, $matches);
+    $c_k = substr($matches[0], 0, -1);
+    $c_k = substr($c_k, 1);
+    WC()->cart->set_quantity($c_k, $qty);
+   
+
+    
+      $qty_prod_cart = WC()->cart->get_cart_item_quantities();
+      foreach ($qty_prod_cart as $k => $v) {
+        $total_qty  = $total_qty + $v;
+      }
+    if($total_qty < 10) $total_qty = "0".$total_qty;
+     $new_qty = $qty_prod_cart[$id];
+    
+    $cart_item_key = $id;
+   $total = WC()->cart->get_cart_total();  $total = str_replace(",", " , ", $total);
+   $price = str_replace(",", " , ", wc_price($price) );
+   $res['qty'] = $new_qty;
+   $res['price'] = $price;
+   $res['total'] = $total;
+   $res['total_qty'] = $total_qty;
+
+    echo json_encode($res);;
+
+      die();
+}
+add_action('wp_ajax_alex_update_cart', 'alex_update_cart_minus');
+add_action('wp_ajax_nopriv_alex_update_cart', 'alex_update_cart_minus');
