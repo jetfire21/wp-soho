@@ -342,14 +342,18 @@ echo "--------------product-------";
 print_r($_product);
 
 
-
-$str = "cart[9766527f2b5d3e95d4a733fcfb77bd7e][qty]------";
-preg_match("#\[[0-9a-zA-Z]*\]#i", $str, $matches);
-echo $matches[0];
-print_r($matches);
-$c_k = substr($matches[0], 0, -1);
-$c_k = substr($c_k, 1);
+$qty = 2;
+$c_k = "cart[9766527f2b5d3e95d4a733fcfb77bd7e][qty]------";
+    preg_match("#\[[0-9a-zA-Z]*\]#i", $c_k, $matches);
+    $c_k = substr($matches[0], 0, -1);
+    $c_k = substr($c_k, 1);
+  
 echo "--".$c_k;
+print_r($matches);
 
 echo "-------------cccc------";
-echo $ccc = WC()->cart->set_quantity($c_k,5);
+// echo $ccc = WC()->cart->set_quantity($c_k, $qty,true);
+     // global $woocommerce;
+     // ob_start();
+     // $woocommerce->cart->set_quantity($c_k,$qty); 
+     // ob_get_clean();

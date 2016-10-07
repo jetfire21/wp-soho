@@ -1308,11 +1308,11 @@ function alex_js_overrife_wooccommerce2() {
   
                      if( data ) { 
                       var data = JSON.parse(data);
-                            console.log(data);
-                            console.log(data.qty);
-                            console.log(data.price);
-                            console.log(data.total);
-                            console.log(data.total_qty);
+                            // console.log(data);
+                            // console.log(data.qty);
+                            // console.log(data.price);
+                            // console.log(data.total);
+                            // console.log(data.total_qty);
                             $(".header-top .cart span").html(data.total_qty);
                             price.find("span").remove();
                             price.append(data.price);
@@ -1335,10 +1335,11 @@ function alex_js_overrife_wooccommerce2() {
                 var qty = $(this).parent().find("input").attr("value");
                 var price = $(this).parent().parent().next();
                 var c_k = $(this).parent().find("input").attr("name");
-
+                var input = $(this).parent().find("input");
 
                 console.log(c_k);
-                // console.log(qty);
+                console.log(qty);
+                console.log(id);
 
                     var data = {
                       'action': 'alex_update_cart_minus',
@@ -1355,11 +1356,12 @@ function alex_js_overrife_wooccommerce2() {
   
                      if( data ) { 
                       var data = JSON.parse(data);
-                            console.log(data);
-                            console.log(data.qty);
-                            console.log(data.price);
-                            console.log(data.total);
-                            console.log(data.total_qty);
+                            // console.log(data);
+                            // console.log(data.qty);
+                            // console.log(data.price);
+                            // console.log(data.total);
+                            // console.log(data.total_qty);
+                            // console.log("============");
                             $(".header-top .cart span").html(data.total_qty);
                             price.find("span").remove();
                             price.append(data.price);
@@ -1430,12 +1432,21 @@ function alex_update_cart_minus(){
     if($_POST['id']) $id = (int)$_POST['id'];
     if($_POST['qty']) $qty = (int)$_POST['qty'];
     if($_POST['c_k']) $c_k = $_POST['c_k'];
-
     preg_match("#\[[0-9a-zA-Z]*\]#i", $c_k, $matches);
     $c_k = substr($matches[0], 0, -1);
     $c_k = substr($c_k, 1);
     WC()->cart->set_quantity($c_k, $qty);
-   
+  
+  $items = WC()->cart->get_cart();
+  $cart_item_key = $c_k;
+
+
+  $cart_item = $items[$cart_item_key];
+  $_product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+  $price = apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+
+            
+
 
     
       $qty_prod_cart = WC()->cart->get_cart_item_quantities();
@@ -1447,15 +1458,17 @@ function alex_update_cart_minus(){
     
     $cart_item_key = $id;
    $total = WC()->cart->get_cart_total();  $total = str_replace(",", " , ", $total);
-   $price = str_replace(",", " , ", wc_price($price) );
+   $price = str_replace(",", " , ", $price);
    $res['qty'] = $new_qty;
    $res['price'] = $price;
    $res['total'] = $total;
    $res['total_qty'] = $total_qty;
 
-    echo json_encode($res);;
+    $res['qty'] = $c_k;
 
-      die();
+echo json_encode($res);
+die();
+  
 }
-add_action('wp_ajax_alex_update_cart', 'alex_update_cart_minus');
-add_action('wp_ajax_nopriv_alex_update_cart', 'alex_update_cart_minus');
+add_action('wp_ajax_alex_update_cart_minus', 'alex_update_cart_minus');
+add_action('wp_ajax_nopriv_alex_update_cart_minus', 'alex_update_cart_minus');
