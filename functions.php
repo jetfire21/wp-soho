@@ -230,6 +230,7 @@ function movie_meta_boxes( $meta_boxes ) {
                 'id'   => "{$prefix}slide",
                 'name' => __( 'Slide image', 'textdomain' ),
                 'type' => 'image',
+                'desc' => 'the minimum height of the image 951px and minimum width 1686px',
             ),
 
             array(

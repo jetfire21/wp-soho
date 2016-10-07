@@ -192,7 +192,7 @@ get_header( 'shop' ); ?>
 		</div>
 
 		<div class="clearfix"></div>
-		<a href="#" class="single-link">all products</a>
+		<a href="/all-products" class="single-link">all products</a>
 
 	</div>
 	</section>

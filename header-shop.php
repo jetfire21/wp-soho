@@ -22,9 +22,9 @@
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/main-shop.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/media-shop.css" />
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/grayscale2/css/grayscale.css" />
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/animate/animate.css" />
 
-	<?php if( is_product_category()):?>
+	<?php $url = $_SERVER['REQUEST_URI']; ?>
+	<?php if( is_product_category() || preg_match("/all-products/i", $url) ):?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/libs/owl-carousel/owl.theme.css">
 	<?php endif;?>
 
@@ -48,8 +48,9 @@
 
 <?php
 
+
 if( is_shop()) $wrap_page = 'shop-home-page'; 
-elseif( is_product_category()) $wrap_page = 'shop-cat-page'; 
+elseif( is_product_category() || preg_match("/all-products/i", $url) ) $wrap_page = 'shop-cat-page'; 
 elseif( is_product()) $wrap_page = 'single-product'; 
 elseif( is_cart()) $wrap_page = 'cart-page'; 
 else $wrap_page = "empty-page"

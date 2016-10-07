@@ -1,3 +1,13 @@
+<?php
+/*
+Template Name: All products
+*/
+
+?>
+
+<?php get_header( 'shop' ); ?>
+
+
 
 
 
@@ -10,14 +20,21 @@
 <div class="col-lg-11 col-md-12">
 	<div class="row">
 
-		<?php 
-		global $post, $product;	
-		$cat = get_the_terms( $post->ID, 'product_cat' );  // info a category
-		 if ( have_posts() ) : ?>
+
+			<?php 
+			$count =  wp_count_posts( "product"); 
+			$count = $count->publish;
+			 $args = array('post_type' => 'product','order'=>'ASC','posts_per_page' => -1); ?>
+
+	 		<?php $products = new WP_Query( $args );?>
+
+	
+		 <?php if ( $products->have_posts() ): ?>
+		 	
 
 		<div id="owl-shop-products" class="owl-carousel owl-theme">
 			<?php $i = 0; ?>
-			<?php while (have_posts() ): the_post(); ?>
+			<?php while ( $products->have_posts() ): $products->the_post(); ?>
 
 
 				<?php 
@@ -42,14 +59,13 @@
 							<a href="<?php the_permalink();?>">see</a>
 						</div>
 
-					<?php if( $i == $cat[0]->count-1):?>
+					<?php if($i == $count-1):?>
 						</div>
 					<?php endif;?>
 
 
 
 			<?php $i++; endwhile; // end of the loop. ?>
-
 		</div> 
 		<!-- end owl-shop-products -->
 
@@ -61,20 +77,21 @@
 	
 	</div>
 </div>
-
+<?php echo $count->publish; ?>
 	<div class="clearfix"></div>
-	<h2 class="title-category"><?php echo $cat[0]->name;?></h2>
+	<h2 class="title-category">All products</h2>
 
 
 
 <section class="prod-no-slider hidden-md hidden-lg">
 
 
- <?php if ( have_posts() ) : ?>
-    <?php while ( have_posts() ) : the_post(); ?>
+ <?php if ( $products->have_posts() ) : ?>
+    <?php while ( $products->have_posts() ) : $products->the_post(); ?>
 
 		<?php $img = get_the_post_thumbnail($post->ID, "prod_cat", array('class'=>'img-responsive')); ?>
 		<?php if( !empty($img) ):?>
+
     	<div class="col-sm-12 product">
 			<div class="wrap_prod_img">		
 				 <?php echo $img;?>
@@ -82,6 +99,7 @@
 			<h2> <?php the_title();?></h2>
 			<a href=" <?php the_permalink();?>">see</a>
 		</div>
+
 		<?php endif;?>
 
 <?php endwhile; // end of the loop. ?>
@@ -90,3 +108,5 @@
 <?php endif; ?>
 
 </section>	
+
+<?php get_footer();?>

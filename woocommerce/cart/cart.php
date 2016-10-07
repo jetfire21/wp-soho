@@ -193,7 +193,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 							}
 						?>
 	
-
+					<?php
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
+								'<a href="%s" class="remove-prod" title="%s" data-product_id="%s" data-product_sku="%s"><img class="del-product" src="'.get_template_directory_uri().'/img/shop/close_icon.png" alt=""></a>',
+								esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+								__( 'Remove this item', 'woocommerce' ),
+								esc_attr( $product_id ),
+								esc_attr( $_product->get_sku() )
+							), $cart_item_key );
+						?>
 					</td>
 					</tr><tr>
 		    		<td class="first-td"> </td>
@@ -264,15 +272,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							echo $price = str_replace(",", " , ", $price);
 						?>
 						</span>
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
-								'<a href="%s" class="remove-prod" title="%s" data-product_id="%s" data-product_sku="%s"><img class="del-product" src="'.get_template_directory_uri().'/img/shop/close_icon.png" alt=""></a>',
-								esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
-								__( 'Remove this item', 'woocommerce' ),
-								esc_attr( $product_id ),
-								esc_attr( $_product->get_sku() )
-							), $cart_item_key );
-						?>
+
 					</td>
 				</tr>
 

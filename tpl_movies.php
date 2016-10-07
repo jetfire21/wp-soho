@@ -35,7 +35,7 @@ $prefix = "movie_";
 
 			<?php $args = array('post_type' => 'movie','order'=>'ASC','posts_per_page' => 4); ?>
 
-	 		<?php $movie = new WP_Query( $args ); ?>
+	 		<?php $movie = new WP_Query( $args ); print_r($movie);?>
 			<?php if($movie->have_posts() ): ?>
 			<?php while($movie->have_posts() ) : $movie->the_post();?>
 				 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">

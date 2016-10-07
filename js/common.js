@@ -239,13 +239,4 @@ if (width > 991){
 
 
 
-   $(".shop-btn-mobile img").click( function(){
-   		$(".mob-menu").addClass("animated slideInLeft");
-   		 $(".mob-menu").removeClass("slideInRight");
-   });
-   $(".close-mob-menu").click( function(){
-   		$(".mob-menu").addClass("animated slideInRight");
-   		// $(".mob-menu").removeClass("show_mob_menu");
-   });
-
 });

@@ -60,5 +60,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 	do_action( 'woocommerce_after_subcategory', $category ); ?>
 </li>
 
-<?php var_dump($category);?>
+<!-- <?php var_dump($category);?> -->
 <h1> end content_product cat</h1>
