@@ -650,16 +650,27 @@ dashicons-editor-alignleft' );
 add_action( 'admin_menu', 'alex_fern_reg_menu_page' );
 
 function alex_fern_cb_options(){
+
+
+ $redirect_uri = "http://".$_SERVER['HTTP_HOST']."/wp-admin/admin.php?page=slug_alex_spotify";
+ $site = "http://".$_SERVER['HTTP_HOST'];
 ?>
 
 <div class='wrap'>
 
     <h1>Spotify music API </h1>
+    <p>First you need to create only one playlist in your account sportify,then add desired tracks,
+after create new app <a href="https://developer.spotify.com/my-applications/#!/" target="_blank">https://developer.spotify.com/my-applications/#!/</a>
+fill the fields:<br>
+in field Redirect uri enter <a href="#"><?php echo $redirect_uri;?></a>
+in field website enter <a href="#"><?php echo $site;?></a>
+after saving go to back and
+to copy values Client_id and Client_secret from your app</p>
 
     <?php
     if($_POST['client_id']) $_SESSION['client_id'] = trim($_POST['client_id']);
     if($_POST['client_id']) $_SESSION['client_secret'] = trim($_POST['client_secret']);
-    $redirect_uri = "http://".$_SERVER['HTTP_HOST']."/wp-admin/admin.php?page=slug_alex_spotify";
+ 
 
     $client_id = $_SESSION['client_id'];
     $client_secret = $_SESSION['client_secret'];
@@ -691,11 +702,15 @@ function alex_fern_cb_options(){
     </table>
     
     <p class="submit">
-      <input type="submit" name="add" id="submit" class="button button-primary" value="Send" />
+      <input type="submit" name="add" id="submit" class="button button-primary" value="Get music" />
     </p>
     </form> 
 
       <?php
+$query = "https://accounts.spotify.com/authorize/?client_id=".$client_id."&response_type=code&redirect_uri=".$redirect_uri."&state=34fFs29kd09";
+
+ if( !empty($client_id) && !empty($client_secret) ) echo "<a class='spotify-link' href='".$query."'>!!! Now click here to get all music from playlist your spotify account</a>";
+
     global $wpdb;
     $wpdb->fer_table_name = $wpdb->prefix .  "spotify_api_music";
 
@@ -842,12 +857,10 @@ $pagination_params = alex_sp_pagination_params();
 
 		}
 
-   }
+}
 
 
-$query = "https://accounts.spotify.com/authorize/?client_id=".$client_id."&response_type=code&redirect_uri=".$redirect_uri."&state=34fFs29kd09";
 
- if( !empty($client_id) && !empty($client_secret) ) echo "<a href='".$query."'>Now click here</a>";
 
 
 if( !empty($_GET['code'])) $code = $_GET['code'];
@@ -954,8 +967,10 @@ if(!empty($code)){
 
 
     $tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
+    // $wpdb->query("DELETE FROM $wpdb->fer_table_name" );
     // echo "type "; var_dump($tracks);
 
+// if table empty,then add tracks in data base
     if( empty( $tracks[0]['track_name'] )) {
 
       foreach ($res4->items as $items) {
@@ -986,15 +1001,55 @@ if(!empty($code)){
           );
            // return $add_track;      
       }
+        echo '<div id="for_message" class="fade updated"><p>Music added successfully !</p></div>';
+
   }
-  echo '<div id="for_message" class="fade updated"><p>Music added successfully !</p></div>';
+  else{
+    //if exist tracks in db,will be add only track yet no in db
+      $i = 0;
+      foreach ($res4->items as $items) {
+
+         // echo "<pre>";
+         // print_r($items->track);
+         // echo "</pre>";
+
+          $img_track = $items->track->album->images[1]->url; // 1- 300x300 2- 640x640
+          $demo_track = $items->track->preview_url;
+
+          $is_track = $wpdb->get_var($wpdb->prepare("SELECT id FROM $wpdb->fer_table_name  WHERE track_name ='%s' AND track_url = '%s'", $items->track->name, $demo_track));
+
+          if(!$is_track){
+
+                  $add_track = $wpdb->insert( 
+                  $wpdb->fer_table_name, 
+                  array( 
+                    'track_name' => $items->track->name, 
+                    'album' => $items->track->album->name,
+                    'artists' => $items->track->artists[0]->name,
+                    'track_url' =>  $demo_track,
+                    'img' =>   $img_track
+                  ), 
+                  array( 
+                    '%s', 
+                    '%s', 
+                    '%s', 
+                    '%s', 
+                    '%s' 
+                  ) 
+                );
+          $i++;
+        }
+           // return $add_track;      
+           
+    }
+     echo '<div id="for_message" class="fade updated"><p>Music updated successfully ! '.$i.' items </p></div>';
   // $tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
    // var_dump($tracks);
    // print_r($tracks);
    // if( !empty( $tracks[0]['track_name'] )) echo "is tracks!";
 
 }
-    
+}   
     ?>
 
 </div>

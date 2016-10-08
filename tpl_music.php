@@ -152,6 +152,9 @@ var current_offset = 8;
 <script type="text/javascript" src="<?php echo get_template_directory_uri();?>/libs/jplayer/add-on/jplayer.playlist.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/js/common.js"></script>	
 
+<?php 		
+	$all_tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
+?>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -162,8 +165,8 @@ $(document).ready(function(){
 		jPlayer: "#jquery_jplayer_1",
 		cssSelectorAncestor: "#jp_container_1"
 	}, [
-		<?php if( !empty( $tracks[0]['track_name'] )): ?>
-			<?php foreach($tracks as $item):?>
+		<?php if( !empty( $all_tracks[0]['track_name'] )): ?>
+			<?php foreach($all_tracks as $item):?>
 			{
 				title: "<?php echo $item['track_name'];?> / <?php echo $item['album'];?>",
 				mp3: "<?php echo $item['track_url'];?>",
@@ -201,7 +204,7 @@ $(document).ready(function(){
 
 	$('.jp-volume-bar').css('display','none');
 
-	$(".wrap-audio-img").click(function(){
+	$(".movies-catalog").on("click", ".wrap-audio-img",function(){
 		// $("#jquery_jplayer_1").jPlayer("stop");
 
 		var title = $(this).attr("data-title");

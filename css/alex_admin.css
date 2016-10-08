@@ -58,3 +58,10 @@ h1{ display:inline-block;}
  .music-input{
  	width: 70%;
  }
+
+ .spotify-link{
+ 	font-weight: bold;
+ 	color:red;
+ 	display: block;
+ 	padding-bottom: 15px;
+ }
