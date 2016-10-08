@@ -813,8 +813,8 @@ $pagination_params = alex_sp_pagination_params();
    					</tr>';
    		foreach ($sel_tracks as $item) {
    			echo "<tr><td>".$item['id'].". ".$item['track_name']."</td><td> ".$item['album']."</td><td><input class='music-input' type='text' name='tracks[".$item['id']."]' value='".$item['buy_link']."'/></td> 
-              <input type='hidden' name='track_id' class='button button-primary' value='".$item['id']."'>
-           <td> <input type='submit' name='del_track' class='button button-primary' value='Delete'> </td> 
+              
+           <td> <a href='".$_SERVER["REQUEST_URI"]."&amp;track_id=".$item['id']."'>Delete</a></td> 
    			</tr>";
    			
    		}
@@ -857,14 +857,15 @@ $pagination_params = alex_sp_pagination_params();
     				}
 
     			}
-    		 if($res_u)	echo '<div id="for_message" class="fade updated"><p>The data was successfully stored ! Please update page</p></div>';
+    		 echo '<div id="for_message" class="fade updated"><p>The data was successfully stored ! Please update page</p></div>';
 
 		}
 
-    if( !empty( $_POST['del_track']) and !empty($_POST['track_id']) ){
-          $del_track_id = (int)$_POST['track_id'];
+    if( !empty($_GET['track_id']) ){
+          $del_track_id = (int)$_GET['track_id'];
          $res_d = $wpdb->query($wpdb->prepare("DELETE FROM $wpdb->fer_table_name WHERE id ='%d' ", $del_track_id));
-          if($res_d) echo '<div id="for_message" class="fade updated"><p>Track was removed successfully ! Please update page </p></div>';
+           if($res_d) echo '<div id="for_message" class="fade updated"><p>Track was removed successfully ! Please update page </p></div>';
+
 
     }
 
@@ -1053,7 +1054,7 @@ if(!empty($code)){
            // return $add_track;      
            
     }
-     echo '<div id="for_message" class="fade updated"><p>Music updated successfully ! '.$i.' items </p></div>';
+     if($i > 0) echo '<div id="for_message" class="fade updated"><p>Music updated successfully ! '.$i.' items </p></div>';
   // $tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
    // var_dump($tracks);
    // print_r($tracks);
