@@ -143,6 +143,8 @@
 
   .cart-page .del-product, .cart-page .price a.remove-prod{ padding-right: 15px; }
 
+  #owl-shop-products .owl-controls { padding-top: 40px;}
+
 }
 
 @media only screen and (max-width : 1200px) {
@@ -487,7 +489,9 @@
   }
 .checkout input, .checkout select, .checkout .select2-choice, .login input{  width: 100% !important;}
 
-
+   .show_mob_menu .close-mob-menu, .mob-menu .close-mob-menu {
+    bottom: 18%;
+   }
 
 }
 

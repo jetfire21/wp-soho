@@ -149,7 +149,7 @@ h1.main-name {
   width: 100%; }
 
 .show_mob_menu, .mob-menu {
-  display: block; }
+  display: block !important; }
   .show_mob_menu ul, .mob-menu ul {
     text-align: center;
     margin-top: 50px;

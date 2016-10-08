@@ -455,6 +455,10 @@
 	      display: table;
 	  }
 
+	 .show_mob_menu .close-mob-menu, .mob-menu .close-mob-menu {
+	 	bottom: 18%;
+	 }
+
 	/*	
 	.mob-menu .close-mob-menu {
 		top: 86%;

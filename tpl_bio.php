@@ -19,7 +19,7 @@ Template Name: Bio
 				<img src="<?php echo get_template_directory_uri();?>/img/bio-fern.jpg" alt="">
 				<div class="btn-media">
 					<img src="<?php echo get_template_directory_uri();?>/img/play.png" alt="">
-					<a href="media.html">see media</a>
+					<a href="/movies">see media</a>
 				</div>
 			</div>
 		</div>

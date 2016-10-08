@@ -37,7 +37,7 @@ if ( $order ) : ?>
 	<?php else : ?>
 
 	<div class="col-lg-1 hidden-md hidden-sm hidden-xs shop-big-menu-btn">
-	<img src="http://wp-soho/wp-content/themes/fernanda/img/shop/shop-big-menu-btn.png" alt="">
+	<img src="<?php echo get_template_directory_uri();?>/img/shop/shop-big-menu-btn.png" alt="">
 </div>
 
 <div class="col-lg-10 col-md-12 shop-wrap-padding">
