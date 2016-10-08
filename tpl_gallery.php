@@ -65,12 +65,27 @@ get_header();
 
 		 $gal_text = wp_nav_menu( $args );
 
+
 		 $gal_text = str_replace("li", "div", $gal_text);
-		 $gal_text = preg_replace('/class="menu-item/i','class="col-md-2 col-sm-2 col-xs-12 ',$gal_text, 1);
- 		 $gal_text = preg_replace('/class="menu-item/i','class="col-md-3 col-sm-3 col-xs-12 ',$gal_text, 2);
- 		 if(!empty($gal_text)){
- 			 echo $gal_text = str_replace('class="menu-item', 'class="col-md-2 col-sm-2 col-xs-12 ', $gal_text);
- 		}
+		// echo "2------".  $gal_text = preg_replace('/class="menu-item/i','class="col-md-2 col-sm-2 col-xs-12 ',$gal_text, 1);
+ 	// 	echo "3------".  $gal_text = preg_replace('/class="menu-item/i','class="col-md-3 col-sm-3 col-xs-12 ',$gal_text, 2);
+ 	// 	 if(!empty($gal_text)){
+ 	// 		 echo "4------". $gal_text = str_replace('class="menu-item', 'class="col-md-2 col-sm-2 col-xs-12 ', $gal_text);
+ 	// 	}
+		$gal_text = explode("</div>", $gal_text);
+
+		$gal_text[0] = preg_replace('/class="menu-item/i','class="col-md-2 col-sm-2 col-xs-12 ',$gal_text[0]);
+		$gal_text[1] = preg_replace('/class="menu-item/i','class="col-md-3 col-sm-3 col-xs-12 ',$gal_text[1]);
+		$gal_text[2] = preg_replace('/class="menu-item/i','class="col-md-3 col-sm-3 col-xs-12 ',$gal_text[2]);
+		$gal_text[3] = preg_replace('/class="menu-item/i','class="col-md-2 col-sm-2 col-xs-12 ',$gal_text[3]);
+		if($gal_cat) $gal_text[2] = str_replace('class="col-md-3','class="'.$cat_active.' col-md-3  ',$gal_text[2]);
+
+		echo $gal_text = implode("</div>", $gal_text);
+
+
+
+
+
  	?>	
 		<div class="col-md-1 sol-sm-1"></div>
 	</div>

@@ -450,6 +450,11 @@
 	    height: 200px;
 	}
 
+	.for-only-music .empty-block{
+	      height: 50px;
+	      display: table;
+	  }
+
 	/*	
 	.mob-menu .close-mob-menu {
 		top: 86%;

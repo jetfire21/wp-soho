@@ -756,6 +756,7 @@ html,body
 /* ************** PAGE GALLERY ************* */
 
 .page-gallery
+
 	background: #000
 	padding: 0 0 70px 0
 	position: relative
@@ -777,9 +778,24 @@ html,body
 		right: 38px
 		top: 60px
 
-.page-gallery #owl-gallery a
-	@extend %monserat-gray
-	color: #585858
+	.media-category
+
+		h2 a
+			@extend %monserat-gray
+			letter-spacing: 0 
+			text-transform: initial
+
+		> div
+
+			&:hover h2 a, &:hover p
+				color: #fff
+
+		.current-menu-item h2 a, .current-menu-item p
+			color: #fff
+
+		p 
+			color: $color-dark-gray
+			
 
 #owl-gallery
 
@@ -1036,8 +1052,6 @@ p .buy-music
 		text-align: center
 		overflow: hidden
 		
-		p, a
-			color: #fff !important
 		p
 			font: 18px "Montserrat"
 			letter-spacing: 12px

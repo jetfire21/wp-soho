@@ -360,6 +360,13 @@
     right: 0;
   }
 
+  .woocommerce {
+    padding: 50px 10px;
+  }
+
+  .cart-page .del-product {
+      right: 13px;
+  }
 
 }
 
@@ -464,6 +471,23 @@
   }
 
   .single-product .block-right {padding: 15px !important;}
+    .header-top .cart span{
+      font: 14px "Montserrat";
+       letter-spacing: 1px;
+       width: 26x;
+      height: 26px;
+      border-radius: 13px;
+      bottom: -11px;
+      right: -3px;
+      line-height: 22px;
+    }
+  
+  .woocommerce-billing-fields p {
+    padding-right: 0 !important;
+  }
+.checkout input, .checkout select, .checkout .select2-choice, .login input{  width: 100% !important;}
+
+
 
 }
 

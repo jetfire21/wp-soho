@@ -41,6 +41,7 @@ get_header();
 
 				 // echo "is tracks!";
 				 $i = 1;
+				 $c_tracks = count($tracks);
 		?>
 				<?php foreach($tracks as $item):?>
  				 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
@@ -66,10 +67,11 @@ get_header();
 
 		<!-- <a class="loading-link" href="#">Loading ...</a> -->
 		<div id="loading-text" class="music-autoload"></div>
-
+		<div class="empty-block">&nbsp;</div>
 	</div>
 
- </div>
+<!--  </div> -->
+
 
 
 <div class="clearfix"></div>
