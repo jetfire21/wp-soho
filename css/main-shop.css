@@ -343,17 +343,17 @@ footer {
   .perfume-cat * {
     color: #fff; }
 
-.shop-cat-page .shop-big-menu-btn, .single-product .shop-big-menu-btn, .cart-page .shop-big-menu-btn, .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
+.shop-cat-page .shop-big-menu-btn, .single-product .shop-big-menu-btn, .cart-page .shop-big-menu-btn, .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn, .page-contact .shop-big-menu-btn {
   background: #e5e5e5;
   height: 800px;
   padding: 0;
   position: relative; }
-  .shop-cat-page .shop-big-menu-btn img, .single-product .shop-big-menu-btn img, .cart-page .shop-big-menu-btn img, .shop-home-page .shop-big-menu-btn img, .empty-page .shop-big-menu-btn img {
+  .shop-cat-page .shop-big-menu-btn img, .single-product .shop-big-menu-btn img, .cart-page .shop-big-menu-btn img, .shop-home-page .shop-big-menu-btn img, .empty-page .shop-big-menu-btn img, .page-contact .shop-big-menu-btn img {
     top: 50%;
     position: relative;
     margin-top: -25px; }
 
-.cart-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
+.cart-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn, .page-contact .shop-big-menu-btn {
   height: 650px !important; }
 
 .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn {
@@ -742,5 +742,95 @@ h2.checkout-receive {
   border-left: 0 !important;
   border-right: 0 !important;
   padding-bottom: 7px; }
+
+.page-contact input, .page-contact textarea, .page-contact .contact-info h2, .page-contact .contact-info h3 {
+  font: 20px "Montserrat" !important;
+  color: #585858 !important; }
+
+.page-contact input::-webkit-input-placeholder,
+.page-contact textarea::-webkit-input-placeholder {
+  font: 20px "Montserrat" !important;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #585858 !important; }
+
+.page-contact input::-moz-placeholder,
+.page-contact textarea::-moz-placeholder {
+  font: 20px "Montserrat" !important;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #585858 !important; }
+
+.page-contact input:-moz-placeholder,
+.page-contact textarea:-moz-placeholder {
+  font: 20px "Montserrat" !important;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #585858 !important; }
+
+.page-contact input:-ms-input-placeholder,
+.page-contact textarea:-ms-input-placeholder {
+  font: 20px "Montserrat" !important;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  color: #585858 !important; }
+
+.page-contact {
+  background: #000;
+  overflow: hidden; }
+  .page-contact .header-top {
+    margin-top: 0;
+    padding-top: 40px; }
+  .page-contact h1.main-name {
+    color: #fff; }
+  .page-contact * {
+    color: #585858; }
+  .page-contact input, .page-contact textarea {
+    border: 0;
+    background: #000 !important;
+    border-bottom: 1px solid #333 !important;
+    padding: 23px 13px !important; }
+  .page-contact textarea {
+    height: 140px; }
+  .page-contact .shop-big-menu-btn, .page-contact header {
+    background: #000; }
+  .page-contact .shop-big-menu-btn {
+    height: 800px; }
+  .page-contact .contact-info {
+    padding-left: 4%; }
+    .page-contact .contact-info h2, .page-contact .contact-info h3 {
+      text-transform: uppercase;
+      letter-spacing: 2px; }
+    .page-contact .contact-info h2 {
+      letter-spacing: 6px; }
+    .page-contact .contact-info span, .page-contact .contact-info p {
+      font: 20px "Montserrat-Light";
+      line-height: 43px; }
+    .page-contact .contact-info .fa {
+      color: #fff;
+      font-size: 30px;
+      padding-left: 24px; }
+    .page-contact .contact-info .soc-network {
+      margin-top: 107px; }
+      .page-contact .contact-info .soc-network a:first-child .fa {
+        padding-left: 0; }
+  .page-contact .company-info {
+    margin-top: 80px; }
+  .page-contact .form-contact {
+    padding-top: 220px; }
+    .page-contact .form-contact h2 {
+      font-size: 47px !important;
+      margin-bottom: 80px; }
+  .page-contact input, .page-contact textarea {
+    width: 100%; }
+  .page-contact input[type="submit"] {
+    color: #a3a3a3 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 6px !important;
+    border-bottom: 0 !important;
+    text-align: right;
+    padding-bottom: 0 !important; }
+  .page-contact .contact-info h2, .page-contact .form-contact h2 {
+    color: #fff; }
 
 /*# sourceMappingURL=main-shop.css.map */

@@ -434,7 +434,7 @@ footer
 
 
 
-.shop-cat-page, .single-product, .cart-page, .shop-home-page, .empty-page
+.shop-cat-page, .single-product, .cart-page, .shop-home-page, .empty-page, .page-contact
 
 	.shop-big-menu-btn
 		background: #e5e5e5
@@ -447,7 +447,7 @@ footer
 			position: relative
 			margin-top: -25px
 
-.cart-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn
+.cart-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn, .page-contact .shop-big-menu-btn
 	height: 650px !important
 
 .shop-home-page .shop-big-menu-btn, .empty-page .shop-big-menu-btn
@@ -991,3 +991,127 @@ h2.checkout-receive
 	border-left: 0 !important
 	border-right: 0 !important
 	padding-bottom: 7px
+
+
+
+
+%contact
+	font: 20px "Montserrat" !important
+	color: #585858 !important
+	// color: red !important
+
+.page-contact input::-webkit-input-placeholder,
+.page-contact textarea::-webkit-input-placeholder
+	font: 20px "Montserrat" !important
+	text-transform: uppercase
+	letter-spacing: 6px
+	color: #585858 !important
+
+.page-contact input::-moz-placeholder,
+.page-contact textarea::-moz-placeholder
+	font: 20px "Montserrat" !important
+	text-transform: uppercase
+	letter-spacing: 6px
+	color: #585858 !important
+
+.page-contact input:-moz-placeholder,
+.page-contact textarea:-moz-placeholder
+	font: 20px "Montserrat" !important
+	text-transform: uppercase
+	letter-spacing: 6px
+	color: #585858 !important
+
+.page-contact input:-ms-input-placeholder,
+.page-contact textarea:-ms-input-placeholder
+	font: 20px "Montserrat" !important
+	text-transform: uppercase
+	letter-spacing: 6px
+	color: #585858 !important
+
+.page-contact
+	background: #000
+	overflow: hidden
+
+	.header-top
+		margin-top: 0
+		padding-top: 40px
+
+	h1.main-name
+		color: #fff
+
+	*
+		color: #585858
+
+	input, textarea
+		border: 0
+		background: #000 !important
+		border-bottom: 1px solid #333 !important
+		@extend %contact
+		padding: 23px 13px !important
+
+	textarea 
+		height: 140px
+
+	.shop-big-menu-btn, header
+		background: #000
+
+	.shop-big-menu-btn
+		height: 800px
+
+	.contact-info
+		padding-left: 4%
+
+		h2,h3
+			// font: 20px "Montserrat" !important
+			text-transform: uppercase
+			letter-spacing: 2px
+			@extend %contact
+
+		h2
+			letter-spacing: 6px
+
+		span,p 
+			font: 20px "Montserrat-Light"
+			line-height: 43px
+
+		.fa 
+			color: #fff
+			font-size: 30px
+			padding-left: 24px
+
+		.soc-network
+			margin-top: 107px
+
+			a:first-child .fa
+				padding-left: 0
+
+
+	.company-info
+		margin-top: 80px
+
+	.form-contact
+		padding-top: 220px
+
+		h2
+			font-size: 47px !important
+			margin-bottom: 80px
+
+	// input[type="text"],input[type="email"],textarea
+	input,textarea
+		width: 100%
+
+	input[type="submit"]
+		color: #a3a3a3 !important
+		text-transform: uppercase  !important
+		letter-spacing: 6px !important
+		border-bottom: 0 !important
+		text-align: right
+		padding-bottom: 0 !important
+
+	.contact-info h2, .form-contact h2
+		color: #fff
+
+
+
+
+
