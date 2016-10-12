@@ -1,5 +1,5 @@
 
-	<footer>
+	<footer class="hidden-lg hidden-md">
 		<div class="container">
 			<div class="col-md-12">
 				

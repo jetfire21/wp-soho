@@ -11,7 +11,7 @@ Template Name: Contact
 	<img src="<?php echo get_template_directory_uri();?>/img/bar.png" alt="">
 </div>
 
-<div class="col-lg-3 contact-info">
+<div class="col-lg-4 col-md-4 contact-info">
 	<h2>Contact info</h2>
 
 	<div class="company-info">
@@ -30,18 +30,18 @@ Template Name: Contact
 		<span>patricia@metroprlatino.com</span>
 	</div>
 
-		<div class="soc-network">
-	<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-	<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-	<a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-	<a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-	<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+	<div class="soc-network">
+		<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+		<a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+		<a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+		<a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
 	</div>
 
 
 </div>
 
-<div class="col-lg-offset-1 col-lg-6 col-md-12 shop-wrap-padding form-contact">
+<div class=" col-lg-6 col-md-8 shop-wrap-padding form-contact">
 
 	<?php if(have_posts() ): ?>
 	<?php while(have_posts() ) : the_post();?>
@@ -55,5 +55,6 @@ Template Name: Contact
 	<?php endif; ?>	 
 
 </div>
+<div class="clearfix"></div>
 
 <?php get_footer("Contact"); ?>

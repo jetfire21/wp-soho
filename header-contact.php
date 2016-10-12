@@ -62,7 +62,7 @@
 
 	<div class="header-top">
 
-		<div class="col-md-1 col-sm-2 col-xs-2 shop-btn-mobile"><img class="hidden-lg" src="<?php echo get_template_directory_uri();?>/img/black-top-btn.png" alt=""></div>
+		<div class="col-md-1 col-sm-2 col-xs-2 shop-btn-mobile"><img class="hidden-lg" src="<?php echo get_template_directory_uri();?>/img/shop/w-top-btn.png" alt=""></div>
 		<div class="col-md-9 col-sm-8 col-xs-8 ">	<h1 class="main-name">Fernanda romero</h1></div>
 		<div class="col-md-2 col-sm-2 col-xs-2 padding-left-del text-right">
 

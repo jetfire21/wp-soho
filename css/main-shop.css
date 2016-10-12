@@ -777,7 +777,7 @@ h2.checkout-receive {
 
 .page-contact {
   background: #000;
-  overflow: hidden; }
+  overflow: auto; }
   .page-contact .header-top {
     margin-top: 0;
     padding-top: 40px; }
@@ -796,26 +796,28 @@ h2.checkout-receive {
     background: #000; }
   .page-contact .shop-big-menu-btn {
     height: 800px; }
-  .page-contact .contact-info {
-    padding-left: 4%; }
-    .page-contact .contact-info h2, .page-contact .contact-info h3 {
-      text-transform: uppercase;
-      letter-spacing: 2px; }
-    .page-contact .contact-info h2 {
-      letter-spacing: 6px; }
-    .page-contact .contact-info span, .page-contact .contact-info p {
-      font: 20px "Montserrat-Light";
-      line-height: 43px; }
-    .page-contact .contact-info .fa {
-      color: #fff;
-      font-size: 30px;
-      padding-left: 24px; }
-    .page-contact .contact-info .soc-network {
-      margin-top: 107px; }
-      .page-contact .contact-info .soc-network a:first-child .fa {
-        padding-left: 0; }
+  .page-contact .contact-info h2, .page-contact .contact-info h3 {
+    text-transform: uppercase;
+    letter-spacing: 2px; }
+  .page-contact .contact-info h2 {
+    letter-spacing: 6px;
+    color: #fff !important; }
+  .page-contact .contact-info span, .page-contact .contact-info p {
+    font: 20px "Montserrat-Light";
+    line-height: 43px; }
+  .page-contact .contact-info .fa {
+    color: #fff;
+    font-size: 30px;
+    padding-left: 24px; }
+  .page-contact .contact-info .soc-network {
+    margin-top: 126px; }
+    .page-contact .contact-info .soc-network a:first-child .fa {
+      padding-left: 0; }
   .page-contact .company-info {
     margin-top: 80px; }
+  .page-contact .contact-info, .page-contact .form-contact {
+    padding-left: 40px;
+    padding-bottom: 40px; }
   .page-contact .form-contact {
     padding-top: 220px; }
     .page-contact .form-contact h2 {
@@ -831,6 +833,8 @@ h2.checkout-receive {
     text-align: right;
     padding-bottom: 0 !important; }
   .page-contact .contact-info h2, .page-contact .form-contact h2 {
+    color: #fff; }
+  .page-contact footer .soc-network .fa {
     color: #fff; }
 
 /*# sourceMappingURL=main-shop.css.map */
