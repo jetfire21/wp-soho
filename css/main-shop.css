@@ -805,6 +805,8 @@ h2.checkout-receive {
   .page-contact .contact-info span, .page-contact .contact-info p {
     font: 20px "Montserrat-Light";
     line-height: 43px; }
+  .page-contact .contact-info p {
+    margin-bottom: 3px; }
   .page-contact .contact-info .fa {
     color: #fff;
     font-size: 30px;
@@ -817,7 +819,7 @@ h2.checkout-receive {
     margin-top: 80px; }
   .page-contact .contact-info, .page-contact .form-contact {
     padding-left: 40px;
-    padding-bottom: 40px; }
+    padding-bottom: 50px; }
   .page-contact .form-contact {
     padding-top: 220px; }
     .page-contact .form-contact h2 {

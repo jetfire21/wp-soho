@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 
-
+	<?php $prefix = 'page_'; ?>
 	<?php if(have_posts() ): ?>
 	<?php while(have_posts() ) : the_post();?>	
 	    <title>	<?php if( rwmb_meta( "{$prefix}title") ) echo rwmb_meta( "{$prefix}title"); ?></title>

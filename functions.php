@@ -264,7 +264,7 @@ function movie_meta_boxes( $meta_boxes ) {
     $prefix = 'page_';
     $meta_boxes[] = array(
         'title'      => __( 'Test Meta Box', 'textdomain' ),
-        'post_types' => 'page',
+        'post_types' => array('page','product'),
         'fields'     => array(
             array(
                 'id'   => "{$prefix}title",
@@ -283,6 +283,66 @@ function movie_meta_boxes( $meta_boxes ) {
             ),
           ),
     );
+
+$post_id = (isset($_GET['post'])) ? $_GET['post'] : $_POST['post_ID'];
+$template = get_post_meta( $post_id, '_wp_page_template', true );
+
+if($template == "tpl_contact.php") {
+
+      $prefix = 'contact_';
+      $meta_boxes[] = array(
+          'title'      => __( 'Fields', 'textdomain' ),
+          'post_types' => 'page',
+          'fields'     => array(
+              array(
+                  'id'   => "{$prefix}company",
+                  'name' => __( 'Company', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}name",
+                  'name' => __( 'Name', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}mail",
+                  'name' => __( 'E-mail', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}company2",
+                  'name' => __( 'Company 2', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}name2",
+                  'name' => __( 'Name 2', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}mail2",
+                  'name' => __( 'E-mail 2', 'textdomain' ),
+                  'type' => 'text',
+              ),  
+              array(
+                  'id'   => "{$prefix}company3",
+                  'name' => __( 'Company 3', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}name3",
+                  'name' => __( 'Name 3', 'textdomain' ),
+                  'type' => 'text',
+              ),
+              array(
+                  'id'   => "{$prefix}mail3",
+                  'name' => __( 'E-mail 3', 'textdomain' ),
+                  'type' => 'text',
+              ),
+            ),
+      );
+
+}
 
     return $meta_boxes;
 }

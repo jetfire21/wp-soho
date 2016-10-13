@@ -13,21 +13,30 @@ Template Name: Contact
 
 <div class="col-lg-4 col-md-4 contact-info">
 	<h2>Contact info</h2>
+	
+	<?php $prefix = 'contact_'; ?>
 
 	<div class="company-info">
+<!-- 	
 		<h3>Untitled Entertainment</h3>
 		<p>Steven Salisbury</p>
 		<span>steven@untitledent.com</span>
+ -->
+		<h3><?php echo rwmb_meta( "{$prefix}company");?></h3>
+		<p><?php echo rwmb_meta( "{$prefix}name");?></p>
+		<span><?php echo rwmb_meta( "{$prefix}mail");?></span>
 	</div>
 
 	<div class="company-info">
-		<h3> U.S  Platform PR</h3>
-		<span>siri@platfrompr.net</span>
+		<h3><?php echo rwmb_meta( "{$prefix}company2");?></h3>
+		<p><?php echo rwmb_meta( "{$prefix}name2");?></p>
+		<span><?php echo rwmb_meta( "{$prefix}mail2");?></span>
 	</div>
 
 	<div class="company-info">
-		<h3> PR Metro Public Relations</h3>
-		<span>patricia@metroprlatino.com</span>
+		<h3><?php echo rwmb_meta( "{$prefix}company3");?></h3>
+		<p><?php echo rwmb_meta( "{$prefix}name3");?></p>
+		<span><?php echo rwmb_meta( "{$prefix}mail3");?></span>
 	</div>
 
 	<div class="soc-network">
@@ -69,3 +78,5 @@ Template Name: Contact
 <div class="clearfix"></div>
 
 <?php get_footer("contact"); ?>
+
+
