@@ -135,12 +135,16 @@ get_header();
 
 
 <?php
-$count = mysql_query("SELECT COUNT(1) FROM $wpdb->fer_table_name");
-if($count){
-	$count = mysql_fetch_array( $count );
-	$count = $count[0]; 
-}
+// $count = mysql_query("SELECT COUNT(1) FROM $wpdb->fer_table_name");
+// if($count){
+// 	$count = mysql_fetch_array( $count );
+// 	$count = $count[0]; 
+// }
+
+$all_tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
+$count = count($all_tracks);
 ?>
+
 <script>
 var ajaxurl = '<?php echo site_url() ?>/wp-admin/admin-ajax.php';
 var count_row = '<?php echo $count; ?>';
@@ -154,9 +158,6 @@ var current_offset = 8;
 <script type="text/javascript" src="<?php echo get_template_directory_uri();?>/libs/jplayer/add-on/jplayer.playlist.min.js"></script>
 <script src="<?php echo get_template_directory_uri();?>/js/common.js"></script>	
 
-<?php 		
-	$all_tracks = $wpdb->get_results("SELECT * FROM $wpdb->fer_table_name", ARRAY_A);
-?>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
@@ -257,6 +258,7 @@ $(document).ready(function(){
 
     var offset = current_offset;
     $(window).scroll(function(){
+
     	if( offset < count_row ){
             if ( $(window).scrollTop() == $(document).height() - $(window).height() ){
                loadArticle(offset);

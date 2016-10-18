@@ -38,13 +38,16 @@ get_header();
 			<?php $args = array('post_type' => 'video','order'=>'DESC','posts_per_page' => 4); ?>
 
 	 		<?php $video = new WP_Query( $args );?>
-			<?php if($video->have_posts() ): ?>
+			<?php $i=1; if($video->have_posts() ): ?>
 			<?php while($video->have_posts() ) : $video->the_post();?>
 				 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 				 	<?php $prefix = 'video_'; echo rwmb_meta( "{$prefix}url"); ?>
 				 	 <h3><?php the_title(); ?></h3>
 				 </div>
-			<?php endwhile; ?>
+	          <?php if($i !=1 && $i%2==0):?>
+	            <div class="clearfix"></div>
+	         <?php endif;?>
+			<?php $i++; endwhile; ?>
 			<?php else: ?>
 			   	<p>no videos</p>
 			<?php endif; ?>	
@@ -94,6 +97,8 @@ jQuery(function($){
     }); 
 
     function loadArticle(){
+    		console.log( "cur page " + current_page );
+
 
 		var data = {
 			'action': 'loadmorevideo',
